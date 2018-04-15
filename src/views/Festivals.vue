@@ -1,5 +1,5 @@
 <template>
   <div>
-    Om
+    Festivaler
   </div>
 </template>

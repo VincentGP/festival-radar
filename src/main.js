@@ -7,7 +7,7 @@ import VueAxios from 'vue-axios';
 
 Vue.use(VueAxios, axios);
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 new Vue({
   router,

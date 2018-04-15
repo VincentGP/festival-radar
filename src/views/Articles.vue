@@ -1,5 +1,5 @@
 <template>
   <div>
-    Om
+    Artikler
   </div>
 </template>

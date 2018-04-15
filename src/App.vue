@@ -1,22 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <button @click="callAPI()">Hej API</button>
-    </div>
+    <Navigation/>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Navigation from './components/Navigation';
+
 export default {
-  methods: {
-    callAPI() {
-      this.axios.get('http://localhost:7777/festivals').then((response) => {
-        console.log(response.data)
-      })
-    }
+  components: {
+    Navigation
   }
 }
 </script>

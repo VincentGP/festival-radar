@@ -2,18 +2,15 @@
   <div id="app">
     <Navigation/>
     <router-view/>
-    <Login/>
   </div>
 </template>
 
 <script>
 import Navigation from './components/Navigation';
-import Login from './components/Login';
 
 export default {
   components: {
-    Navigation,
-    Login
+    Navigation
   },
   created() {
     // Prøv auto login når siden loader
@@ -21,7 +18,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss">
 #app {

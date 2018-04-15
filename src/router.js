@@ -8,6 +8,8 @@ import Artist from './views/Artist.vue';
 import Artists from './views/Artists.vue';
 import Article from './views/Article.vue';
 import Articles from './views/Articles.vue';
+import Login from './views/Login.vue';
+import Signup from './views/Signup.vue';
 import NotFound from './views/NotFound.vue';
 
 Vue.use(Router);
@@ -54,6 +56,16 @@ export default new Router({
       path: '/artikler',
       name: 'artikler',
       component: Articles
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: Signup
     },
     {
       path: '/404',

@@ -6,7 +6,7 @@ import VueAxios from 'vue-axios';
 // Interne imports
 import App from './App.vue';
 import router from './router';
-import store from './store/store';
+import { store } from './store/store';
 import { apiBaseUrl } from './config/config';
 
 // Vi fortæller Vue at vi bruger Axios

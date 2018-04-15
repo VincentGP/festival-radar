@@ -3,10 +3,24 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+      <button @click="callAPI()">Hej API</button>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    callAPI() {
+      this.axios.get('http://localhost:7777/festivals').then((response) => {
+        console.log(response.data)
+      })
+    }
+  }
+}
+</script>
+
 
 <style lang="scss">
 #app {

@@ -53,9 +53,20 @@ export const store = new Vuex.Store({
   },
   // Actions kan sagtens køre asykron kode i modsætning til mutations
   actions: {
+    signup({ dispatch }, userData) {
+      return new Promise((resolve, reject) => {
+        axios.post('/users', userData)
+          .then((res) => {
+            router.push({ path: '/login' });
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      });
+    },
     // Vi bruger commit objektet for at kunne comitte en mutation
     // authData kommer fra formen i frontenden
-    login({ commit, dispatch, getters }, authData) {
+    login({ commit, dispatch }, authData) {
       return new Promise((resolve, reject) => {
         // Først og fremmest checkes der om brugeren er blokeret på klienten
         if (localStorage.getItem('blocked')) {

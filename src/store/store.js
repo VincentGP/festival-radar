@@ -16,10 +16,10 @@ export const store = new Vuex.Store({
     userId: null
   },
   getters: {
-    // Check om brugeren er valid
-    // isAuthenticated(state) {
-    //   return state.token !== null;
-    // }
+    // Check om brugeren er valid (return true hvis token ikke er null)
+    isAuthenticated(state) {
+      return state.authToken !== null;
+    }
   },
   // Mutations kan ikke køre asykron kode
   mutations: {

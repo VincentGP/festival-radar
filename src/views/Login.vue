@@ -23,10 +23,10 @@ export default {
     login() {
       this.$store.dispatch('login', { email: this.email, password: this.password })
         .then((res) => {
-          console.log('res');
+          console.log('Så er du sgu logget ind');
         })
         .catch((err) => {
-          console.log('err');
+          console.log('Det gik ikke så godt med at logge ind');
         });
     }
   }

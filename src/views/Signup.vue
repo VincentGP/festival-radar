@@ -12,7 +12,7 @@
       <label>Password</label>
       <input type="password" placeholder="Password" v-model="password">
       <label>Profil billede</label>
-      <input type="text" placeholder="Profil billede" v-model="image">
+      <input type="file" name="avatar" enctype="multipart/form-data" @change="onFileChanged">
       <button>Opret bruger</button>
     </form>
   </div>
@@ -26,7 +26,7 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      image: ''
+      imageFile: null
     }
   },
   methods: {
@@ -36,8 +36,13 @@ export default {
         lastName: this.lastName,
         email: this.email,
         password: this.password,
-        image: this.image
+        avatar: this.imageFile
       });
+    },
+    // Når @change eksekveres får vi adgang til et event
+    onFileChanged(event) {
+      this.imageFile = event.target.files[0];
+      
     }
   }
 }

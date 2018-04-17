@@ -55,7 +55,16 @@ export const store = new Vuex.Store({
   actions: {
     signup({ dispatch }, userData) {
       return new Promise((resolve, reject) => {
-        axios.post('/users', userData)
+        // Lav form object baseret på data fra signup form
+        const formData = new FormData();
+        formData.append('firstName', userData.firstName);
+        formData.append('lastName', userData.lastName);
+        formData.append('email', userData.email);
+        formData.append('password', userData.password);
+        // Billede filen
+        formData.append('avatar', userData.avatar, userData.avatar.name);
+        // Lav request til serveren
+        axios.post('/users', formData)
           .then((res) => {
             router.push({ path: '/login' });
           })

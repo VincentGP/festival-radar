@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="!isLoading">
     <Navigation/>
     <router-view/>
   </div>
@@ -12,9 +12,19 @@ export default {
   components: {
     Navigation
   },
+  data() {
+    return {
+      isLoading: true
+    }
+  },
   created() {
     // Prøv auto login når siden loader
     this.$store.dispatch('tryAutoLogin');
+    // Det her er helt hen i vejret men vi bliver nødt til at vente på svar om brugeren er valid før vi kan vise navigation
+    // Kan måske erstattes af en lækker load animation eller noget 🤙
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 200);
   }
 }
 </script>

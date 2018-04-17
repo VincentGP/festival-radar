@@ -15,6 +15,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isLoading: true
+    }
+  },
   methods: {
     logout() {
       this.$store.dispatch('logout');
@@ -27,3 +32,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+[v-cloak] {
+  display: none;
+}
+</style>

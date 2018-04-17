@@ -173,7 +173,7 @@ export const store = new Vuex.Store({
         return;
       }
       // Valider token på serveren
-      axios.head('/users/validate', {
+      axios.get('/users/validate', {
         headers: {
           'x-auth': authToken
         }
@@ -189,7 +189,16 @@ export const store = new Vuex.Store({
           }
           commit('authUser', {
             authToken,
-            userId
+            userId,
+            user: {
+              firstName: res.data.firstName,
+              lastName: res.data.lastName,
+              email: res.data.email,
+              imagePath: res.data.imagePath,
+              followedArtists: res.data.followedArtists,
+              followedFestivals: res.data.followedFestivals,
+              followedGenres: res.data.followedGenres
+            }
           });
         })
         .catch(() => {

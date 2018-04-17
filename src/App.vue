@@ -18,6 +18,8 @@ export default {
     }
   },
   created() {
+    // Hent alle festivaler
+    this.$store.dispatch('getAllFestivals');
     // Prøv auto login når siden loader
     this.$store.dispatch('tryAutoLogin');
     // Det her er helt hen i vejret men vi bliver nødt til at vente på svar om brugeren er valid før vi kan vise navigation

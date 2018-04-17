@@ -14,7 +14,8 @@ export const store = new Vuex.Store({
   state: {
     authToken: null,
     userId: null,
-    user: null
+    user: null,
+    festivals: []
   },
   getters: {
     // Check om brugeren er valid (return true hvis token ikke er null)
@@ -52,6 +53,9 @@ export const store = new Vuex.Store({
       localStorage.removeItem('attempts');
       localStorage.removeItem('blocked');
       localStorage.removeItem('blockedExpiresIn');
+    },
+    festivals(state, festivals) {
+      state.festivals = festivals;
     }
   },
   // Actions kan sagtens køre asykron kode i modsætning til mutations
@@ -217,6 +221,16 @@ export const store = new Vuex.Store({
           // Hvis token ikke er valid
           commit('clearAuthData');
           router.push({ path: '/login' });
+        });
+    },
+    getAllFestivals({ commit }) {
+      axios.get('/festivals')
+        .then((res) => {
+          // Aktivér vores mutation og send data med
+          commit('festivals', res.data);
+        })
+        .catch((err) => {
+          console.error(err);
         });
     }
   }

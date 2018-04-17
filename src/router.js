@@ -10,6 +10,7 @@ import Article from './views/Article.vue';
 import Articles from './views/Articles.vue';
 import Login from './views/Login.vue';
 import Signup from './views/Signup.vue';
+import Dashboard from './views/Dashboard.vue';
 import NotFound from './views/NotFound.vue';
 
 Vue.use(Router);
@@ -66,6 +67,11 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: Signup
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
     },
     {
       path: '/404',

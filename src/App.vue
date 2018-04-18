@@ -39,4 +39,13 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
 </style>

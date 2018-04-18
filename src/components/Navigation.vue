@@ -49,7 +49,7 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     profileImagePath() {
-      return `http://localhost:7777/uploads/${this.$store.state.user.imagePath}`
+      return `http://localhost:7777/uploads/${this.$store.state.user.imagePath}`;
     },
     randomGreeting() {
       let number = Math.floor(Math.random() * this.greetings.length);

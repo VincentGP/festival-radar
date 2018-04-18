@@ -10,6 +10,7 @@ import Article from './views/Article.vue';
 import Articles from './views/Articles.vue';
 import Login from './views/Login.vue';
 import Signup from './views/Signup.vue';
+import Styleguide from './views/dev/Styleguide.vue';
 import Dashboard from './views/Dashboard.vue';
 import NotFound from './views/NotFound.vue';
 
@@ -72,6 +73,11 @@ export default new Router({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard
+    },
+    {
+      path: '/dev/styleguide',
+      name: 'styleguide',
+      component: Styleguide
     },
     {
       path: '/404',

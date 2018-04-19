@@ -32,13 +32,5 @@ export default {
 </script>
 
 <style lang="scss">
-
-@import 'assets/styles/main';
-
-#app {
-  text-align: center;
-  background-color: #F7F8F9;
-  color: #2c3e50;
-}
-
+@import './assets/styles/main';
 </style>

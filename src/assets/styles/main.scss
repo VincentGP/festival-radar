@@ -1,16 +1,20 @@
 @import './reset.scss';
+@import './typography.scss';
 
 // Custom styles
 h1 {
   font-size: 60px;
+  margin-bottom: 30px;
 }
 
 h2 {
-
+  font-size: 36px;
+  margin-bottom: 50px;
 }
 
 h3 {
-
+  font-size: 22px;
+  margin-bottom: 20px;
 }
 
 h4 {
@@ -27,4 +31,18 @@ a {
   font-family: 'Roboto', 'sans-serif';
   font-size: 16px;
   font-weight: bold;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 2px;
+
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  &--big {
+    font-size: 12px;
+    letter-spacing: 2,4px;
+  }
 }

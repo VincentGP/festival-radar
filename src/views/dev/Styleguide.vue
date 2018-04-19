@@ -65,13 +65,13 @@
     </div>
 
     <div class="row">
-      <label>Label - 10px - Roboto</label>
+      <label class="label">Label - 10px - Roboto</label>
     </div>
     <div class="row">
-      <label>Label-uppercase - 10px - Roboto</label>
+      <label class="label label--uppercase">Label--uppercase - 10px - Roboto</label>
     </div>
     <div class="row">
-      <div>Label-uppercase-big - 12px - Roboto regular</div>
+      <div class="label label--uppercase label--big">Label--uppercase label--big - 12px - Roboto regular</div>
     </div>
 
     <div class="molecules">

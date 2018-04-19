@@ -38,7 +38,7 @@
         </fr-button>
       </div>
       <div class="row">
-        <label>Input label</label>
+        <label class="label label--uppercase">Input label</label>
       </div>
       <div class="row">
         <input class="inp" type="text" placeholder="Please enter your input">

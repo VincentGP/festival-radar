@@ -7,17 +7,32 @@
     <h2>Atoms</h2>
     <div class="atoms">
       <div class="row">
-        <fr-button class="btn">
+        <fr-button>
           Klik her
         </fr-button>
       </div>
       <div class="row">
-        <fr-button class="btn btn--small">
+        <fr-button class="btn--gray">
           Klik her
         </fr-button>
       </div>
       <div class="row">
-        <fr-button class="btn btn--small btn--gray">
+        <fr-button class="btn--small">
+          Klik her
+        </fr-button>
+      </div>
+      <div class="row">
+        <fr-button class="btn--small btn--gray">
+          Klik her
+        </fr-button>
+      </div>
+      <div class="row">
+        <fr-button :icon="'chevron-right'">
+          Klik her
+        </fr-button>
+      </div>
+      <div class="row">
+        <fr-button class="btn--no-style" :icon="'arrow-right'">
           Klik her
         </fr-button>
       </div>

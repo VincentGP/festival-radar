@@ -2,10 +2,10 @@
   <div class="btn">
     <slot></slot>
     <template v-if="icon === 'chevron-right'">
-      <chevron-right></chevron-right>
+      <chevron-right class="chevron-right"></chevron-right>
     </template>
     <template v-if="icon === 'arrow-right'">
-      <arrow-right></arrow-right>
+      <arrow-right class="arrow-right"></arrow-right>
     </template>
   </div>
 </template>
@@ -43,21 +43,28 @@ export default {
   svg {
     margin-left: 20px;
     transition: fill 0.3s;
-    height: 17px;
-    width: 9px;
     float: right;
-    margin-top: 15px;
+
+    &.chevron-right {
+      height: 17px;
+      width: 9px;
+      margin-top: 15px;
+    }
+
+    &.arrow-right {
+      width: 19px;
+      height: 18px;
+      margin-top: 5px;
+    }
   }
 
   &:hover {
     background: #93B6B7;
     color: white;
 
-
       svg {
         fill: white;
       }
-
   }
 
   &--small {
@@ -80,7 +87,29 @@ export default {
   }
 
   &--no-style {
-    
+    background: none;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border-radius: 0;
+    border: 0;
+    line-height: 30px;
+    cursor: pointer;
+
+    svg {
+      fill: #93B6B7;
+      transition: transform .3s;
+    }
+
+    &:hover {
+      background: 0;
+      color: black;
+
+      svg {
+        fill: #93B6B7;
+        transform: translateX(3px);
+      }
+    }
   }
 }
 

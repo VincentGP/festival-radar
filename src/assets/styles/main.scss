@@ -5,7 +5,7 @@
 @import './typography.scss';
 
 // Custom styles
-* {
+body {
   font-family: $font-roboto;
 }
 
@@ -18,7 +18,7 @@ h1 {
 h2 {
   font-family: $font-bauhaus;  
   font-size: 36px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 h3 {
@@ -28,19 +28,23 @@ h3 {
 }
 
 h4 {
+  font-family: $font-roboto;  
   font-size: 24px;
 }
 
 p {
+  font-family: $font-roboto;  
   font-size: 16px;
 }
 
 a {
+  font-family: $font-roboto;  
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .label {
+  font-family: $font-roboto;  
   font-size: 10px;
   letter-spacing: 2px;
 

@@ -32,23 +32,13 @@ export default {
 </script>
 
 <style lang="scss">
+
 @import 'assets/styles/main';
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   background-color: #F7F8F9;
   color: #2c3e50;
 }
-button, input[type="submit"], input[type="reset"] {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-}
+
 </style>

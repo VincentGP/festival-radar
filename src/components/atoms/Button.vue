@@ -70,7 +70,7 @@ export default {
   &--small {
     height: 30px;
     line-height: 30px;
-    padding: 0 10px;
+    padding: 0 20px;
   }
 
   &--gray {

@@ -33,13 +33,14 @@ export default {
 
 <style lang="scss">
 @import 'assets/styles/typography';
+@import 'assets/styles/main';
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #fafafa;
+  background-color: #F7F8F9;
   color: #2c3e50;
 }
 button, input[type="submit"], input[type="reset"] {
@@ -50,13 +51,5 @@ button, input[type="submit"], input[type="reset"] {
     font: inherit;
     cursor: pointer;
     outline: inherit;
-}
-input {
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-}
-label {
-  display: block;
 }
 </style>

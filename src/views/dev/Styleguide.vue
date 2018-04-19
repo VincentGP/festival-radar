@@ -37,6 +37,10 @@
           Klik her
         </fr-button>
       </div>
+      <div class="row">
+        <label for="country">Country</label>
+        <input type="text" name="country" placeholder="Please enter your country">
+      </div>
     </div>
 
     <h3>Fonts</h3>
@@ -88,7 +92,7 @@ import Button from '../../components/atoms/Button.vue';
 
 export default {
   components: {
-    'fr-button': Button
+    'fr-button': Button  
   }
 }
 </script>

@@ -30,7 +30,7 @@ export default new Router({
       component: About
     },
     {
-      path: '/festival/:id',
+      path: '/festival/:name',
       name: 'festival',
       component: Festival
     },

@@ -39,6 +39,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  background-color: #fafafa;
   color: #2c3e50;
 }
 button, input[type="submit"], input[type="reset"] {
@@ -49,5 +50,13 @@ button, input[type="submit"], input[type="reset"] {
     font: inherit;
     cursor: pointer;
     outline: inherit;
+}
+input {
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+}
+label {
+  display: block;
 }
 </style>

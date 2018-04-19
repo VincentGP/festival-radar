@@ -38,8 +38,13 @@
         </fr-button>
       </div>
       <div class="row">
-        <label for="country">Country</label>
-        <input type="text" name="country" placeholder="Please enter your country">
+        <label>Input label</label>
+      </div>
+      <div class="row">
+        <input class="inp" type="text" placeholder="Please enter your input">
+      </div>
+      <div class="row">
+        <input class="inp inp--rounded" type="text" placeholder="Please enter your input">
       </div>
     </div>
 

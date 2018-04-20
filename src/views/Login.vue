@@ -1,19 +1,26 @@
 <template>
-  <div class="container">
-    <div class="container__is-half">
-      <fr-login-form></fr-login-form>
+  <section>
+    <fr-header-section :title="'Login'">
+      Please fill out your login informantion below, if you dont already have an account please signup
+    </fr-header-section>
+    <div class="container">
+      <div class="container__is-half">
+        <fr-login-form></fr-login-form>
+      </div>
+      <div class="container__is-half container--is-large-text">
+        <h1>SOME TEXT ABOUT HOW AWESOME WE ARE</h1>
+      </div>
     </div>
-    <div class="container__is-half container--is-large-text">
-      <h1>SOME TEXT ABOUT HOW AWESOME WE ARE</h1>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import LoginForm from '../components/organisms/LoginForm.vue';
+import HeaderSection from '../components/organisms/HeaderSection.vue';
 export default {
   components: {
-    'fr-login-form': LoginForm
+    'fr-login-form': LoginForm,
+    'fr-header-section': HeaderSection
   }
 };
 </script>
@@ -21,5 +28,6 @@ export default {
 <style lang="scss" scoped>
   .container {
     display: flex;
+    align-items: center;
   }
 </style>

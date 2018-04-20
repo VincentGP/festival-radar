@@ -4,6 +4,7 @@
 @import './buttons.scss';
 @import './colors.scss';
 @import './placeholders.scss';
+@import './forms.scss';
 
 // Custom styles
 body {
@@ -13,8 +14,23 @@ body {
 
 .container {
   max-width: 1200px;
-  margin: 50px auto 0;
+  margin: 0px auto;
   width: calc(100% - 100px);
+  &__is-full {
+    width: 100%;
+  }
+  &__is-half {
+    width: 50%;
+  }
+  &--is-large-text {
+    margin: 0px 30px;
+    text-align: center;
+  }
+}
+
+.header-section {
+  padding: 170px 0 30px;
+  background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
 }
 
 h1 {
@@ -54,9 +70,11 @@ a {
   font-weight: bold;
   color: $color-blue;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .label {
+  margin-bottom: 5px;
   font-family: $font-roboto;  
   font-size: 10px;
   letter-spacing: 2px;

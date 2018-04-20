@@ -10,6 +10,8 @@ import Article from './views/Article.vue';
 import Articles from './views/Articles.vue';
 import Login from './views/Login.vue';
 import Signup from './views/Signup.vue';
+import Styleguide from './views/dev/Styleguide.vue';
+import Dashboard from './views/Dashboard.vue';
 import NotFound from './views/NotFound.vue';
 
 Vue.use(Router);
@@ -19,42 +21,42 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'hjem',
+      name: 'home',
       component: Home
     },
     {
-      path: '/om',
-      name: 'om',
+      path: '/about-us',
+      name: 'about us',
       component: About
     },
     {
-      path: '/festival/:id',
+      path: '/festival/:name',
       name: 'festival',
       component: Festival
     },
     {
-      path: '/festivaler',
-      name: 'festivaler',
+      path: '/festivals',
+      name: 'festivals',
       component: Festivals
     },
     {
-      path: '/kunstner/:id',
-      name: 'kunstner',
+      path: '/artists/:id',
+      name: 'artist',
       component: Artist
     },
     {
-      path: '/kunstnere',
-      name: 'kunstnere',
+      path: '/artists',
+      name: 'artists',
       component: Artists
     },
     {
-      path: '/artikel/:id',
-      name: 'artikel',
+      path: '/articles/:id',
+      name: 'article',
       component: Article
     },
     {
-      path: '/artikler',
-      name: 'artikler',
+      path: '/articles',
+      name: 'articles',
       component: Articles
     },
     {
@@ -66,6 +68,16 @@ export default new Router({
       path: '/signup',
       name: 'signup',
       component: Signup
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
+    },
+    {
+      path: '/dev/styleguide',
+      name: 'styleguide',
+      component: Styleguide
     },
     {
       path: '/404',

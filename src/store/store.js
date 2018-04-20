@@ -13,7 +13,9 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     authToken: null,
-    userId: null
+    userId: null,
+    user: null,
+    festivals: []
   },
   getters: {
     // Check om brugeren er valid (return true hvis token ikke er null)
@@ -27,11 +29,13 @@ export const store = new Vuex.Store({
     authUser(state, userData) {
       state.authToken = userData.authToken;
       state.userId = userData.userId;
+      state.user = userData.user;
     },
     // Fjerner variabler fra state og localStorage
     clearAuthData(state) {
       state.authToken = null;
       state.userId = null;
+      state.user = null;
       localStorage.removeItem('expirationDate');
       localStorage.removeItem('userId');
       localStorage.removeItem('authToken');
@@ -49,6 +53,9 @@ export const store = new Vuex.Store({
       localStorage.removeItem('attempts');
       localStorage.removeItem('blocked');
       localStorage.removeItem('blockedExpiresIn');
+    },
+    festivals(state, festivals) {
+      state.festivals = festivals;
     }
   },
   // Actions kan sagtens køre asykron kode i modsætning til mutations
@@ -97,7 +104,16 @@ export const store = new Vuex.Store({
               // Aktivér vores mutation og send id og token med
               commit('authUser', {
                 userId: res.data.user._id,
-                authToken: res.data.user.authToken
+                authToken: res.data.user.authToken,
+                user: {
+                  firstName: res.data.user.firstName,
+                  lastName: res.data.user.lastName,
+                  email: res.data.user.email,
+                  imagePath: res.data.user.imagePath,
+                  followedArtists: res.data.user.followedArtists,
+                  followedFestivals: res.data.user.followedFestivals,
+                  followedGenres: res.data.user.followedGenres
+                }
               });
               // Find den nuværende tid og dato
               let now = new Date();
@@ -173,7 +189,7 @@ export const store = new Vuex.Store({
         return;
       }
       // Valider token på serveren
-      axios.head('/users/validate', {
+      axios.get('/users/validate', {
         headers: {
           'x-auth': authToken
         }
@@ -189,13 +205,32 @@ export const store = new Vuex.Store({
           }
           commit('authUser', {
             authToken,
-            userId
+            userId,
+            user: {
+              firstName: res.data.firstName,
+              lastName: res.data.lastName,
+              email: res.data.email,
+              imagePath: res.data.imagePath,
+              followedArtists: res.data.followedArtists,
+              followedFestivals: res.data.followedFestivals,
+              followedGenres: res.data.followedGenres
+            }
           });
         })
         .catch(() => {
           // Hvis token ikke er valid
           commit('clearAuthData');
           router.push({ path: '/login' });
+        });
+    },
+    getAllFestivals({ commit }) {
+      axios.get('/festivals')
+        .then((res) => {
+          // Aktivér vores mutation og send data med
+          commit('festivals', res.data);
+        })
+        .catch((err) => {
+          console.error(err);
         });
     }
   }

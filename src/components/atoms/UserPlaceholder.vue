@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="user-placeholder">
-        <img v-if="src" :src="src" alt="">
-        <user-icon></user-icon>
-    </div>
+  <div class="user-placeholder">
+      <img v-if="src" :src="src" alt="">
+      <user-icon></user-icon>
   </div>
 </template>
 

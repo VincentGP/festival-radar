@@ -123,6 +123,8 @@
     <div class="box box__white">
       <h3>placeholders</h3>
       <div class="row">
+        <fr-user-placeholder class="user-placeholder--small"></fr-user-placeholder>
+        <fr-user-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-user-placeholder>
         <fr-user-placeholder></fr-user-placeholder>
         <fr-user-placeholder :src="profileImagePath"></fr-user-placeholder>
       </div>

@@ -4,6 +4,7 @@
 @import './buttons.scss';
 @import './colors.scss';
 @import './placeholders.scss';
+@import './forms.scss';
 
 // Custom styles
 body {
@@ -15,6 +16,13 @@ body {
   max-width: 1200px;
   margin: 50px auto 0;
   width: calc(100% - 100px);
+  &__is-half {
+    width: 50%;
+  }
+  &--is-large-text {
+    margin: 0px 30px;
+    text-align: center;
+  }
 }
 
 h1 {
@@ -51,9 +59,11 @@ a {
   font-weight: bold;
   color: $color-blue;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .label {
+  margin-bottom: 5px;
   font-family: $font-roboto;  
   font-size: 10px;
   letter-spacing: 2px;

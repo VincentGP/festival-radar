@@ -1,6 +1,6 @@
 <template>
   <section>
-    <fr-header-section :title="'Login'">
+    <fr-header-section :title="'Login'" :btn-text="'Signup'" :btn-link="'/signup'">
       Please fill out your login informantion below, if you dont already have an account please signup
     </fr-header-section>
     <div class="container">
@@ -29,5 +29,6 @@ export default {
   .container {
     display: flex;
     align-items: center;
+    margin-top: 50px;
   }
 </style>

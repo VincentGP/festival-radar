@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
-    <h1>{{ title }}</h1>
-    <div class="container__is-full">
-      <p><slot></slot></p>
-      <fr-button class="btn--small">
-        Signup
-      </fr-button>
-    </div>
-  </div>  
+  <div class="header-section">
+    <div class="container">
+      <h1>{{ title }}</h1>
+      <div class="container__is-full">
+        <p><slot></slot></p>
+        <fr-button @click.native="navigate()" class="btn--small">{{ btnText }}</fr-button>
+      </div>
+    </div>  
+  </div>
 </template>
 
 <script>
@@ -17,8 +17,15 @@ export default {
     'fr-button': Button
   },
   props: [
-    'title'
-  ]
+    'title',
+    'btn-text',
+    'btn-link'
+  ],
+  methods: {
+    navigate() {
+      this.$router.push({ path: this.btnLink });
+    }
+  }
 }
 </script>
 
@@ -28,7 +35,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 100px;
   &__is-full {
     display: flex;
     justify-content: space-between;

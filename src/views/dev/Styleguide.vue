@@ -151,7 +151,10 @@ export default {
   },
   computed: {
     profileImagePath() {
-      return `http://localhost:7777/uploads/${this.$store.state.user.imagePath}`;
+      let auth = this.$store.getters.isAuthenticated; 
+      if (auth) {
+        return `http://localhost:7777/uploads/${this.$store.state.user.imagePath}`;
+      } 
     }
   }
 };

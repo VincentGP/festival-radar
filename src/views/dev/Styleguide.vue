@@ -135,6 +135,9 @@
     </div>
     <div class="organisms">
       <h2>Organisms</h2>
+      <h3>headers</h3>
+      <fr-navigation></fr-navigation>
+      <fr-navigation></fr-navigation>
     </div>
     <div class="templates">
       <h2>Templates</h2>
@@ -145,11 +148,13 @@
 <script>
 import Button from '../../components/atoms/Button.vue';
 import UserPlaceholder from '../../components/atoms/UserPlaceholder.vue';
+import Navigation from '../../components/organisms/Navigation.vue';
 
 export default {
   components: {
     'fr-button': Button,
-    'fr-user-placeholder': UserPlaceholder
+    'fr-user-placeholder': UserPlaceholder,
+    'fr-navigation': Navigation
   },
   computed: {
     profileImagePath() {

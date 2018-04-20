@@ -21,18 +21,21 @@ h1 {
   font-family: $font-bauhaus;  
   font-size: 60px;
   margin-bottom: 30px;
+  color: $color-dark-grey;
 }
 
 h2 {
   font-family: $font-bauhaus;  
   font-size: 36px;
   margin-bottom: 30px;
+  color: $color-dark-grey;
 }
 
 h3 {
   font-family: $font-bauhaus;  
   font-size: 22px;
   margin-bottom: 20px;
+  color: $color-dark-grey;
 }
 
 h4 {
@@ -46,7 +49,7 @@ p {
 }
 
 a {
-  font-family: $font-roboto;  
+  font-family: $font-roboto;
   font-size: 16px;
   font-weight: bold;
   color: $color-blue;

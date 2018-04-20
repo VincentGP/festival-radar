@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="section">
     <fr-header-section :title="'Login'" :btn-text="'Signup'" :btn-link="'/signup'">
       Please fill out your login informantion below, if you dont already have an account please signup
     </fr-header-section>

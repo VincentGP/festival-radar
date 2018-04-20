@@ -1,27 +1,29 @@
 <template>
-  <div class="navigation">
-    <div class="logo">
-      <h2>Festival</h2>
-      <h2>radar</h2>
-    </div>
-    <div class="navigation__right">
-      <div class="navigation__right__links">
-        <a class="menu-item active">Festivals</a>
-        <a class="menu-item">Artists</a>
-        <a class="menu-item">Articles</a>
-        <a class="menu-item">About us</a>
+  <div class="container">
+    <div class="navigation">
+      <div class="logo">
+        <h2>Festival</h2>
+        <h2>radar</h2>
       </div>
-      <div class="navigation__right__user">
-        <template v-if="isAuthenticated">
-          <a class="loggedin">
-            <p class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</p>
-            <fr-user-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-user-placeholder>
-          </a>
-        </template>
-        <template v-else>
-          <a class="menu-item">Login</a>
-          <a class="menu-item">Signup</a>
-        </template>
+      <div class="navigation__right">
+        <div class="navigation__right__links">
+          <a class="menu-item active">Festivals</a>
+          <a class="menu-item">Artists</a>
+          <a class="menu-item">Articles</a>
+          <a class="menu-item">About us</a>
+        </div>
+        <div class="navigation__right__user">
+          <template v-if="isAuthenticated">
+            <a class="loggedin">
+              <p class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</p>
+              <fr-user-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-user-placeholder>
+            </a>
+          </template>
+          <template v-else>
+            <a class="menu-item">Login</a>
+            <a class="menu-item">Signup</a>
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -72,7 +74,7 @@ export default {
     
     &__right {
       display: flex;
-      margin-top: 15px;
+      margin-top: 5px;
 
       &__links {
         position: relative;
@@ -127,14 +129,14 @@ export default {
 
         &.active {
           &::after {
-            width: 30px;
+            width: calc(100% - 22px);
             border-bottom: 1px solid $color-blue;
           }
         }
 
         &:hover {
           &::after {
-            width: 30px;
+            width: calc(100% - 22px);
             border-bottom: 1px solid $color-light-grey;
           }
         }

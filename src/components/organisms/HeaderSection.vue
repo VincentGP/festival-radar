@@ -1,10 +1,10 @@
 <template>
-  <div class="header-section">
+  <div class="section__header">
     <div class="container">
       <h1>{{ title }}</h1>
       <div class="container__is-full">
         <p><slot></slot></p>
-        <fr-button @click.native="navigate()" class="btn--small">{{ btnText }}</fr-button>
+        <fr-button @click.native="navigate()" class="btn--small btn--transparent">{{ btnText }}</fr-button>
       </div>
     </div>  
   </div>
@@ -40,7 +40,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
-    border-top: 1px solid $color-lightish-grey;
+    border-top: 1px solid #C9C9C9;
   }
 }
 </style>

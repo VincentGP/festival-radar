@@ -28,10 +28,26 @@ body {
   }
 }
 
-.header-section {
-  padding: 170px 0 30px;
-  background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
+.section {
+  margin-top: -70px;
+
+  &__header {
+    
+    /* Rectangle: */
+    /* Rectangle: */
+    background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
+    padding: 170px 0 30px;
+  }
+
+  &__content {
+
+  }
 }
+
+// .header-section {
+//   padding: 170px 0 30px;
+//   background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
+// }
 
 h1 {
   font-family: $font-bauhaus;  

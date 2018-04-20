@@ -14,7 +14,7 @@ body {
 
 .container {
   max-width: 1200px;
-  margin: 50px auto 0;
+  margin: 0px auto;
   width: calc(100% - 100px);
   &__is-full {
     width: 100%;
@@ -26,6 +26,11 @@ body {
     margin: 0px 30px;
     text-align: center;
   }
+}
+
+.header-section {
+  padding: 170px 0 30px;
+  background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
 }
 
 h1 {

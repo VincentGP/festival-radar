@@ -27,10 +27,10 @@ export default {
       email: '',
       password: '',
       imageFile: null
-    }
+    };
   },
   methods: {
-    signup() {      
+    signup() {
       this.$store.dispatch('signup', {
         firstName: this.firstName,
         lastName: this.lastName,
@@ -42,10 +42,9 @@ export default {
     // Når @change eksekveres får vi adgang til et event
     onFileChanged(event) {
       this.imageFile = event.target.files[0];
-      
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       festivals: this.$store.state.festivals
-    }
+    };
   }
-}
+};
 </script>

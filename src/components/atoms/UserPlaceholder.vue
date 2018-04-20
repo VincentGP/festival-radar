@@ -15,5 +15,5 @@ export default {
     UserIcon
   },
   props: ['src']
-}
+};
 </script>

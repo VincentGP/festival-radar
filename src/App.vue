@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       isLoading: true
-    }
+    };
   },
   created() {
     // Hent alle festivaler
@@ -28,7 +28,7 @@ export default {
       this.isLoading = false;
     }, 200);
   }
-}
+};
 </script>
 
 <style lang="scss">

@@ -153,9 +153,8 @@ export default {
     profileImagePath() {
       return `http://localhost:7777/uploads/${this.$store.state.user.imagePath}`;
     }
-    
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -228,5 +227,3 @@ export default {
     }
   }
 </style>
-
-

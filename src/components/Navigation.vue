@@ -19,7 +19,7 @@
         </div>
         <transition name="fade">
           <div @mouseover="showDropdown = true" @mouseleave="showDropdown = false" v-if="showDropdown" class="dropdown">
-            <router-link to="/dashboard">Dashboard</router-link>          
+            <router-link to="/dashboard">Dashboard</router-link>
             <button @click="logout()">Log ud</button>
           </div>
         </transition>
@@ -35,7 +35,7 @@ export default {
       isLoading: true,
       showDropdown: false,
       greetings: ['Hej', 'Hejsa', 'Go\'daw']
-    }
+    };
   },
   methods: {
     logout() {
@@ -56,7 +56,7 @@ export default {
       return `${this.greetings[number]} ${this.$store.state.user.firstName} ${this.$store.state.user.lastName}`;
     }
   }
-}
+};
 </script>
 
 <style lang="scss">

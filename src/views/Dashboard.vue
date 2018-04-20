@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       user: this.$store.state.user
-    }
+    };
   },
   created() {
     // Hvis bruger ikke er valid skal de smides til login siden
@@ -35,5 +35,5 @@ export default {
       });
     }
   }
-}
+};
 </script>

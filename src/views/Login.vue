@@ -17,7 +17,7 @@ export default {
     return {
       email: '',
       password: ''
-    }
+    };
   },
   methods: {
     login() {
@@ -26,9 +26,9 @@ export default {
           console.log('Så er du sgu logget ind');
         })
         .catch((err) => {
-          console.log('Det gik ikke så godt med at logge ind');
+          console.log(err + 'Det gik ikke så godt med at logge ind');
         });
     }
   }
-}
+};
 </script>

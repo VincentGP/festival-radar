@@ -2,11 +2,11 @@
   <form class="form" @submit.prevent>
     <div class="form__element">
       <label for="email" class="label label--uppercase">Email</label>
-      <input class="inp" name="email" type="email" placeholder="Please enter your input" v-model="email" required>    
+      <input class="inp" name="email" type="email" placeholder="Please enter your email" v-model="email" required>    
     </div>
     <div class="form__element">
       <label for="password" class="label label--uppercase">Password</label>
-      <input class="inp" name="password" type="password" placeholder="Please enter your input" v-model="password" required>    
+      <input class="inp" name="password" type="password" placeholder="Please enter your password" v-model="password" required>    
     </div>
     <div class="form__element form__element--columns">
       <a>Forgot password?</a>

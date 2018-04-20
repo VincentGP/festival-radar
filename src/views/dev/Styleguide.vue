@@ -138,6 +138,11 @@
       <div class="box box__white">
         <fr-login-form></fr-login-form>
       </div>
+      <div class="box">
+        <fr-header-section :title="'Login'">
+          Please fill out your login informantion below, if you dont already have an account please signup  
+        </fr-header-section>
+      </div>
     </div>
     <div class="templates">
       <h2>Templates</h2>
@@ -152,12 +157,14 @@ import UserPlaceholder from '../../components/atoms/UserPlaceholder.vue';
 
 // Organisms
 import LoginForm from '../../components/organisms/LoginForm.vue';
+import HeaderSection from '../../components/organisms/HeaderSection.vue';
 
 export default {
   components: {
     'fr-button': Button,
     'fr-user-placeholder': UserPlaceholder,
-    'fr-login-form': LoginForm
+    'fr-login-form': LoginForm,
+    'fr-header-section': HeaderSection
   },
   computed: {
     profileImagePath() {

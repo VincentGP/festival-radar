@@ -135,6 +135,9 @@
     </div>
     <div class="organisms">
       <h2>Organisms</h2>
+      <div class="box box__white">
+        <fr-login-form></fr-login-form>
+      </div>
     </div>
     <div class="templates">
       <h2>Templates</h2>
@@ -143,13 +146,18 @@
 </template>
 
 <script>
+// Atoms
 import Button from '../../components/atoms/Button.vue';
 import UserPlaceholder from '../../components/atoms/UserPlaceholder.vue';
+
+// Organisms
+import LoginForm from '../../components/organisms/LoginForm.vue';
 
 export default {
   components: {
     'fr-button': Button,
-    'fr-user-placeholder': UserPlaceholder
+    'fr-user-placeholder': UserPlaceholder,
+    'fr-login-form': LoginForm
   },
   computed: {
     profileImagePath() {

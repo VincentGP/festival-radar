@@ -1,34 +1,25 @@
 <template>
-  <div>
-    <h3>Login</h3>
-    <form @submit.prevent="login()">
-      <label>Email</label>
-      <input type="email" placeholder="Email" v-model="email">
-      <label>Password</label>
-      <input type="password" placeholder="Password" v-model="password">
-      <button>Login</button>
-    </form>
+  <div class="container">
+    <div class="container__is-half">
+      <fr-login-form></fr-login-form>
+    </div>
+    <div class="container__is-half container--is-large-text">
+      <h1>SOME TEXT ABOUT HOW AWESOME WE ARE</h1>
+    </div>
   </div>
 </template>
 
 <script>
+import LoginForm from '../components/organisms/LoginForm.vue';
 export default {
-  data() {
-    return {
-      email: '',
-      password: ''
-    };
-  },
-  methods: {
-    login() {
-      this.$store.dispatch('login', { email: this.email, password: this.password })
-        .then((res) => {
-          console.log('Så er du sgu logget ind');
-        })
-        .catch((err) => {
-          console.log(err + 'Det gik ikke så godt med at logge ind');
-        });
-    }
+  components: {
+    'fr-login-form': LoginForm
   }
 };
 </script>
+
+<style lang="scss" scoped>
+  .container {
+    display: flex;
+  }
+</style>

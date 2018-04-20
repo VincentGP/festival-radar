@@ -2,15 +2,17 @@
   <div class="container">
     <div class="navigation">
       <div class="logo">
-        <h2>Festival</h2>
-        <h2>radar</h2>
+        <router-link to="/">
+          <h2>Festival</h2>
+          <h2>radar</h2>
+        </router-link>
       </div>
       <div class="navigation__right">
         <div class="navigation__right__links">
-          <a class="menu-item active">Festivals</a>
-          <a class="menu-item">Artists</a>
-          <a class="menu-item">Articles</a>
-          <a class="menu-item">About us</a>
+          <router-link class="menu-item" to="/festivals">Festivaler</router-link>
+          <router-link class="menu-item" to="/artists">Artists</router-link>
+          <router-link class="menu-item" to="/articles">Articles</router-link>
+          <router-link class="menu-item" to="/about-us">About us</router-link>
         </div>
         <div class="navigation__right__user">
           <template v-if="isAuthenticated">
@@ -20,8 +22,8 @@
             </a>
           </template>
           <template v-else>
-            <a class="menu-item">Login</a>
-            <a class="menu-item">Signup</a>
+            <router-link to="/login" class="menu-item">Login</router-link >
+            <router-link to="/signup" class="menu-item">Signup</router-link >
           </template>
         </div>
       </div>
@@ -62,6 +64,10 @@ export default {
 
     .logo {
       display: flex;
+
+      a {
+        display: flex;
+      }
 
       h2 {
         margin: 0;
@@ -127,7 +133,7 @@ export default {
           transition: width .2s ease-out;
         }
 
-        &.active {
+        &.router-link-exact-active {
           &::after {
             width: calc(100% - 22px);
             border-bottom: 1px solid $color-blue;

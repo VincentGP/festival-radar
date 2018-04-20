@@ -21,12 +21,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'hjem',
+      name: 'home',
       component: Home
     },
     {
-      path: '/om',
-      name: 'om',
+      path: '/about-us',
+      name: 'about us',
       component: About
     },
     {
@@ -35,28 +35,28 @@ export default new Router({
       component: Festival
     },
     {
-      path: '/festivaler',
-      name: 'festivaler',
+      path: '/festivals',
+      name: 'festivals',
       component: Festivals
     },
     {
-      path: '/kunstner/:id',
-      name: 'kunstner',
+      path: '/artists/:id',
+      name: 'artist',
       component: Artist
     },
     {
-      path: '/kunstnere',
-      name: 'kunstnere',
+      path: '/artists',
+      name: 'artists',
       component: Artists
     },
     {
-      path: '/artikel/:id',
-      name: 'artikel',
+      path: '/articles/:id',
+      name: 'article',
       component: Article
     },
     {
-      path: '/artikler',
-      name: 'artikler',
+      path: '/articles',
+      name: 'articles',
       component: Articles
     },
     {

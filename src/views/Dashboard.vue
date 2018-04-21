@@ -29,7 +29,7 @@ export default {
     followedFestivals() {
       // Gem alle festivaler i variabel
       let festivals = this.$store.state.festivals;
-      // Returner festivaler hvor id matcher
+      // Returner festivaler hvor id matcher      
       return festivals.filter((festival) => {
         return this.user.followedFestivals.indexOf(festival._id) !== -1;
       });

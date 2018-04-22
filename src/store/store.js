@@ -68,6 +68,7 @@ export const store = new Vuex.Store({
         formData.append('lastName', userData.lastName);
         formData.append('email', userData.email);
         formData.append('password', userData.password);
+        formData.append('location', userData.location);
         // Billede filen
         formData.append('avatar', userData.avatar, userData.avatar.name);
         // Lav request til serveren

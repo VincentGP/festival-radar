@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <section class="section">
+    <fr-header-section :title="'Signup'" :btn-text="'Login'" :btn-link="'/login'">
+      Please fill out the information below, if you already have an account please login
+    </fr-header-section>
     <h3>Opret konto</h3>
     <p>Efter bruger har oprettet konto tænker jeg man kan blive sendt videre til en side hvor det er nemt at søge i kunstnere</p>
     <form @submit.prevent="signup()">
@@ -15,11 +18,15 @@
       <input type="file" name="avatar" enctype="multipart/form-data" @change="onFileChanged">
       <button>Opret bruger</button>
     </form>
-  </div>
+  </section>
 </template>
 
 <script>
+import HeaderSection from '../components/organisms/HeaderSection';
 export default {
+  components: {
+    'fr-header-section': HeaderSection
+  },
   data() {
     return {
       firstName: '',

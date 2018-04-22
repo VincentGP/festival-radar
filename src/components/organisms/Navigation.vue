@@ -17,8 +17,10 @@
         <div class="navigation__right__user">
           <template v-if="isAuthenticated">
             <a class="loggedin">
-              <p class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</p>
-              <fr-user-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-user-placeholder>
+              <router-link to="/dashboard">
+                <p class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</p>
+                <fr-user-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-user-placeholder>
+              </router-link>
             </a>
           </template>
           <template v-else>
@@ -99,6 +101,9 @@ export default {
         margin-left: 20px;
 
         .loggedin {
+          a {
+            display: flex;
+          }
           display: flex;
           margin-top: -5px;
         }

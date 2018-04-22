@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import LoginForm from '../components/organisms/LoginForm.vue';
 import HeaderSection from '../components/organisms/HeaderSection.vue';
+import LoginForm from '../components/organisms/LoginForm.vue';
 export default {
   components: {
     'fr-login-form': LoginForm,

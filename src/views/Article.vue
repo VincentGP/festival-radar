@@ -1,38 +1,33 @@
 <template>
-  <div class="container">
-    <p>{{ article.date | niceDate }}</p>
-    <h1>{{ article.title }}</h1>
-    <p>{{ commentsCount }} kommentar(er)</p>
-    <hr>
-    <p>{{ article.body | excerpt }}</p>
-    <img :src="imagePath">
-    <hr>
-    <p>{{ article.body }}</p>
-    <hr>
-    <p><strong>{{ commentsCount }} kommentar(er)</strong></p>
-    <hr>
-    <div v-if="commentsCount !== 0">
-      <div class="comment" v-for="comment in article.comments" :key="comment._id">
-        <p>{{ comment.creator }}</p>
-        <p>{{ comment.comment }}</p>
-        <p>{{ comment.date | niceDate }}</p>
+  <section class="section">
+    <section class="section__header">
+      <div class="container">
+        <time>{{ article.date | niceDate }}</time>  
+        <h1>{{ article.title }}</h1>
+        <span class="comment-count">{{ commentsCount }}</span>
+        <hr>
+        <div class="container__is-full">
+          <p>{{ article.body | excerpt }}</p>
+        </div>
       </div>
-    </div>
-    <div v-if="isAuthenticated">
-      <label for="comment">Skriv kommentar</label>
-      <textarea v-model="comment" name="comment" cols="30" rows="10"></textarea>
-      <button @click="createComment()">Kommenter!</button>
-    </div>
-  </div>
+    </section>
+    <section class="section__content">
+      <div class="container">
+        <img :src="imagePath">
+        <hr>
+        <p>{{ article.body }}</p>
+      </div>
+    </section>
+    <fr-comments :comments="article.comments"></fr-comments>
+  </section>
 </template>
 
 <script>
 import { apiBaseUrl } from '../config/config';
+import Comments from '../components/organisms/Comments';
 export default {
-  data() {
-    return {
-      comment: ''
-    }
+  components: {
+    'fr-comments': Comments
   },
   computed: {
     article() {
@@ -45,9 +40,6 @@ export default {
     },
     commentsCount() {
       return this.article.comments.length;
-    },
-    isAuthenticated() {
-      return this.$store.getters.isAuthenticated;
     }
   },
   filters: {
@@ -58,29 +50,48 @@ export default {
     excerpt(text) {
       return text.substring(0, 350) + '...';
     }
-  },
-  methods: {
-    createComment() {
-      this.$store.dispatch('createComment', {
-        comment: this.comment,
-        slug: this.article.slug,
-        _id: this.article._id
-      });
-    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  text-align: center;
-}
-p {
-  text-align: center;
-}
-img {
-  display: block;
-  margin: 30px auto;
-  width: 40%;
+.section {
+  .container {
+    width: calc(100% - 300px);
+  }
+  hr {
+    margin: 45px 0;
+  }
+  &__header {
+    padding-bottom: 100px;
+    text-align: center;
+    h1 {
+      margin-top: 15px;
+    }
+    .comment-count {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      &::before {
+        content: url('../assets/icons/comment.svg');
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
+      }
+    }
+  }
+  &__content {
+    img {
+      display: block;
+      width: 70%;
+      margin: 0 auto;
+      margin-top: -30px;
+      border-radius: 8px;
+    }
+    p {
+      text-align: center;
+    }
+  }
 }
 </style>

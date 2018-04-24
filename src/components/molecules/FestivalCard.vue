@@ -3,7 +3,7 @@
     <div class="festival-card__header">
       <fr-imageplaceholder></fr-imageplaceholder>
       <div class="festival-card__header__info">
-        <p class="festival-card__header__info__date">1 JUNE 2018 - 8 JUNE 2018</p>
+        <div class="festival-card__header__info__date">1 JUNE 2018 - 8 JUNE 2018</div>
         <h4>{{ festival.name }}</h4>      
       </div>
     </div>
@@ -67,7 +67,6 @@ export default {
   @import '../../assets/styles/colors.scss';
 
   .festival-card {
-    max-width: 725px;
     padding: 25px;
     background: $color-lighter-grey;
     margin-bottom: 20px;

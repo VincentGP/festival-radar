@@ -25,6 +25,9 @@ body {
     margin: 0px 30px;
     text-align: center;
   }
+  &--narrow {
+    width: calc(100% - 300px);    
+  }
 
   &__main {
     display: flex;

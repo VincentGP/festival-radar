@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <section class="section__header">
-      <div class="container">
+      <div class="container container--narrow">
         <time>{{ article.date | niceDate }}</time>  
         <h1>{{ article.title }}</h1>
         <span class="comment-count">{{ commentsCount }}</span>
@@ -12,7 +12,7 @@
       </div>
     </section>
     <section class="section__content">
-      <div class="container">
+      <div class="container container--narrow">
         <img :src="imagePath">
         <hr>
         <p>{{ article.body }}</p>
@@ -56,9 +56,6 @@ export default {
 
 <style lang="scss" scoped>
 .section {
-  .container {
-    width: calc(100% - 300px);
-  }
   hr {
     margin: 45px 0;
   }
@@ -82,6 +79,9 @@ export default {
     }
   }
   &__content {
+    .container {
+      margin-bottom: 30px;
+    }
     img {
       display: block;
       width: 70%;

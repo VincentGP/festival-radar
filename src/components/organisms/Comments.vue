@@ -2,7 +2,7 @@
   <div class="comments">
     <div class="comments__header">
       <hr>
-      <div class="container">
+      <div class="container container--narrow">
         <span>COMMENTS</span>
         <div class="tag">
           <label class="tag__text">{{ comments.length }}</label>
@@ -11,11 +11,12 @@
       <hr>
     </div>
     <div class="comments__main" v-if="comments.length !== 0">
-      <div class="container">
+      <div class="container container--narrow">
         <div class="comment" v-for="comment in comments" :key="comment._id">
           <p>{{ comment.creator }}</p>
           <p>{{ comment.comment }}</p>
           <p>{{ comment.date | niceDate }}</p>
+          <hr>
         </div>
         <div v-if="isAuthenticated">
           <label for="comment">Skriv kommentar</label>
@@ -41,14 +42,16 @@ export default {
     createComment() {
       this.$store.dispatch('createComment', {
         comment: this.comment,
-        slug: this.article.slug,
-        _id: this.article._id
+        slug: this.slug
       });
     }
   },
   computed: {
     isAuthenticated() {
       return this.$store.getters.isAuthenticated;
+    },
+    slug() {
+      return this.$router.currentRoute.params.slug;
     }
   },
   filters: {
@@ -60,13 +63,12 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
 @import '../../assets/styles/colors.scss';
 .comments {
   &__header {
     hr {
-      margin: 10px 0;
+      margin: 15px 0;
       &:last-child {
         margin-bottom: 0px;
       }
@@ -86,6 +88,9 @@ export default {
   }
   &__main {
     background-color: $color-background;
+    .comment {
+      
+    }
   }
 }
 </style>

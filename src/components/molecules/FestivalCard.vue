@@ -90,26 +90,6 @@ export default {
 
     &__content {
       margin-top: 10px;
-
-      .tag {
-        display: inline-block;
-        background: $color-blue;
-        height: 24px;
-        padding: 0 20px;
-        margin-right: 10px;
-        border-radius: 25px;
-        transition: background 0.3s, color 0.3s;
-        text-align: center;
-        cursor: pointer;
-
-        &__text {
-          text-transform: uppercase;
-          color: $color-white;
-          line-height: 24px;
-          font-size: 10px;
-          letter-spacing: 2.4px;
-        }
-      }
     }
 
     hr {

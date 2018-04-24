@@ -9,7 +9,7 @@
       <input class="inp" name="password" type="password" placeholder="Please enter your password" v-model="password">    
     </div>
     <div class="form__element form__element--columns">
-      <a>Forgot password?</a>
+      <a class="link">Forgot password?</a>
       <fr-button class="btn--no-style" :icon="'arrow-right'" @click.native="login()">
         Login
       </fr-button>

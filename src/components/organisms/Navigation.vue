@@ -19,7 +19,7 @@
             <a class="loggedin">
               <router-link to="/dashboard">
                 <p class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</p>
-                <fr-image-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-image-placeholder>
+                <fr-image-placeholder class="image-placeholder--small" :src="profileImagePath"></fr-image-placeholder>
               </router-link>
             </a>
           </template>

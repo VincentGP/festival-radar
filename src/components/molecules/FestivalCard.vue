@@ -67,7 +67,6 @@ export default {
   @import '../../assets/styles/colors.scss';
 
   .festival-card {
-    max-width: 725px;
     padding: 25px;
     background: $color-lighter-grey;
     margin-bottom: 20px;

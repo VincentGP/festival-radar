@@ -1,22 +1,42 @@
 <template>
   <div class="right-box">
-    <h4>Fulgte festivaller</h4>
+    <h4>Followed festivals</h4>
     <hr>
+    <ul class="tag-list">
+      <li>
+        <div class="tag">
+          <label class="tag__text">FOO-FIGHTERS</label>
+          <span class="tag__removeable">
+            <fr-close-icon></fr-close-icon>
+          </span>
+        </div>
+        <div class="tag">
+          <label class="tag__text">CARDI-B</label>
+          <span class="tag__removeable">
+            <fr-close-icon></fr-close-icon>
+          </span>
+        </div>
+        <div class="tag">
+          <label class="tag__text">FOO-FIGHTERS</label>
+          <span class="tag__removeable">
+            <fr-close-icon></fr-close-icon>
+          </span>
+        </div>
+      </li>
+    </ul>
+    <hr>
+    <div class="text">
+      <p class="small">Change notification settings for festivals in profile <a class="link">dashboard</a></p>
+    </div>
   </div>
 </template>
 
 <script>
-import ImagePlaceholder from '../atoms/ImagePlaceholder.vue'
-import FollowIcon from '../atoms/icons/FollowIcon.vue'
-import FireIcon from '../atoms/icons/FireIcon.vue'
-import Button from '../atoms/Button.vue'
+import CloseIcon from '../atoms/icons/CloseIcon.vue'
 
 export default {
   components: {
-    'fr-imageplaceholder': ImagePlaceholder,
-    'fr-follow-icon': FollowIcon,
-    'fr-fire-icon': FireIcon,
-    'fr-button': Button
+    'fr-close-icon': CloseIcon
   },
   props: [
     'type',
@@ -28,12 +48,55 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '../../assets/styles/colors.scss';
+
   .right-box {
-    max-width: 300px;
     padding: 25px;
     background: #F7F8F9;
     border-radius: 8px;
     margin: 55px 0 0 25px;
+
+    .text {
+      margin-top: 5px;
+    }
+
+    .tag-list {
+      display: flex;
+      margin-top: 10px;
+      
+      .tag {
+        display: inline-block;
+        background: $color-blue;
+        height: 24px;
+        padding: 0 20px;
+        margin: 5px 10px 0 0;
+        border-radius: 25px;
+        transition: background 0.3s, color 0.3s;
+        text-align: center;
+        cursor: pointer;
+
+        &__removeable {
+          margin: 3px -10px 0 10px;
+          cursor: pointer;
+          height: 24px;
+
+          svg {
+            height: 7px;
+            width: 10px;
+            fill: $color-white;
+          }
+        }
+
+        &__text {
+          text-transform: uppercase;
+          color: $color-white;
+          line-height: 24px;
+          font-size: 10px;
+          letter-spacing: 2.4px;
+          cursor: pointer;
+        }
+      }
+    }
   }
 </style>
 

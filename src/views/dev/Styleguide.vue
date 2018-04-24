@@ -123,10 +123,12 @@
     <div class="box box__white">
       <h3>placeholders</h3>
       <div class="row">
-        <fr-user-placeholder class="user-placeholder--small"></fr-user-placeholder>
-        <fr-user-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-user-placeholder>
-        <fr-user-placeholder></fr-user-placeholder>
-        <fr-user-placeholder :src="profileImagePath"></fr-user-placeholder>
+        <fr-image-placeholder class="image-placeholder--small" :type="'user'"></fr-image-placeholder>
+        <fr-image-placeholder class="image-placeholder--small" :src="profileImagePath" :type="'user'"></fr-image-placeholder>
+        <fr-image-placeholder :type="'user'"></fr-image-placeholder>
+        <fr-image-placeholder :src="profileImagePath" :type="'user'"></fr-image-placeholder>
+        <fr-image-placeholder class="image-placeholder--small"></fr-image-placeholder>
+        <fr-image-placeholder></fr-image-placeholder>
       </div>
     </div>
 
@@ -156,7 +158,7 @@
 <script>
 // Atoms
 import Button from '../../components/atoms/Button.vue';
-import UserPlaceholder from '../../components/atoms/UserPlaceholder.vue';
+import ImagePlaceholder from '../../components/atoms/ImagePlaceholder.vue';
 import Navigation from '../../components/organisms/Navigation.vue';
 
 // Organisms
@@ -166,7 +168,7 @@ import HeaderSection from '../../components/organisms/HeaderSection.vue';
 export default {
   components: {
     'fr-button': Button,
-    'fr-user-placeholder': UserPlaceholder,
+    'fr-image-placeholder': ImagePlaceholder,
     'fr-navigation': Navigation,
     'fr-login-form': LoginForm,
     'fr-header-section': HeaderSection

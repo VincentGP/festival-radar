@@ -19,7 +19,7 @@
             <a class="loggedin">
               <router-link to="/dashboard">
                 <p class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</p>
-                <fr-user-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-user-placeholder>
+                <fr-image-placeholder class="image-placeholder--small" :src="profileImagePath"></fr-image-placeholder>
               </router-link>
             </a>
           </template>
@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import UserPlaceholder from '../../components/atoms/UserPlaceholder.vue';
+import ImagePlaceholder from '../../components/atoms/ImagePlaceholder.vue';
 import { apiBaseUrl } from '../../config/config';
 
 export default {
   components: {
-    'fr-user-placeholder': UserPlaceholder,
+    'fr-image-placeholder': ImagePlaceholder,
   },
   computed: {
     isAuthenticated() {

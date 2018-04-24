@@ -11,7 +11,7 @@
         <div class="navigation__right__links">
           <router-link class="menu-item" to="/festivals">Festivaler</router-link>
           <router-link class="menu-item" to="/artists">Artists</router-link>
-          <router-link class="menu-item" to="/articles">Articles</router-link>
+          <router-link class="menu-item" to="/articles">News</router-link>
           <router-link class="menu-item" to="/about-us">About us</router-link>
         </div>
         <div class="navigation__right__user">

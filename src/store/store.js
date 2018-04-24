@@ -15,7 +15,8 @@ export const store = new Vuex.Store({
     authToken: null,
     userId: null,
     user: null,
-    festivals: []
+    festivals: [],
+    articles: []
   },
   getters: {
     // Check om brugeren er valid (return true hvis token ikke er null)
@@ -54,8 +55,11 @@ export const store = new Vuex.Store({
       localStorage.removeItem('blocked');
       localStorage.removeItem('blockedExpiresIn');
     },
-    festivals(state, festivals) {
-      state.festivals = festivals;
+    saveFestivals(state, festivalData) {
+      state.festivals = festivalData;
+    },
+    saveArticles(state, articleData) {
+      state.articles = articleData;
     }
   },
   // Actions kan sagtens køre asykron kode i modsætning til mutations
@@ -228,7 +232,33 @@ export const store = new Vuex.Store({
       axios.get('/festivals')
         .then((res) => {
           // Aktivér vores mutation og send data med
-          commit('festivals', res.data);
+          commit('saveFestivals', res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    getAllArticles({ commit }) {
+      axios.get('/articles')
+        .then((res) => {
+          commit('saveArticles', res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    createComment({ state, dispatch }, commentData) {
+      axios.post(`/articles/${commentData.slug}/comment`, {
+        _id: commentData._id,
+        comment: commentData.comment
+      }, {
+        headers: {
+          'x-auth': state.authToken
+        }
+      })
+        .then((res) => {
+          dispatch('getAllArticles');
+          console.log(res);
         })
         .catch((err) => {
           console.error(err);

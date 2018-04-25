@@ -36,7 +36,7 @@
       </div>
       <div class="festival-card__actions__buttons">
         <div class="toggle">Follow</div>
-        <router-link :to="/festival/ + festival.slug">
+        <router-link :to="/festivals/ + festival.slug">
           <fr-button class="btn btn--small">Gå til festival</fr-button>
         </router-link>
       </div>

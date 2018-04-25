@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div class="section">
-      <fr-header-section :title="'Festivaller'" :btn-text="''" :btn-link="''">
-        By following festivals we are able to find the most fitting music festivals for your needs
-      </fr-header-section>
-    </div>
+    <fr-header-section 
+      :title="'festivals'"
+      :bottom-text="'By following festivals we are able to find the most fitting music festivals for your needs'">
+    </fr-header-section>
     <div class="container">
       <div class="container__main">
         <div class="container__main__content">

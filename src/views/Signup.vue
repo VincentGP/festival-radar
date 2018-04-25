@@ -1,7 +1,11 @@
 <template>
   <section class="section">
-    <fr-header-section :title="'Signup'" :btn-text="'Login'" :btn-link="'/login'">
-      Please fill out the information below, if you already have an account please login
+    <fr-header-section 
+      :title="'Signup'"
+      :bottom-text="'Please fill out the information below, if you already have an account please login'"
+      :action-type="'button'"
+      :action-text="'Login'" 
+      :action-link="'/login'">
     </fr-header-section>
     <div class="container">
       <div class="container__is-half">

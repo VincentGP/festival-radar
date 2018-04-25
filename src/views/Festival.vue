@@ -1,7 +1,13 @@
 <template>
   <section class="section">
-    <fr-header-section :title="currentFestival.name" :btn-text="'Signup'" :btn-link="'/signup'">
-      {{ currentFestival.description }}
+    <fr-header-section 
+      :type="'festival'" 
+      :title="currentFestival.name"
+      :description="currentFestival.description"
+      :bottom-text="'24,868 fans tracking alerts for this festival.'"
+      :action-type="'toggle'"
+      :action-text="'Follow'"
+      :action-link="''">
     </fr-header-section>
   </section>
 </template>

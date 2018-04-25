@@ -22,7 +22,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '../../assets/styles/colors.scss';
+@import '../../assets/styles/_import.scss';
 
 .toggle {
   display: inline-block;

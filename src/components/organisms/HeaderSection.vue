@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/styles/colors.scss';
+@import '../../assets/styles/_import.scss';
 
 .section{
   margin-top: -70px;

@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="festival-card__actions__buttons">
-        <div class="toggle">Follow</div>
+        <fr-toggle :text="'follow'"></fr-toggle>
         <router-link :to="/festivals/ + festival.slug">
           <fr-button class="btn btn--small">Gå til festival</fr-button>
         </router-link>
@@ -46,6 +46,7 @@
 
 <script>
 import ImagePlaceholder from '../atoms/ImagePlaceholder.vue'
+import Toggle from '../atoms/Toggle.vue'
 import FollowIcon from '../atoms/icons/FollowIcon.vue'
 import FireIcon from '../atoms/icons/FireIcon.vue'
 import Button from '../atoms/Button.vue'
@@ -55,7 +56,8 @@ export default {
     'fr-imageplaceholder': ImagePlaceholder,
     'fr-follow-icon': FollowIcon,
     'fr-fire-icon': FireIcon,
-    'fr-button': Button
+    'fr-button': Button,
+    'fr-toggle': Toggle
   },
   props: [
     'festival'
@@ -128,31 +130,6 @@ export default {
 
           &:last-child {
             margin-right: 0;
-          }
-        }
-
-        .toggle {
-          display: inline-block;
-          height: 30px;
-          padding: 0 20px;
-          border: 2px solid $color-blue;
-          border-radius: 25px;
-          transition: background 0.3s, color 0.3s;
-          text-transform: uppercase;
-          text-align: center;
-          line-height: 30px;
-          cursor: pointer;
-          font-size: 10px;
-          letter-spacing: 2.4px;
-
-          &:hover {
-            background: $color-blue;
-            color: $color-white;
-          }
-
-          .active {
-            background: $color-blue;
-            color: $color-white;
           }
         }
       }

@@ -1,10 +1,7 @@
 <template>
   <section class="section">
     <div class="section__header">
-      <div v-if="type === 'article'" class="section__header__article">
-
-      </div>  
-      <div v-else-if="type === 'festival' || type === 'artist'" class="section__header__single">
+      <div v-if="type === 'festival' || type === 'artist'" class="section__header__single">
         <div class="section__header__single__top">
           <div class="info">
             <div class="label label--uppercase">{{ type }}

@@ -80,6 +80,9 @@ export default {
     margin: 45px 0;
   }
   &__header {
+    margin-top: -70px;
+    background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
+    padding-top: 170px;
     padding-bottom: 100px;
     text-align: center;
     h1 {

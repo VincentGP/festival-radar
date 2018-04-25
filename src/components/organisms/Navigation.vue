@@ -13,7 +13,7 @@
           <template v-if="isAuthenticated">
             <a class="loggedin">
               <router-link to="/dashboard">
-                <p class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</p>
+                <div class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</div>
                 <fr-image-placeholder class="image-placeholder--small" :src="profileImagePath"></fr-image-placeholder>
               </router-link>
             </a>

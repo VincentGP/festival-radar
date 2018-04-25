@@ -131,6 +131,9 @@ export default {
           margin-bottom: 15px;
         }
       }
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
   &__footer {

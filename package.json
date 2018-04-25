@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "clamp.js": "^0.2.9",
     "vue": "^2.5.13",
     "vue-axios": "^2.1.1",
     "vue-router": "^3.0.1",

@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import clamp from 'clamp.js';
 import Button from '../atoms/Button.vue';
 import Toggle from '../atoms/Toggle.vue';
 

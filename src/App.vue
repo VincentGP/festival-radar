@@ -2,15 +2,18 @@
   <div id="app" v-if="!isLoading">
     <Navigation/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Navigation from './components/organisms/Navigation';
+import Footer from './components/organisms/Footer';
 
 export default {
   components: {
-    Navigation
+    Navigation,
+    Footer
   },
   data() {
     return {
@@ -18,8 +21,9 @@ export default {
     };
   },
   created() {
-    // Hent alle festivaler
+    // Hent alle festivaler og artikler
     this.$store.dispatch('getAllFestivals');
+    this.$store.dispatch('getAllArticles');
     // Prøv auto login når siden loader
     this.$store.dispatch('tryAutoLogin');
     // Det her er helt hen i vejret men vi bliver nødt til at vente på svar om brugeren er valid før vi kan vise navigation

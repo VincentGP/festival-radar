@@ -1,24 +1,21 @@
 <template>
   <div class="container">
     <div class="navigation">
-      <div class="logo">
-        <router-link to="/">
-          <h2>Festival</h2>
-          <h2>radar</h2>
-        </router-link>
-      </div>
+      <fr-logo></fr-logo>
       <div class="navigation__right">
         <div class="navigation__right__links">
           <router-link class="menu-item" to="/festivals">Festivaler</router-link>
           <router-link class="menu-item" to="/artists">Artists</router-link>
-          <router-link class="menu-item" to="/articles">Articles</router-link>
+          <router-link class="menu-item" to="/articles">News</router-link>
           <router-link class="menu-item" to="/about-us">About us</router-link>
         </div>
         <div class="navigation__right__user">
           <template v-if="isAuthenticated">
             <a class="loggedin">
-              <p class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</p>
-              <fr-user-placeholder class="user-placeholder--small" :src="profileImagePath"></fr-user-placeholder>
+              <router-link to="/dashboard">
+                <div class="menu-item menu-item--user">{{ user.firstName + " " + user.lastName }}</div>
+                <fr-image-placeholder class="image-placeholder--small" :src="profileImagePath"></fr-image-placeholder>
+              </router-link>
             </a>
           </template>
           <template v-else>
@@ -32,12 +29,14 @@
 </template>
 
 <script>
-import UserPlaceholder from '../../components/atoms/UserPlaceholder.vue';
+import ImagePlaceholder from '../../components/atoms/ImagePlaceholder.vue';
+import Logo from '../../components/atoms/Logo.vue';
 import { apiBaseUrl } from '../../config/config';
 
 export default {
   components: {
-    'fr-user-placeholder': UserPlaceholder,
+    'fr-image-placeholder': ImagePlaceholder,
+    'fr-logo': Logo
   },
   computed: {
     isAuthenticated() {
@@ -61,22 +60,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 70px;
-
-    .logo {
-      display: flex;
-
-      a {
-        display: flex;
-      }
-
-      h2 {
-        margin: 0;
-
-        &:nth-child(2) {
-          color: $color-blue;
-        }
-      }
-    }
     
     &__right {
       display: flex;
@@ -99,6 +82,9 @@ export default {
         margin-left: 20px;
 
         .loggedin {
+          a {
+            display: flex;
+          }
           display: flex;
           margin-top: -5px;
         }
@@ -150,4 +136,3 @@ export default {
     }
   }
 </style>
-

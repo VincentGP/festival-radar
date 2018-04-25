@@ -1,9 +1,7 @@
 @import './reset.scss';
 @import './typography.scss';
 @import './inputs.scss';
-@import './buttons.scss';
 @import './colors.scss';
-@import './placeholders.scss';
 @import './forms.scss';
 
 // Custom styles
@@ -26,28 +24,37 @@ body {
     margin: 0px 30px;
     text-align: center;
   }
-}
-
-.section {
-  margin-top: -70px;
-
-  &__header {
-    
-    /* Rectangle: */
-    /* Rectangle: */
-    background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
-    padding: 170px 0 30px;
+  &--narrow {
+    width: calc(100% - 300px);    
   }
 
-  &__content {
+  &__main {
+    display: flex;
+    margin: 50px 0;
 
+    &__full {
+      width: 100%;
+    }
+
+    &__content {
+      float: left;
+      width: calc(100% - 400px);
+    }
+
+    &__right {
+      float: right;
+      width: 400px;
+    }
   }
 }
 
-// .header-section {
-//   padding: 170px 0 30px;
-//   background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
-// }
+hr {
+  border: 0;
+  border-top: 1px solid #C9C9C9;  
+  margin: 20px 0 0px;
+  width: 100%;
+  height:1px;
+}
 
 h1 {
   font-family: $font-bauhaus;  
@@ -73,20 +80,37 @@ h3 {
 h4 {
   font-family: $font-roboto;  
   font-size: 24px;
+  font-weight: 300;
 }
 
 p {
   font-family: $font-roboto;  
   font-size: 16px;
+  line-height: 30px;
+
+  &.small {
+    line-height: 24px;
+    font-size: 14px;
+  }
+
+  span {
+    &.bold {
+      font-weight: bold;
+    }
+  }
 }
 
 a {
   font-family: $font-roboto;
-  font-size: 16px;
-  font-weight: bold;
-  color: $color-blue;
   cursor: pointer;
   text-decoration: none;
+
+  &.link {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: bold;
+    color: $color-blue;
+  }
 }
 
 .label {
@@ -102,5 +126,51 @@ a {
   &--big {
     font-size: 12px;
     letter-spacing: 2,4px;
+  }
+}
+
+.tag {
+  display: inline-block;
+  background: $color-blue;
+  height: 24px;
+  padding: 0 20px;
+  margin: 5px 10px 0 0;
+  border-radius: 25px;
+  transition: background 0.3s, color 0.3s;
+  text-align: center;
+  cursor: pointer;
+
+  &__removeable {
+    margin: 3px -10px 0 10px;
+    cursor: pointer;
+    height: 24px;
+
+    svg {
+      height: 7px;
+      width: 10px;
+      fill: $color-white;
+    }
+  }
+
+  &__text {
+    text-transform: uppercase;
+    color: $color-white;
+    line-height: 24px;
+    font-size: 10px;
+    letter-spacing: 2.4px;
+    cursor: pointer;
+  }
+}
+
+textarea {
+  padding: 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);  
+  &:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05);
+  }
+  &:focus {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05);
   }
 }

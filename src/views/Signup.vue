@@ -1,25 +1,33 @@
 <template>
-  <div>
-    <h3>Opret konto</h3>
-    <p>Efter bruger har oprettet konto tænker jeg man kan blive sendt videre til en side hvor det er nemt at søge i kunstnere</p>
-    <form @submit.prevent="signup()">
-      <label>Fornavn</label>
-      <input type="text" placeholder="Fornavn" v-model="firstName">
-      <label>Efternavn</label>
-      <input type="text" placeholder="Efternavn" v-model="lastName">
-      <label>Email</label>
-      <input type="email" placeholder="Email" v-model="email">
-      <label>Password</label>
-      <input type="password" placeholder="Password" v-model="password">
-      <label>Profil billede</label>
-      <input type="file" name="avatar" enctype="multipart/form-data" @change="onFileChanged">
-      <button>Opret bruger</button>
-    </form>
-  </div>
+  <section class="section">
+    <fr-header-section 
+      :title="'Signup'"
+      :bottom-text="'Please fill out the information below, if you already have an account please login'"
+      :action-type="'button'"
+      :action-text="'Login'" 
+      :action-link="'/login'">
+    </fr-header-section>
+    <div class="container">
+      <div class="container__main">
+        <div class="container__is-half">
+          <fr-signup-form></fr-signup-form>
+        </div>
+        <div class="container__is-half container--is-large-text">
+          <h1>SOME TEXT ABOUT HOW AWESOME WE ARE</h1>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
+import HeaderSection from '../components/organisms/HeaderSection';
+import SignupForm from '../components/organisms/SignupForm';
 export default {
+  components: {
+    'fr-header-section': HeaderSection,
+    'fr-signup-form': SignupForm
+  },
   data() {
     return {
       firstName: '',
@@ -48,9 +56,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-form {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
+.container__main {
+  align-items: center;
 }
 </style>

@@ -1,0 +1,16 @@
+import Vue from 'vue';
+
+// Vis flot dato
+Vue.filter('niceDate', (date) => {
+  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(date).toLocaleDateString('en-GB', options);
+});
+
+// Vis de første 350 karaktere
+Vue.filter('excerpt', (text) => text.substring(0, 350) + '...');
+
+Vue.filter('daysAgo', (date) => {
+  let oneDay = 24 * 60 * 60 * 1000;
+  let today = new Date();
+  return Math.round(Math.abs((new Date(date).getTime() - today.getTime()) / (oneDay)));
+});

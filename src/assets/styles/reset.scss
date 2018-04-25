@@ -53,6 +53,12 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+textarea {
+	border: none;
+	overflow: auto;
+	outline: none;
+	resize: none;
+}
 button, input[type="submit"], input[type="reset"] {
 	background: none;
 	color: inherit;

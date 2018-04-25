@@ -249,7 +249,6 @@ export const store = new Vuex.Store({
     },
     createComment({ state, dispatch }, commentData) {
       axios.post(`/articles/${commentData.slug}/comment`, {
-        _id: commentData._id,
         comment: commentData.comment
       }, {
         headers: {
@@ -258,7 +257,6 @@ export const store = new Vuex.Store({
       })
         .then((res) => {
           dispatch('getAllArticles');
-          console.log(res);
         })
         .catch((err) => {
           console.error(err);

@@ -2,15 +2,18 @@
   <div id="app" v-if="!isLoading">
     <Navigation/>
     <router-view/>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Navigation from './components/organisms/Navigation';
+import Footer from './components/organisms/Footer';
 
 export default {
   components: {
-    Navigation
+    Navigation,
+    Footer
   },
   data() {
     return {

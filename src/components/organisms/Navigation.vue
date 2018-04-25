@@ -1,12 +1,7 @@
 <template>
   <div class="container">
     <div class="navigation">
-      <div class="logo">
-        <router-link to="/">
-          <h2>Festival</h2>
-          <h2>radar</h2>
-        </router-link>
-      </div>
+      <fr-logo></fr-logo>
       <div class="navigation__right">
         <div class="navigation__right__links">
           <router-link class="menu-item" to="/festivals">Festivaler</router-link>
@@ -35,11 +30,13 @@
 
 <script>
 import ImagePlaceholder from '../../components/atoms/ImagePlaceholder.vue';
+import Logo from '../../components/atoms/Logo.vue';
 import { apiBaseUrl } from '../../config/config';
 
 export default {
   components: {
     'fr-image-placeholder': ImagePlaceholder,
+    'fr-logo': Logo
   },
   computed: {
     isAuthenticated() {
@@ -63,22 +60,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 70px;
-
-    .logo {
-      display: flex;
-
-      a {
-        display: flex;
-      }
-
-      h2 {
-        margin: 0;
-
-        &:nth-child(2) {
-          color: $color-blue;
-        }
-      }
-    }
     
     &__right {
       display: flex;

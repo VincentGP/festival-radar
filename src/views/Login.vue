@@ -8,11 +8,13 @@
       :action-link="'/signup'">
     </fr-header-section>
     <div class="container">
-      <div class="container__is-half">
-        <fr-login-form></fr-login-form>
-      </div>
-      <div class="container__is-half container--is-large-text">
-        <h1>SOME TEXT ABOUT HOW AWESOME WE ARE</h1>
+      <div class="container__main">
+        <div class="container__is-half">
+          <fr-login-form></fr-login-form>
+        </div>
+        <div class="container__is-half container--is-large-text">
+          <h1>SOME TEXT ABOUT HOW AWESOME WE ARE</h1>
+        </div>
       </div>
     </div>
   </section>
@@ -33,6 +35,5 @@ export default {
   .container {
     display: flex;
     align-items: center;
-    margin-top: 50px;
   }
 </style>

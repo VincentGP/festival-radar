@@ -8,6 +8,7 @@ import App from './App.vue';
 import router from './router';
 import { store } from './store/store';
 import { apiBaseUrl } from './config/config';
+import './filters';
 
 // Vi fortæller Vue at vi bruger Axios
 Vue.use(VueAxios, axios);

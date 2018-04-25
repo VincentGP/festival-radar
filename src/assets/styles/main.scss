@@ -24,6 +24,9 @@ body {
     margin: 0px 30px;
     text-align: center;
   }
+  &--narrow {
+    width: calc(100% - 300px);    
+  }
 
   &__main {
     display: flex;
@@ -156,5 +159,18 @@ a {
     font-size: 10px;
     letter-spacing: 2.4px;
     cursor: pointer;
+  }
+}
+
+textarea {
+  padding: 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);  
+  &:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05);
+  }
+  &:focus {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05);
   }
 }

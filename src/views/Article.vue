@@ -15,7 +15,7 @@
       <div class="container container--narrow">
         <img :src="imagePath">
         <hr>
-        <p>{{ article.body }}</p>
+        <p class="small">{{ article.body }}</p>
       </div>
     </section>
     <fr-comments :comments="article.comments"></fr-comments>
@@ -40,15 +40,6 @@ export default {
     },
     commentsCount() {
       return this.article.comments.length;
-    }
-  },
-  filters: {
-    niceDate(date) {
-      let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(date).toLocaleDateString('en-GB', options);
-    },
-    excerpt(text) {
-      return text.substring(0, 350) + '...';
     }
   }
 };

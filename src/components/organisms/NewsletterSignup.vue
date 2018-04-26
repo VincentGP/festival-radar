@@ -31,6 +31,7 @@ export default {
 @import '../../assets/styles/colors.scss';
 .newsletter-signup {
   position: relative;
+  margin: 10px;
   .arrow {
     position: absolute;
     top: 12px;

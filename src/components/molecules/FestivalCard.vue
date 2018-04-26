@@ -10,15 +10,9 @@
     <div class="festival-card__content">
       <ul>
         <li>
-          <div class="tag">
-            <label class="tag__text">FOO-FIGHTERS</label>
-          </div>
-          <div class="tag">
-            <label class="tag__text">CARDI-B</label>
-          </div>
-          <div class="tag">
-            <label class="tag__text">FOO-FIGHTERS</label>
-          </div>
+          <fr-tag :text="'Cardi-b'"></fr-tag>
+          <fr-tag :text="'Cardi-b'"></fr-tag>
+          <fr-tag :text="'Cardi-b'"></fr-tag>
         </li>
       </ul>
     </div>
@@ -50,6 +44,7 @@ import Toggle from '../atoms/Toggle.vue'
 import FollowIcon from '../atoms/icons/FollowIcon.vue'
 import FireIcon from '../atoms/icons/FireIcon.vue'
 import Button from '../atoms/Button.vue'
+import Tag from '../atoms/Tag.vue'
 
 export default {
   components: {
@@ -57,7 +52,8 @@ export default {
     'fr-follow-icon': FollowIcon,
     'fr-fire-icon': FireIcon,
     'fr-button': Button,
-    'fr-toggle': Toggle
+    'fr-toggle': Toggle,
+    'fr-tag': Tag
   },
   props: [
     'festival'

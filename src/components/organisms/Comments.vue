@@ -4,9 +4,7 @@
       <hr>
       <div class="container container--narrow">
         <span>COMMENTS</span>
-        <div class="tag">
-          <label class="tag__text">{{ comments.length }}</label>
-        </div>
+        <fr-tag :text="comments.length"></fr-tag>
       </div>
       <hr>
     </div>
@@ -49,10 +47,12 @@
 import ImagePlaceholder from '../atoms/ImagePlaceholder';
 import { apiBaseUrl } from '../../config/config';
 import Button from '../atoms/Button.vue';
+import Tag from '../atoms/Tag.vue';
 export default {
   components: {
     'fr-image-placeholder': ImagePlaceholder,
-    'fr-button': Button    
+    'fr-button': Button,
+    'fr-tag': Tag
   },
   props: [
     'comments'
@@ -108,10 +108,6 @@ export default {
     }
     .tag {
       margin-left: 10px;
-      &__text {
-        font-size: 12px;
-        color: $color-black;
-      }
     }
   }
   &__main {

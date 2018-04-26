@@ -10,8 +10,11 @@
           </div>
           <div class="article-card__main__content">
             <p class="small">{{ article.body | shortExcerpt }}</p>
-            <hr>
-            <p class="small comments">{{ article.comments.length }}</p>
+            <div>
+              <hr>
+              <p class="small comments">{{ article.comments.length }}</p>
+              <fr-tag v-for="tag in article.tags" :key="tag" :text="tag"></fr-tag>
+            </div>
           </div>
         </div>
       </router-link>
@@ -21,7 +24,11 @@
 
 <script>
 import { apiBaseUrl } from '../../config/config';
+import Tag from '../atoms/Tag';
 export default {
+  components: {
+    'fr-tag': Tag
+  },
   props: [
     'articles'
   ],

@@ -9,7 +9,7 @@ Vue.filter('niceDate', (date) => {
 // Vis de første 350 karaktere
 Vue.filter('excerpt', (text) => text.substring(0, 350) + '...');
 
-Vue.filter('shortExcerpt', (text) => text.substring(0, 35) + '...');
+Vue.filter('shortExcerpt', (text) => text.substring(0, 50) + '...');
 
 Vue.filter('daysAgo', (date) => {
   let oneDay = 24 * 60 * 60 * 1000;

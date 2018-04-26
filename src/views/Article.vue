@@ -38,6 +38,8 @@ export default {
   },
   created() {
     this.getCommentInformation();
+    // Af en eller anden grund scroller siden nogle gange ned den loader, så vi resetter lige
+    scroll(0, 0);
   },
   methods: {
     getCommentInformation() {

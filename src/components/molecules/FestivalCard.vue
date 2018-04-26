@@ -21,11 +21,11 @@
       <div class="festival-card__actions__info">
         <div class="festival-card__actions__info__item">
           <fr-follow-icon></fr-follow-icon>
-          <span>343</span>
+          <span>343 Followers</span>
         </div>
         <div class="festival-card__actions__info__item">
           <fr-fire-icon></fr-fire-icon>
-          <span>27</span>
+          <span>27 Matches</span>
         </div>
       </div>
       <div class="festival-card__actions__buttons">

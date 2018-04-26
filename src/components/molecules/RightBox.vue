@@ -4,7 +4,8 @@
     <hr>
     <ul class="tag-list">
       <li>
-        <fr-tag :text="'Cardi-b'" :removeable="'true'"></fr-tag>
+        <fr-tag :text="'Glostrup Festival'" :removeable="'true'"></fr-tag>
+        <fr-tag :text="'Roskilde Festival'" :removeable="'true'"></fr-tag>
       </li>
     </ul>
     <hr>

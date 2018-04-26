@@ -9,17 +9,27 @@
       :action-text="'Follow'"
       :action-link="''">
     </fr-header-section>
+    <div class="container">
+      <div class="container__main">
+        <div class="container__main__content">
+          <fr-lineup-list :festival="currentFestival"></fr-lineup-list>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
 import HeaderSection from '../components/organisms/HeaderSection';
+import LineupList from '../components/organisms/LineupList';
+
 export default {
   props: [
     'festival'
   ],
   components: {
-    'fr-header-section': HeaderSection
+    'fr-header-section': HeaderSection,
+    'fr-lineup-list': LineupList
   },
   computed: {
     currentFestival() {

@@ -19,7 +19,7 @@
           <div class="comment__content">
             <div class="comment__content__top">
               <p class="small">{{ comment.firstName }}</p>
-              <p class="small">{{ comment.date | daysAgo }} days ago</p>
+              <p class="small">{{ comment.date | daysAgo }}</p>
             </div>
             <p>{{ comment.comment }}</p>
           </div>

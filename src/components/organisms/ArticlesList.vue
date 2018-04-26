@@ -10,8 +10,11 @@
           </div>
           <div class="article-card__main__content">
             <p class="small">{{ article.body | shortExcerpt }}</p>
-            <hr>
-            <p class="small comments">{{ article.comments.length }}</p>
+            <div>
+              <hr>
+              <p class="small comments">{{ article.comments.length }}</p>
+              <fr-tag v-for="tag in article.tags" :key="tag" :text="tag"></fr-tag>
+            </div>
           </div>
         </div>
       </router-link>
@@ -21,7 +24,11 @@
 
 <script>
 import { apiBaseUrl } from '../../config/config';
+import Tag from '../atoms/Tag';
 export default {
+  components: {
+    'fr-tag': Tag
+  },
   props: [
     'articles'
   ],
@@ -37,16 +44,20 @@ export default {
 @import '../../assets/styles/_import.scss';
 .articles {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   .article-card {
     width: 33%;
     margin: 10px;
-    background-color: $color-sand;
+    background-color: $color-lighter-grey;
     border-radius: 8px;
     cursor: pointer;
     transition: box-shadow .3s;
     &:hover {
       box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.05);
+    }
+    &:nth-child(2) {
+      flex-grow: 10;
     }
     &__image {
       height: 200px;
@@ -80,14 +91,18 @@ export default {
             vertical-align: -10%;
           }
         }
+        hr {
+          margin: 15px 0;
+        }
       }
     }
   }
 }
 
-@include media($bp-tablet-lg) {
+@include media($bp-mobile) {
   .articles {
     .article-card {
+      width: 100%;
       &__main {
         &__top {
           flex-direction: column;

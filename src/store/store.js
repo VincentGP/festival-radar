@@ -22,6 +22,20 @@ export const store = new Vuex.Store({
     // Check om brugeren er valid (return true hvis token ikke er null)
     isAuthenticated(state) {
       return state.authToken !== null;
+    },
+    isFollowed(state, getters) {
+      if (getters.isAuthenticated) {
+        const followedFestivals = state.user.followedFestivals;
+        // const festivalId = this.currentFestival._id;
+        const festivalId = '1';
+        let isFollowed = false;
+        followedFestivals.forEach(id => {
+          if (id === festivalId) {
+            isFollowed = true;
+          }
+        });
+        return isFollowed;
+      }
     }
   },
   // Mutations kan ikke køre asykron kode
@@ -54,6 +68,12 @@ export const store = new Vuex.Store({
       localStorage.removeItem('attempts');
       localStorage.removeItem('blocked');
       localStorage.removeItem('blockedExpiresIn');
+    },
+    // Tilføjer element til brugerens favoritter
+    addToFavorites(state, elementData) {
+      if (elementData.type === 'festival') {
+        state.user.followedFestivals.push(elementData.id);
+      }
     }
   },
   // Actions kan sagtens køre asykron kode i modsætning til mutations
@@ -221,6 +241,23 @@ export const store = new Vuex.Store({
           commit('clearAuthData');
           router.push({ path: '/login' });
         });
+    },
+    // Tilføjer en festival til forestrukne
+    addToFavorites({ commit, state }, element) {
+      const id = element.id;
+      const type = element.type;
+
+      if (type === 'festival') {
+        axios.post('/users/festivals', {festivalId: id}, {
+          headers: {
+            'x-auth': state.authToken
+          }
+        }).then((res) => {
+          commit('addToFavorites', {type, id});
+        }).catch((err) => {
+          console.log(err);
+        });
+      }
     }
   },
   modules: {

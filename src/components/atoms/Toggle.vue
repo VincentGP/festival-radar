@@ -1,5 +1,5 @@
 <template>
-  <div class="toggle">
+  <div class="toggle" :class="[active ? 'active' : '']">
     {{ text }}
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import '../../assets/styles/colors.scss';
+@import '../../assets/styles/_import.scss';
 
 .toggle {
   display: inline-block;
@@ -38,7 +38,7 @@ export default {
   padding: 0 20px;
   font-size: 10px;
 
-  .active {
+  &.active {
     background: $color-blue;
     color: $color-white;
 

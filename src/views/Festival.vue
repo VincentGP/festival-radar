@@ -6,26 +6,37 @@
       :description="currentFestival.description"
       :bottom-text="'24,868 fans tracking alerts for this festival.'"
       :action-type="'toggle'"
-      :action-text="'Follow'"
+      :action-text="isFollowed ? 'Unfollow' : 'Follow'"
+      :action-id="currentFestival._id"
       :action-link="''">
     </fr-header-section>
+    <div class="container">
+      <div class="container__main">
+        <div class="container__main__content">
+          <fr-lineup-list :festival="currentFestival"></fr-lineup-list>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
 import HeaderSection from '../components/organisms/HeaderSection';
+import LineupList from '../components/organisms/LineupList';
+
 export default {
-  props: [
-    'festival'
-  ],
   components: {
-    'fr-header-section': HeaderSection
+    'fr-header-section': HeaderSection,
+    'fr-lineup-list': LineupList
   },
   computed: {
     currentFestival() {
       // Find navn baseret på url
       let name = this.$router.currentRoute.params.slug;
-      return this.$store.state.festivals.find(festival => festival.slug === name);
+      return this.$store.state.festival.festivals.find(festival => festival.slug === name);
+    },
+    isFollowed() {
+      return this.$store.getters.isFollowed(this.currentFestival._id);
     }
   }
 };

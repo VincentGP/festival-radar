@@ -1,0 +1,16 @@
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Wire---News" transform="translate(-331.000000, -635.000000)" fill="#9FA3A7">
+            <g id="1" transform="translate(75.000000, 364.000000)">
+                <g id="Time" transform="translate(256.000000, 271.000000)">
+                    <g id="Clock">
+                        <path d="M7,14 C3.14,14 0,10.86 0,7 C0,3.14 3.14,0 7,0 C10.86,0 14,3.14 14,7 C14,10.86 10.86,14 7,14 L7,14 Z M7,1.167 C3.783,1.167 1.167,3.783 1.167,7 C1.167,10.217 3.783,12.833 7,12.833 C10.217,12.833 12.833,10.217 12.833,7 C12.833,3.783 10.217,1.167 7,1.167 L7,1.167 Z M9.333,9.917 C9.184,9.917 9.035,9.86 8.921,9.746 L6.588,7.413 L6.588,7.413 C6.534,7.359 6.491,7.294 6.462,7.223 C6.432,7.152 6.417,7.076 6.417,7 L6.417,2.917 C6.417,2.595 6.678,2.333 7,2.333 C7.322,2.333 7.583,2.595 7.583,2.917 L7.583,6.759 L9.746,8.921 C9.974,9.149 9.974,9.518 9.746,9.746 C9.632,9.86 9.483,9.917 9.333,9.917 L9.333,9.917 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

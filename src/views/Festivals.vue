@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      festivals: this.$store.state.festivals
+      festivals: this.$store.state.festival.festivals
     };
   }
 };

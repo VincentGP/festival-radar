@@ -21,7 +21,7 @@ export default {
   methods: {
     signup() {
       if (this.email === '') return alert('Woops, you have to fill out the field 😯');
-      alert(`Congrats! Your mail ${this.email} will now receive our newsletter 😄`);
+      alert(`Congrats! Your mail ${this.email} would have received our newsletter, but the functionality is not quite ready 😄`);
     }
   }
 }
@@ -31,6 +31,7 @@ export default {
 @import '../../assets/styles/colors.scss';
 .newsletter-signup {
   position: relative;
+  margin: 10px;
   .arrow {
     position: absolute;
     top: 12px;

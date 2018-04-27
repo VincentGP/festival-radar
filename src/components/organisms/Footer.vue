@@ -18,15 +18,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/styles/colors.scss';
+@import '../../assets/styles/_import.scss';
 
 .footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-wrap: wrap;
   width: 100%;
-  height: 100px;
+  min-height: 100px;
   background-color: $color-sand;
   p {
     font-size: 10px;
@@ -34,4 +33,14 @@ export default {
     letter-spacing: 2px;
   }
 }
+
+@include media($bp-phablet) {
+  .footer {
+    flex-direction: column;
+    .small {
+      margin: 10px;
+    }
+  }
+}
+
 </style>

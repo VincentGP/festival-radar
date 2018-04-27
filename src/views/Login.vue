@@ -32,8 +32,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .container {
-    display: flex;
-    align-items: center;
+
+@import '../assets/styles/_import.scss';
+.container__main {
+  align-items: center;
+}
+
+@include media($bp-tablet) {
+  .container__main {
+    margin: 25px 0;
   }
+}
+
+@include media($bp-phablet-lg) {
+  .container--is-large-text {
+    h1 {
+      font-size: 50px;
+    }
+  }
+}
+
+@include media($bp-phablet) {
+  .container__main {
+    flex-direction: column-reverse;
+  }
+  .container__is-half {
+    width: 100%;
+  }
+}
+
 </style>

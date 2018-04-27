@@ -5,6 +5,8 @@ import axios from 'axios';
 
 // Interne imports
 import router from '../router';
+import article from './modules/article';
+import festival from './modules/festival';
 
 // Fortæl Vue at vi bruger Vuex til state management
 Vue.use(Vuex);
@@ -14,14 +16,27 @@ export const store = new Vuex.Store({
   state: {
     authToken: null,
     userId: null,
-    user: null,
-    festivals: [],
-    articles: []
+    user: null
   },
   getters: {
     // Check om brugeren er valid (return true hvis token ikke er null)
     isAuthenticated(state) {
       return state.authToken !== null;
+    },
+    isFollowed: (state, getters) => (id) => {
+      if (getters.isAuthenticated) {
+        const followedFestivals = state.user.followedFestivals;
+        const festivalId = id;
+        let isFollowed = false;
+        followedFestivals.forEach(id => {
+          if (id === festivalId) {
+            isFollowed = true;
+          }
+        });
+        return isFollowed;
+      } else {
+        return false;
+      }
     }
   },
   // Mutations kan ikke køre asykron kode
@@ -55,11 +70,17 @@ export const store = new Vuex.Store({
       localStorage.removeItem('blocked');
       localStorage.removeItem('blockedExpiresIn');
     },
-    saveFestivals(state, festivalData) {
-      state.festivals = festivalData;
+    // Tilføjer element til brugerens favoritter
+    addToFavorites(state, elementData) {
+      if (elementData.type === 'festival') {
+        state.user.followedFestivals.push(elementData.id);
+      }
     },
-    saveArticles(state, articleData) {
-      state.articles = articleData;
+    removeFromFavorites(state, elementData) {
+      if (elementData.type === 'festival') {
+        let index = state.user.followedFestivals.indexOf(elementData.id);
+        state.user.followedFestivals.splice(index, 1);
+      }
     }
   },
   // Actions kan sagtens køre asykron kode i modsætning til mutations
@@ -228,39 +249,55 @@ export const store = new Vuex.Store({
           router.push({ path: '/login' });
         });
     },
-    getAllFestivals({ commit }) {
-      axios.get('/festivals')
-        .then((res) => {
-          // Aktivér vores mutation og send data med
-          commit('saveFestivals', res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    },
-    getAllArticles({ commit }) {
-      axios.get('/articles')
-        .then((res) => {
-          commit('saveArticles', res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    createComment({ state, dispatch }, commentData) {
-      axios.post(`/articles/${commentData.slug}/comment`, {
-        comment: commentData.comment
-      }, {
-        headers: {
-          'x-auth': state.authToken
+    // Tilføjer en festival til forestrukne
+    toggleFavorite({ commit, state, getters }, element) {
+      // Brugeren skal da være logget ind
+      if (!getters.isAuthenticated) {
+        return alert('Hov du skal være logget ind kammerat (send til login/signup)');
+      }
+      // Id og type er sendt med fra component
+      const id = element.id;
+      const type = element.type;
+      const user = state.user;
+      // Så checker vi hvilken type elementet er
+      switch (type) {
+      case 'festival':
+        // Så checker vi om id'et allerede er til stede hos brugeren
+        let result = user.followedFestivals.find(festivalId => festivalId === id);
+        // Hvis der bliver fundet et id
+        if (result) {
+          axios.delete(`/users/festivals/${id}`, {
+            headers: {
+              'x-auth': state.authToken
+            }
+          }).then((res) => {
+            // Hvis alt er ok fra serveren fjern fra brugerens state
+            commit('removeFromFavorites', { type, id });
+          }).catch((err) => {
+            console.error(err);
+          });
+        } else {
+          axios.post(`/users/festivals/${id}`, {}, {
+            headers: {
+              'x-auth': state.authToken
+            }
+          }).then((res) => {
+            commit('addToFavorites', { type, id });
+          }).catch((err) => {
+            console.error(err);
+          });
         }
-      })
-        .then((res) => {
-          dispatch('getAllArticles');
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+        break;
+      case 'artist':
+        // Så checker vi om id'et allerede er til stede hos brugeren
+        break;
+      default:
+        alert('We do not recognize the type 🤝');
+      }
     }
+  },
+  modules: {
+    article,
+    festival
   }
 });

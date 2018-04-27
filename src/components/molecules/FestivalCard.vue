@@ -10,15 +10,9 @@
     <div class="festival-card__content">
       <ul>
         <li>
-          <div class="tag">
-            <label class="tag__text">FOO-FIGHTERS</label>
-          </div>
-          <div class="tag">
-            <label class="tag__text">CARDI-B</label>
-          </div>
-          <div class="tag">
-            <label class="tag__text">FOO-FIGHTERS</label>
-          </div>
+          <fr-tag :text="'Cardi-b'"></fr-tag>
+          <fr-tag :text="'Cardi-b'"></fr-tag>
+          <fr-tag :text="'Cardi-b'"></fr-tag>
         </li>
       </ul>
     </div>
@@ -27,15 +21,15 @@
       <div class="festival-card__actions__info">
         <div class="festival-card__actions__info__item">
           <fr-follow-icon></fr-follow-icon>
-          <span>343</span>
+          <span>343 Followers</span>
         </div>
         <div class="festival-card__actions__info__item">
           <fr-fire-icon></fr-fire-icon>
-          <span>27</span>
+          <span>27 Matches</span>
         </div>
       </div>
       <div class="festival-card__actions__buttons">
-        <fr-toggle :text="'follow'"></fr-toggle>
+        <fr-toggle :text="isFollowed ? 'Unfollow' : 'Follow'" :active="isFollowed" @click.native="toggle()"></fr-toggle>
         <router-link :to="/festivals/ + festival.slug">
           <fr-button class="btn btn--small">Gå til festival</fr-button>
         </router-link>
@@ -50,6 +44,7 @@ import Toggle from '../atoms/Toggle.vue'
 import FollowIcon from '../atoms/icons/FollowIcon.vue'
 import FireIcon from '../atoms/icons/FireIcon.vue'
 import Button from '../atoms/Button.vue'
+import Tag from '../atoms/Tag.vue'
 
 export default {
   components: {
@@ -57,11 +52,22 @@ export default {
     'fr-follow-icon': FollowIcon,
     'fr-fire-icon': FireIcon,
     'fr-button': Button,
-    'fr-toggle': Toggle
+    'fr-toggle': Toggle,
+    'fr-tag': Tag
   },
   props: [
     'festival'
-  ]
+  ],
+  methods: {
+    toggle() {
+      this.$store.dispatch('toggleFavorite', {id: this.festival._id, type: 'festival'});
+    }
+  },
+  computed: {
+    isFollowed() {
+      return this.$store.getters.isFollowed(this.festival._id);
+    }
+  }
 };
 </script>
 

@@ -24,7 +24,7 @@
           <fr-button @click.native="navigate()" class="btn--small btn--transparent">{{ actionText }}</fr-button>
         </template>
         <template v-if="actionType === 'toggle'">
-          <fr-toggle :text="actionText" :active="''" @click.native="navigate()"></fr-toggle>
+          <fr-toggle :text="actionText" :active="isFollowed" @click.native="toggle()"></fr-toggle>
         </template>
       </div>
     </div>
@@ -47,18 +47,27 @@ export default {
     'bottom-text',
     'action-type',
     'action-text',
+    'actionId',
     'action-link'
   ],
   methods: {
     navigate() {
       this.$router.push({ path: this.actionLink });
+    },
+    toggle() {
+      this.$store.dispatch('toggleFavorite', {id: this.actionId, type: this.type});
+    }
+  },
+  computed: {
+    isFollowed() {
+      return this.$store.getters.isFollowed(this.actionId);
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/styles/colors.scss';
+@import '../../assets/styles/_import.scss';
 
 .section{
   margin-top: -70px;

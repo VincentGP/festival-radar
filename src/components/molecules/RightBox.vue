@@ -4,24 +4,8 @@
     <hr>
     <ul class="tag-list">
       <li>
-        <div class="tag">
-          <label class="tag__text">FOO-FIGHTERS</label>
-          <span class="tag__removeable">
-            <fr-close-icon></fr-close-icon>
-          </span>
-        </div>
-        <div class="tag">
-          <label class="tag__text">CARDI-B</label>
-          <span class="tag__removeable">
-            <fr-close-icon></fr-close-icon>
-          </span>
-        </div>
-        <div class="tag">
-          <label class="tag__text">FOO-FIGHTERS</label>
-          <span class="tag__removeable">
-            <fr-close-icon></fr-close-icon>
-          </span>
-        </div>
+        <fr-tag :text="'Glostrup Festival'" :removeable="'true'"></fr-tag>
+        <fr-tag :text="'Roskilde Festival'" :removeable="'true'"></fr-tag>
       </li>
     </ul>
     <hr>
@@ -32,11 +16,11 @@
 </template>
 
 <script>
-import CloseIcon from '../atoms/icons/CloseIcon.vue'
+import Tag from '../atoms/Tag.vue'
 
 export default {
   components: {
-    'fr-close-icon': CloseIcon
+    'fr-tag': Tag
   },
   props: [
     'type',

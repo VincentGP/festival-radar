@@ -8,7 +8,7 @@
 </template>
 
 <style lang="scss">
-@import '../../assets/styles/colors.scss';
+@import '../../assets/styles/_import.scss';
 .logo {
   display: flex;
   a {

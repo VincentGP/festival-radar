@@ -1,0 +1,10 @@
+$z-map: (
+	// headerSearchForm: 10,
+	// headerSearchResults: 11,
+	// headerUserDropdown: 12,
+	// mobileMenu: 13,
+);
+
+@function z($name) {
+	@return map-get($z-map, $name);
+}

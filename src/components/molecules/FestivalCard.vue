@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="festival-card__actions__buttons">
-        <fr-toggle :text="'follow'"></fr-toggle>
+        <fr-toggle :text="isFollowed ? 'Unfollow' : 'Follow'" :active="isFollowed" @click.native="toggle()"></fr-toggle>
         <router-link :to="/festivals/ + festival.slug">
           <fr-button class="btn btn--small">Gå til festival</fr-button>
         </router-link>
@@ -57,7 +57,17 @@ export default {
   },
   props: [
     'festival'
-  ]
+  ],
+  methods: {
+    toggle() {
+      this.$store.dispatch('toggleFavorite', {id: this.festival._id, type: 'festival'});
+    }
+  },
+  computed: {
+    isFollowed() {
+      return this.$store.getters.isFollowed(this.festival._id);
+    }
+  }
 };
 </script>
 

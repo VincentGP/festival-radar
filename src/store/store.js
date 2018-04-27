@@ -23,11 +23,10 @@ export const store = new Vuex.Store({
     isAuthenticated(state) {
       return state.authToken !== null;
     },
-    isFollowed(state, getters) {
+    isFollowed: (state, getters) => (id) => {
       if (getters.isAuthenticated) {
         const followedFestivals = state.user.followedFestivals;
-        // const festivalId = this.currentFestival._id;
-        const festivalId = '1';
+        const festivalId = id;
         let isFollowed = false;
         followedFestivals.forEach(id => {
           if (id === festivalId) {
@@ -35,6 +34,8 @@ export const store = new Vuex.Store({
           }
         });
         return isFollowed;
+      } else {
+        return false;
       }
     }
   },
@@ -73,6 +74,12 @@ export const store = new Vuex.Store({
     addToFavorites(state, elementData) {
       if (elementData.type === 'festival') {
         state.user.followedFestivals.push(elementData.id);
+      }
+    },
+    removeFromFavorites(state, elementData) {
+      if (elementData.type === 'festival') {
+        let index = state.user.followedFestivals.indexOf(elementData.id);
+        state.user.followedFestivals.splice(index, 1);
       }
     }
   },
@@ -243,20 +250,49 @@ export const store = new Vuex.Store({
         });
     },
     // Tilføjer en festival til forestrukne
-    addToFavorites({ commit, state }, element) {
+    toggleFavorite({ commit, state, getters }, element) {
+      // Brugeren skal da være logget ind
+      if (!getters.isAuthenticated) {
+        return alert('Hov du skal være logget ind kammerat (send til login/signup)');
+      }
+      // Id og type er sendt med fra component
       const id = element.id;
       const type = element.type;
-
-      if (type === 'festival') {
-        axios.post('/users/festivals', {festivalId: id}, {
-          headers: {
-            'x-auth': state.authToken
-          }
-        }).then((res) => {
-          commit('addToFavorites', {type, id});
-        }).catch((err) => {
-          console.log(err);
-        });
+      const user = state.user;
+      // Så checker vi hvilken type elementet er
+      switch (type) {
+      case 'festival':
+        // Så checker vi om id'et allerede er til stede hos brugeren
+        let result = user.followedFestivals.find(festivalId => festivalId === id);
+        // Hvis der bliver fundet et id
+        if (result) {
+          axios.delete(`/users/festivals/${id}`, {
+            headers: {
+              'x-auth': state.authToken
+            }
+          }).then((res) => {
+            // Hvis alt er ok fra serveren fjern fra brugerens state
+            commit('removeFromFavorites', { type, id });
+          }).catch((err) => {
+            console.error(err);
+          });
+        } else {
+          axios.post(`/users/festivals/${id}`, {}, {
+            headers: {
+              'x-auth': state.authToken
+            }
+          }).then((res) => {
+            commit('addToFavorites', { type, id });
+          }).catch((err) => {
+            console.error(err);
+          });
+        }
+        break;
+      case 'artist':
+        // Så checker vi om id'et allerede er til stede hos brugeren
+        break;
+      default:
+        alert('We do not recognize the type 🤝');
       }
     }
   },

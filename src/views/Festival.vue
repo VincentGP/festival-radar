@@ -36,19 +36,7 @@ export default {
       return this.$store.state.festival.festivals.find(festival => festival.slug === name);
     },
     isFollowed() {
-      if (this.$store.getters.isAuthenticated) {
-        const followedFestivals = this.$store.state.user.followedFestivals;
-        const festivalId = this.currentFestival._id;
-        let isFollowed = false;
-
-        followedFestivals.forEach(id => {
-          if (id === festivalId) {
-            isFollowed = true;
-          }
-        });
-
-        return isFollowed;
-      }
+      return this.$store.getters.isFollowed(this.currentFestival._id);
     }
   }
 };

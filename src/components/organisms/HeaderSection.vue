@@ -24,7 +24,7 @@
           <fr-button @click.native="navigate()" class="btn--small btn--transparent">{{ actionText }}</fr-button>
         </template>
         <template v-if="actionType === 'toggle'">
-          <fr-toggle :text="actionText" :active="'true'" @click.native="toggle()"></fr-toggle>
+          <fr-toggle :text="actionText" :active="isFollowed" @click.native="toggle()"></fr-toggle>
         </template>
       </div>
     </div>
@@ -55,11 +55,12 @@ export default {
       this.$router.push({ path: this.actionLink });
     },
     toggle() {
-      if (this.$store.getters.isAuthenticated) {
-        this.$store.dispatch('addToFavorites', {id: this.actionId, type: this.type});  
-      } else {
-        alert('Hey du er ikke logged ind 🙄');
-      }
+      this.$store.dispatch('toggleFavorite', {id: this.actionId, type: this.type});
+    }
+  },
+  computed: {
+    isFollowed() {
+      return this.$store.getters.isFollowed(this.actionId);
     }
   }
 }

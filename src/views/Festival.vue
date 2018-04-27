@@ -35,7 +35,7 @@ export default {
     currentFestival() {
       // Find navn baseret på url
       let name = this.$router.currentRoute.params.slug;
-      return this.$store.state.festivals.find(festival => festival.slug === name);
+      return this.$store.state.festival.festivals.find(festival => festival.slug === name);
     }
   }
 };

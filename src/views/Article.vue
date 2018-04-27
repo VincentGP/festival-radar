@@ -61,7 +61,7 @@ export default {
     article() {
       // Find artikel baseret på slug i url
       let slug = this.$router.currentRoute.params.slug;
-      return this.$store.state.articles.find(article => article.slug === slug);
+      return this.$store.state.article.articles.find(article => article.slug === slug);
     },
     imagePath() {
       return `${apiBaseUrl}/uploads/${this.article.image}`;

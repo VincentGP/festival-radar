@@ -5,6 +5,8 @@ import axios from 'axios';
 
 // Interne imports
 import router from '../router';
+import article from './modules/article';
+import festival from './modules/festival';
 
 // Fortæl Vue at vi bruger Vuex til state management
 Vue.use(Vuex);
@@ -14,9 +16,7 @@ export const store = new Vuex.Store({
   state: {
     authToken: null,
     userId: null,
-    user: null,
-    festivals: [],
-    articles: []
+    user: null
   },
   getters: {
     // Check om brugeren er valid (return true hvis token ikke er null)
@@ -54,12 +54,6 @@ export const store = new Vuex.Store({
       localStorage.removeItem('attempts');
       localStorage.removeItem('blocked');
       localStorage.removeItem('blockedExpiresIn');
-    },
-    saveFestivals(state, festivalData) {
-      state.festivals = festivalData;
-    },
-    saveArticles(state, articleData) {
-      state.articles = articleData;
     }
   },
   // Actions kan sagtens køre asykron kode i modsætning til mutations
@@ -227,40 +221,10 @@ export const store = new Vuex.Store({
           commit('clearAuthData');
           router.push({ path: '/login' });
         });
-    },
-    getAllFestivals({ commit }) {
-      axios.get('/festivals')
-        .then((res) => {
-          // Aktivér vores mutation og send data med
-          commit('saveFestivals', res.data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    },
-    getAllArticles({ commit }) {
-      axios.get('/articles')
-        .then((res) => {
-          commit('saveArticles', res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-    createComment({ state, dispatch }, commentData) {
-      axios.post(`/articles/${commentData.slug}/comment`, {
-        comment: commentData.comment
-      }, {
-        headers: {
-          'x-auth': state.authToken
-        }
-      })
-        .then((res) => {
-          dispatch('getAllArticles');
-        })
-        .catch((err) => {
-          console.error(err);
-        });
     }
+  },
+  modules: {
+    article,
+    festival
   }
 });

@@ -9,12 +9,12 @@
             <time class="date">{{ article.date | niceDate }}</time>
           </div>
           <div class="article-card__main__content">
-            <p class="small">{{ article.body | shortExcerpt }}</p>
-            <div>
-              <hr>
-              <p class="small comments">{{ article.comments.length }}</p>
-              <fr-tag v-for="tag in article.tags" :key="tag" :text="tag"></fr-tag>
-            </div>
+            <p class="small">{{ article.body }}</p>
+          </div>
+          <div class="article-card__main__bottom">
+            <hr>
+            <p class="small comments">{{ article.comments.length }}</p>
+            <fr-tag v-for="tag in article.tags" :key="tag" :text="tag"></fr-tag>
           </div>
         </div>
       </router-link>
@@ -84,6 +84,14 @@ export default {
       }
       &__content {
         margin: 10px 0;
+        
+        p {
+          height: 24px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
         .comments {
           &::before {
             content: url('../../assets/icons/comment.svg');   
@@ -94,6 +102,9 @@ export default {
         hr {
           margin: 15px 0;
         }
+      }
+      &__bottom {
+
       }
     }
   }

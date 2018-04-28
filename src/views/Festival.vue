@@ -36,7 +36,7 @@ export default {
       return this.$store.state.festival.festivals.find(festival => festival.slug === name);
     },
     isFollowed() {
-      return this.$store.getters.isFollowed(this.currentFestival._id);
+      return this.$store.getters.isFollowed(this.currentFestival._id, 'festival');
     }
   }
 };

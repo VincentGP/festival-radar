@@ -23,17 +23,28 @@ export const store = new Vuex.Store({
     isAuthenticated(state) {
       return state.authToken !== null;
     },
-    isFollowed: (state, getters) => (id) => {
+    isFollowed: (state, getters) => (id, type) => {
       if (getters.isAuthenticated) {
-        const followedFestivals = state.user.followedFestivals;
-        const festivalId = id;
-        let isFollowed = false;
-        followedFestivals.forEach(id => {
-          if (id === festivalId) {
-            isFollowed = true;
-          }
-        });
-        return isFollowed;
+        switch (type) {
+        case 'festival':
+          let festivalId = id;
+          let isFestvialFollowed = false;
+          state.user.followedFestivals.forEach(id => {
+            if (id === festivalId) {
+              isFestvialFollowed = true;
+            }
+          });
+          return isFestvialFollowed;
+        case 'artist':
+          let artistId = id;
+          let isArtistFollowed = false;
+          state.user.followedFestivals.forEach(id => {
+            if (id === artistId) {
+              isArtistFollowed = true;
+            }
+          });
+          return isArtistFollowed;
+        }
       } else {
         return false;
       }
@@ -72,14 +83,21 @@ export const store = new Vuex.Store({
     },
     // Tilføjer element til brugerens favoritter
     addToFavorites(state, elementData) {
-      if (elementData.type === 'festival') {
-        state.user.followedFestivals.push(elementData.id);
+      switch (elementData.type) {
+      case 'festival':
+        return state.user.followedFestivals.push(elementData.id);
+      case 'artist':
+        return state.user.followedArtists.push(elementData.id);
       }
     },
     removeFromFavorites(state, elementData) {
-      if (elementData.type === 'festival') {
-        let index = state.user.followedFestivals.indexOf(elementData.id);
-        state.user.followedFestivals.splice(index, 1);
+      switch (elementData.type) {
+      case 'festival':
+        let festivalIndex = state.user.followedFestivals.indexOf(elementData.id);
+        return state.user.followedFestivals.splice(festivalIndex, 1);
+      case 'artist':
+        let artistIndex = state.user.followedArtists.indexOf(elementData.id);
+        return state.user.followedArtists.splice(artistIndex, 1);
       }
     }
   },
@@ -263,9 +281,9 @@ export const store = new Vuex.Store({
       switch (type) {
       case 'festival':
         // Så checker vi om id'et allerede er til stede hos brugeren
-        let result = user.followedFestivals.find(festivalId => festivalId === id);
+        let festival = user.followedFestivals.find(festivalId => festivalId === id);
         // Hvis der bliver fundet et id
-        if (result) {
+        if (festival) {
           axios.delete(`/users/festivals/${id}`, {
             headers: {
               'x-auth': state.authToken
@@ -290,9 +308,33 @@ export const store = new Vuex.Store({
         break;
       case 'artist':
         // Så checker vi om id'et allerede er til stede hos brugeren
+        let artist = user.followedFestivals.find(festivalId => festivalId === id);
+        // Hvis der bliver fundet et id
+        if (artist) {
+          axios.delete(`/users/artists/${id}`, {
+            headers: {
+              'x-auth': state.authToken
+            }
+          }).then((res) => {
+            // Hvis alt er ok fra serveren fjern fra brugerens state
+            commit('removeFromFavorites', { type, id });
+          }).catch((err) => {
+            console.error(err);
+          });
+        } else {
+          axios.post(`/users/artists/${id}`, {}, {
+            headers: {
+              'x-auth': state.authToken
+            }
+          }).then((res) => {
+            commit('addToFavorites', { type, id });
+          }).catch((err) => {
+            console.error(err);
+          });
+        }
         break;
       default:
-        alert('We do not recognize the type 🤝');
+        alert('We do not recognize the type ️⛔🤝');
       }
     }
   },

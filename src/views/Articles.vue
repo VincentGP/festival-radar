@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <fr-header-section 
+    <fr-header-section
       :title="'News'"
       :bottom-text="'Catch up with the latest news about awesome music festivals and talented artists.'">
     </fr-header-section>

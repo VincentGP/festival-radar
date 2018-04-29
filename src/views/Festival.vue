@@ -1,7 +1,7 @@
 <template>
   <section class="section">
-    <fr-header-section 
-      :type="'festival'" 
+    <fr-header-section
+      :type="'festival'"
       :title="currentFestival.name"
       :description="currentFestival.description"
       :bottom-text="'24,868 fans tracking alerts for this festival.'"

@@ -39,10 +39,11 @@ export default {
   },
   computed: {
     articlesByDate() {
-      return this.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
+      // Returner arrayet sorteret efter nyeste dato først (slice bruges for at lave en shallow copy af arrayet for ikke at modificere originalen)
+      return this.articles.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -67,7 +68,7 @@ export default {
     &__image {
       height: 200px;
       background-size: cover;
-      border-top-right-radius: 8px;  
+      border-top-right-radius: 8px;
       border-top-left-radius: 8px;
     }
     &__main {
@@ -102,7 +103,7 @@ export default {
         }
         .comments {
           &::before {
-            content: url('../../assets/icons/comment.svg');   
+            content: url('../../assets/icons/comment.svg');
             padding: 0 5px 0 0;
             vertical-align: -10%;
           }

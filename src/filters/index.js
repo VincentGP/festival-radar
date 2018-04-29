@@ -1,3 +1,4 @@
+// Eksterne imports
 import Vue from 'vue';
 
 // Vis flot dato

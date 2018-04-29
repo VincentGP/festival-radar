@@ -2,9 +2,9 @@
   <section class="section">
     <section class="section__header">
       <div class="container container--narrow">
-        <time>{{ article.date | niceDate }}</time>  
+        <time>{{ article.date | niceDate }}</time>
         <h1>{{ article.title }}</h1>
-        <span class="comment-count">{{ comments.length }}</span>
+        <span class="comment-count">{{ article.comments.length }}</span>
         <hr>
         <div class="container__is-full">
           <p>{{ article.body | excerpt }}</p>
@@ -18,44 +18,22 @@
         <p class="small">{{ article.body }}</p>
       </div>
     </section>
-    <fr-comments :comments="comments"></fr-comments>
+    <fr-comments :comments="article.comments"></fr-comments>
   </section>
 </template>
 
 <script>
 import { apiBaseUrl } from '../config/config';
-import { completeComments } from '../helpers';
 import Comments from '../components/organisms/Comments';
 export default {
   components: {
     'fr-comments': Comments
   },
-  data() {
-    return {
-      comments: [],
-      users: []
-    };
-  },
   created() {
-    this.getCommentInformation();
+    // Hent commenters
+    this.$store.dispatch('getCommenters', this.article.slug);
     // Af en eller anden grund scroller siden nogle gange ned den loader, så vi resetter lige
     scroll(0, 0);
-  },
-  methods: {
-    getCommentInformation() {
-      // Hvis der overhovedet er nogle kommentarer
-      if (this.article.comments.length !== 0) {
-        // Hent brugerne som har kommenteret på artiklen        
-        this.axios.get(`/articles/${this.article.slug}/users`)
-          .then((res) => {
-            this.users = res.data;            
-            this.comments = completeComments(this.article.comments, this.users);
-          })
-          .catch(err => {
-            console.error(err);
-          });
-      }
-    }
   },
   computed: {
     article() {
@@ -65,12 +43,6 @@ export default {
     },
     imagePath() {
       return `${apiBaseUrl}/uploads/${this.article.image}`;
-    }
-  },
-  watch: {
-    // Opdater kommentarer hvis når der bliver tilføjet kommentar til artiklen
-    article() {
-      this.comments = completeComments(this.article.comments, this.users);
     }
   }
 };

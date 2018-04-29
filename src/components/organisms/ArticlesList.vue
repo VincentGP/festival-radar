@@ -1,6 +1,6 @@
 <template>
   <div class="articles">
-    <div class="article-card" v-for="article in articles" :key="article._id">
+    <div class="article-card" v-for="article in articlesByDate" :key="article._id">
       <router-link :to="/articles/ + article.slug">
         <div class="article-card__image" :style="{ backgroundImage: 'url(' + imagePath(article.image) + ')' }"></div>
         <div class="article-card__main">
@@ -35,6 +35,11 @@ export default {
   methods: {
     imagePath(image) {
       return `${apiBaseUrl}/uploads/${image}`;
+    }
+  },
+  computed: {
+    articlesByDate() {
+      return this.articles.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
   }
 }

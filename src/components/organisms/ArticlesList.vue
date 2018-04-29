@@ -84,14 +84,17 @@ export default {
       }
       &__content {
         margin: 10px 0;
-        
         p {
           height: 24px;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
         }
-
+      }
+      &__bottom {
+        hr {
+          margin: 15px 0;
+        }
         .comments {
           &::before {
             content: url('../../assets/icons/comment.svg');   
@@ -99,12 +102,6 @@ export default {
             vertical-align: -10%;
           }
         }
-        hr {
-          margin: 15px 0;
-        }
-      }
-      &__bottom {
-
       }
     }
   }

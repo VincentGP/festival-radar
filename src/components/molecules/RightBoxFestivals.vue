@@ -38,7 +38,7 @@ export default {
     padding: 25px;
     background: #F7F8F9;
     border-radius: 8px;
-    margin: 55px 0 0 25px;
+    margin: 55px 0 0 0;
 
     .text {
       margin-top: 5px;

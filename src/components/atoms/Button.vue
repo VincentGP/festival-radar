@@ -42,6 +42,8 @@ export default {
   cursor: pointer;
   font-size: 12px;
   letter-spacing: 2.4px;
+  overflow: hidden;
+  word-break: break-all;
 
   svg {
     margin-left: 20px;

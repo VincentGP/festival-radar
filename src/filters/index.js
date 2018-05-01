@@ -23,13 +23,3 @@ Vue.filter('daysAgo', (date) => {
     return 'Just now';
   }
 });
-
-Vue.filter('artistIdToName', (id) => {
-  let artistName = '';
-  store.state.artist.artists.forEach(artist => {
-    if (artist._id === id) {
-      artistName = artist.name;
-    }
-  });
-  return artistName;
-});

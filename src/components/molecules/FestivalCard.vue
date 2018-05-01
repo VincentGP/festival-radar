@@ -17,7 +17,11 @@
     <div class="festival-card__content">
       <ul>
         <li>
-          <fr-tag v-for="artist in festival.artists" :key="artist" :text="artist | artistIdToName"></fr-tag>
+          <fr-tag v-for="artist in artistNames"
+            :key="artist._id"
+            :text="artist.name"
+            :action-link="'/artists/' + artist.slug">
+          </fr-tag>
         </li>
       </ul>
     </div>
@@ -71,6 +75,19 @@ export default {
   computed: {
     isFollowed() {
       return this.$store.getters.isFollowed(this.festival._id, 'festival');
+    },
+    artistNames() {
+      let artists = [];
+      // Loop igennem alle artister
+      this.$store.state.artist.artists.forEach(artist => {
+        // Loop igennem festivalens kunstnere og sammenlign
+        this.festival.artists.forEach(id => {
+          if (artist._id === id) {
+            artists.push(artist);
+          }
+        });
+      });
+      return artists;
     }
   }
 };

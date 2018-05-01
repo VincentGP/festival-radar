@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="`/festivals/${actionLink}`">
+  <router-link :to="`${actionLink}`">
     <div class="tag">
       <label class="tag__text">{{ text }}</label>
       <template v-if="removeable === 'true'">

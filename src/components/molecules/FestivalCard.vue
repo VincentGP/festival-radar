@@ -46,12 +46,12 @@
 </template>
 
 <script>
-import ImagePlaceholder from '../atoms/ImagePlaceholder.vue'
-import Toggle from '../atoms/Toggle.vue'
-import FollowIcon from '../atoms/icons/FollowIcon.vue'
-import FireIcon from '../atoms/icons/FireIcon.vue'
-import Button from '../atoms/Button.vue'
-import Tag from '../atoms/Tag.vue'
+import ImagePlaceholder from '../atoms/ImagePlaceholder.vue';
+import Toggle from '../atoms/Toggle.vue';
+import FollowIcon from '../atoms/icons/FollowIcon.vue';
+import FireIcon from '../atoms/icons/FireIcon.vue';
+import Button from '../atoms/Button.vue';
+import Tag from '../atoms/Tag.vue';
 
 export default {
   components: {

@@ -12,7 +12,7 @@
         <span>{{ artist.popularity }} Followers</span>
       </div>
       <div class="artist-card__info__right">
-        <fr-toggle :active="'active'" :text="'Unfollow'"></fr-toggle>
+        <fr-toggle :text="isFollowed ? 'Unfollow' : 'Follow'" :active="isFollowed" @click.native="toggle()"></fr-toggle>
         <router-link :to="'artists/' + artist.slug">
           <fr-button class="btn--small">Go to artist</fr-button>
         </router-link>
@@ -41,6 +41,14 @@ export default {
   computed: {
     imagePath() {
       return `${apiBaseUrl}/uploads/artists/${this.artist.image}`;
+    },
+    isFollowed() {
+      return this.$store.getters.isFollowed(this.artist._id, 'artist');
+    }
+  },
+  methods: {
+    toggle() {
+      this.$store.dispatch('toggleFavorite', {id: this.artist._id, type: 'artist'});
     }
   }
 };

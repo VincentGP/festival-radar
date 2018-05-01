@@ -30,17 +30,17 @@ export const store = new Vuex.Store({
         switch (type) {
         case 'festival':
           let festivalId = id;
-          let isFestvialFollowed = false;
+          let isFestivalFollowed = false;
           state.user.followedFestivals.forEach(id => {
             if (id === festivalId) {
-              isFestvialFollowed = true;
+              isFestivalFollowed = true;
             }
           });
-          return isFestvialFollowed;
+          return isFestivalFollowed;
         case 'artist':
           let artistId = id;
           let isArtistFollowed = false;
-          state.user.followedFestivals.forEach(id => {
+          state.user.followedArtists.forEach(id => {
             if (id === artistId) {
               isArtistFollowed = true;
             }
@@ -310,7 +310,7 @@ export const store = new Vuex.Store({
         break;
       case 'artist':
         // Så checker vi om id'et allerede er til stede hos brugeren
-        let artist = user.followedFestivals.find(festivalId => festivalId === id);
+        let artist = user.followedArtists.find(artistId => artistId === id);
         // Hvis der bliver fundet et id
         if (artist) {
           axios.delete(`/users/artists/${id}`, {

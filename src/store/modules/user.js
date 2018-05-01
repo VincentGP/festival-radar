@@ -14,6 +14,22 @@ const getters = {
       });
     });
     return followedFestivals;
+  },
+  followedArtists(state, getters, rootState) {
+    // Brugerens fulgte kunstnere
+    let followedArtists = [];
+    // Alle kunstnere
+    const artists = rootState.artist.artists;
+    // Loop igennem alle kunstnere
+    artists.forEach(artist => {
+      // Loop igennem brugerens kunstnere
+      rootState.user.followedArtists.forEach(id => {
+        if (artist._id === id) {
+          followedArtists.push(artist);
+        }
+      });
+    });
+    return followedArtists;
   }
 };
 

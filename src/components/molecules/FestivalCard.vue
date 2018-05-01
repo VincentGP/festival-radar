@@ -28,7 +28,7 @@
       <div class="festival-card__actions__info">
         <div class="festival-card__actions__info__item">
           <fr-follow-icon></fr-follow-icon>
-          <span>343 Followers</span>
+          <span>{{ festival.popularity }} Followers</span>
         </div>
         <div class="festival-card__actions__info__item">
           <fr-fire-icon></fr-fire-icon>

@@ -1,6 +1,6 @@
 <template>
   <div class="right-box">
-    <h4>Followed artists</h4>
+    <h4>Your followed artists</h4>
     <hr>
     <p class="small" v-if="!isAuthenticated">
       Please <router-link class="link" to="/login">login</router-link> or <router-link class="link" to="/signup">signup</router-link> to view your followed artists

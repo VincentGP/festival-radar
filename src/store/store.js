@@ -87,17 +87,45 @@ export const store = new Vuex.Store({
     addToFavorites(state, elementData) {
       switch (elementData.type) {
       case 'festival':
+        // Incrementer popularitet
+        state.festival.festivals.forEach(festival => {
+          if (festival._id === elementData.id) {
+            festival.popularity++;
+          }
+        });
+        // Tilføj til brugerens fulgte festivaler
         return state.user.followedFestivals.push(elementData.id);
       case 'artist':
+        // Incrementer popularitet
+        state.artist.artists.forEach(artist => {
+          if (artist._id === elementData.id) {
+            artist.popularity++;
+          }
+        });
+        // Tilføj til brugerens fulgte kunstnere
         return state.user.followedArtists.push(elementData.id);
       }
     },
     removeFromFavorites(state, elementData) {
       switch (elementData.type) {
       case 'festival':
+        // Decrementer popularitet
+        state.festival.festivals.forEach(festival => {
+          if (festival._id === elementData.id) {
+            festival.popularity--;
+          }
+        });
+        // Fjern fra brugerens state
         let festivalIndex = state.user.followedFestivals.indexOf(elementData.id);
         return state.user.followedFestivals.splice(festivalIndex, 1);
       case 'artist':
+        // Incrementer popularitet
+        state.artist.artists.forEach(artist => {
+          if (artist._id === elementData.id) {
+            artist.popularity--;
+          }
+        });
+        // Fjern fra brugerens state
         let artistIndex = state.user.followedArtists.indexOf(elementData.id);
         return state.user.followedArtists.splice(artistIndex, 1);
       }

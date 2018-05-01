@@ -1,5 +1,8 @@
 const getters = {
   followedFestivals(state, getters, rootState) {
+    if (!getters.isAuthenticated) {
+      return false;
+    }
     // Brugerens fulgte festivaler
     let followedFestivals = [];
     // Alle festivaler
@@ -16,6 +19,9 @@ const getters = {
     return followedFestivals;
   },
   followedArtists(state, getters, rootState) {
+    if (!getters.isAuthenticated) {
+      return false;
+    }
     // Brugerens fulgte kunstnere
     let followedArtists = [];
     // Alle kunstnere

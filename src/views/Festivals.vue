@@ -10,7 +10,11 @@
           <fr-festival-list :festivals="festivals"></fr-festival-list>
         </div>
         <div class="container__main__right">
-          <fr-right-box></fr-right-box>
+          <div class="block">
+            <div class="block__row">
+              <fr-right-box></fr-right-box>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -18,8 +22,8 @@
 </template>
 
 <script>
-import FestivalList from '../components/organisms/FestivalList.vue';
-import RightBox from '../components/molecules/RightBox.vue';
+import FestivalList from '../components/organisms/FestivalList';
+import RightBox from '../components/molecules/RightBoxFestivals';
 import HeaderSection from '../components/organisms/HeaderSection';
 
 export default {

@@ -37,6 +37,8 @@ export default {
   line-height: 30px;
   padding: 0 20px;
   font-size: 10px;
+  overflow: hidden;
+  word-break: break-all;
 
   &.active {
     background: $color-blue;

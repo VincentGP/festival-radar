@@ -1,41 +1,40 @@
 <template>
   <div>
     <div class="lineup-top">
-      <h4>Lineup</h4>
+      <p>You are currently following <span class="bold">140</span> artists</p>
       <input class="inp inp__search" type="text" placeholder="Search for artist">
     </div>
     <ul>
       <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
+        <fr-artist-card :artist="''"></fr-artist-card>
       </li>
       <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
+        <fr-artist-card :artist="''"></fr-artist-card>
       </li>
       <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
+        <fr-artist-card :artist="''"></fr-artist-card>
       </li>
       <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
+        <fr-artist-card :artist="''"></fr-artist-card>
       </li>
       <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
+        <fr-artist-card :artist="''"></fr-artist-card>
       </li>
       <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
+        <fr-artist-card :artist="''"></fr-artist-card>
       </li>
     </ul>
   </div>
 </template>
-
 <script>
-import ArtistCardSmall from '../molecules/ArtistCardSmall';
+import ArtistCard from '../molecules/ArtistCard';
 
 export default {
   props: [
-    'festival'
+    'artists'
   ],
   components: {
-    'fr-artist-card-small': ArtistCardSmall
+    'fr-artist-card': ArtistCard
   }
 }
 </script>

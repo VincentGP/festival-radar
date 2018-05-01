@@ -8,7 +8,7 @@
 
 <script>
 import Logo from '../atoms/Logo';
-import NewsletterSignup from '../organisms/NewsletterSignup';
+import NewsletterSignup from '../molecules/NewsletterSignup';
 export default {
   components: {
     'fr-logo': Logo,

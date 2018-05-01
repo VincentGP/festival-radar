@@ -10,6 +10,12 @@
         </div>
       </div>
     </div>
+    <div class="artist-card__right">
+      <fr-toggle :active="'active'" :text="'Unfollow'"></fr-toggle>
+      <router-link :to="'#'">
+        <fr-button class="btn--small">Go to artist</fr-button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -17,11 +23,14 @@
 import ImagePlaceholder from '../atoms/ImagePlaceholder.vue'
 import FireIcon from '../atoms/icons/FireIcon.vue'
 import Button from '../atoms/Button.vue'
+import Toggle from '../atoms/Toggle.vue'
 
 export default {
   components: {
     'fr-imageplaceholder': ImagePlaceholder,
     'fr-fire-icon': FireIcon,
+    'fr-button': Button,
+    'fr-toggle': Toggle
   },
   props: [
     'artist'
@@ -36,7 +45,7 @@ export default {
     display: flex;
     padding: 10px;
     background: $color-lighter-grey;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     border-radius: 8px;
 
     svg {
@@ -44,6 +53,19 @@ export default {
       width: 15px;
       fill: $color-light-grey;
       margin-right: 10px;
+    }
+
+    &__right {
+      align-self: center;
+      margin-left: auto;
+
+      & > * {
+        margin-right: 10px;
+      }
+
+      & > *:last-child {
+        margin-right: 0;
+      }
     }
 
     &__info {

@@ -3,8 +3,15 @@
     <div class="festival-card__header">
       <fr-imageplaceholder></fr-imageplaceholder>
       <div class="festival-card__header__info">
-        <div class="festival-card__header__info__date">1 JUNE 2018 - 8 JUNE 2018</div>
-        <h4>{{ festival.name }}</h4>      
+        <div class="festival-card__header__info__top">
+          <div class="festival-card__header__info__date">
+            1 JUNE 2018 - 8 JUNE 2018
+          </div>
+          <div class="festival-card__header__info__location">
+            4000 ROSKILDE, DENMARK
+          </div>
+        </div>
+        <h4>{{ festival.name }}</h4>
       </div>
     </div>
     <div class="festival-card__content">
@@ -86,11 +93,22 @@ export default {
 
       &__info {
         margin-left: 10px;
+        width: 100%;
+
+        &__top {
+          display: flex;
+        }
 
         &__date {
           text-transform: uppercase;
           font-size: 10px;
           margin-bottom: 3px;
+        }
+
+        &__location {
+          text-transform: uppercase;
+          font-size: 10px;
+          margin-left: auto; 
         }
       }
     }
@@ -125,6 +143,7 @@ export default {
           font-size: 10px;
           text-transform: uppercase;
           align-items: center;
+          white-space: nowrap;
         }
       }
 

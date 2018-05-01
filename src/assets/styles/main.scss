@@ -38,12 +38,33 @@ body {
 
     &__content {
       float: left;
-      width: calc(100% - 400px);
+      width: calc(100% - 430px);
+      margin-right: 30px;
     }
 
     &__right {
       float: right;
       width: 400px;
+    }
+  }
+}
+
+.block {
+  margin-bottom: 50px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__row {
+    margin-bottom: 20px;
+
+    &--right {
+      float: right;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }

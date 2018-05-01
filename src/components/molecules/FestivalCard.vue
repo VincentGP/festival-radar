@@ -5,10 +5,10 @@
       <div class="festival-card__header__info">
         <div class="festival-card__header__info__top">
           <div class="festival-card__header__info__date">
-            1 JUNE 2018 - 8 JUNE 2018
+            {{ festival.startDate | niceDate }} - {{ festival.endDate | niceDate }}
           </div>
           <div class="festival-card__header__info__location">
-            4000 ROSKILDE, DENMARK
+            {{ festival.zip }} {{ festival.city }}, {{ festival.country }}
           </div>
         </div>
         <h4>{{ festival.name }}</h4>
@@ -17,9 +17,7 @@
     <div class="festival-card__content">
       <ul>
         <li>
-          <fr-tag :text="'Cardi-b'"></fr-tag>
-          <fr-tag :text="'Cardi-b'"></fr-tag>
-          <fr-tag :text="'Cardi-b'"></fr-tag>
+          <fr-tag v-for="artist in festival.artists" :key="artist" :text="artist | artistIdToName"></fr-tag>
         </li>
       </ul>
     </div>
@@ -108,7 +106,7 @@ export default {
         &__location {
           text-transform: uppercase;
           font-size: 10px;
-          margin-left: auto; 
+          margin-left: auto;
         }
       }
     }
@@ -161,4 +159,3 @@ export default {
     }
   }
 </style>
-

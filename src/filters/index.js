@@ -1,5 +1,6 @@
 // Eksterne imports
 import Vue from 'vue';
+import { store } from '../store/store';
 
 // Vis flot dato
 Vue.filter('niceDate', (date) => {
@@ -21,4 +22,14 @@ Vue.filter('daysAgo', (date) => {
   } else {
     return 'Just now';
   }
+});
+
+Vue.filter('artistIdToName', (id) => {
+  let artistName = '';
+  store.state.artist.artists.forEach(artist => {
+    if (artist._id === id) {
+      artistName = artist.name;
+    }
+  });
+  return artistName;
 });

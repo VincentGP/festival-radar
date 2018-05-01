@@ -5,23 +5,8 @@
       <input class="inp inp__search" type="text" placeholder="Search for artist">
     </div>
     <ul>
-      <li>
-        <fr-artist-card :artist="''"></fr-artist-card>
-      </li>
-      <li>
-        <fr-artist-card :artist="''"></fr-artist-card>
-      </li>
-      <li>
-        <fr-artist-card :artist="''"></fr-artist-card>
-      </li>
-      <li>
-        <fr-artist-card :artist="''"></fr-artist-card>
-      </li>
-      <li>
-        <fr-artist-card :artist="''"></fr-artist-card>
-      </li>
-      <li>
-        <fr-artist-card :artist="''"></fr-artist-card>
+      <li v-for="artist in artists" :key="artist._id">
+        <fr-artist-card :artist="artist"></fr-artist-card>
       </li>
     </ul>
   </div>
@@ -36,7 +21,7 @@ export default {
   components: {
     'fr-artist-card': ArtistCard
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -47,4 +32,3 @@ export default {
   margin-bottom: 20px;
 }
 </style>
-

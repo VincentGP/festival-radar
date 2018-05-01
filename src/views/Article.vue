@@ -32,8 +32,6 @@ export default {
   created() {
     // Hent commenters
     this.$store.dispatch('getCommenters', this.article.slug);
-    // Af en eller anden grund scroller siden nogle gange ned den loader, så vi resetter lige
-    scroll(0, 0);
   },
   computed: {
     article() {

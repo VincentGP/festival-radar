@@ -1,16 +1,18 @@
 <template>
-  <div class="tag">
-    <label class="tag__text">{{ text }}</label>
-    <template v-if="removeable === 'true'">
-      <span class="tag__removeable">
-        <fr-close-icon></fr-close-icon>
-      </span>
-    </template>
-  </div>
+  <router-link :to="`/festivals/${actionLink}`">
+    <div class="tag">
+      <label class="tag__text">{{ text }}</label>
+      <template v-if="removeable === 'true'">
+        <span class="tag__removeable">
+          <fr-close-icon></fr-close-icon>
+        </span>
+      </template>
+    </div>
+  </router-link>
 </template>
 
 <script>
-import CloseIcon from '../atoms/icons/CloseIcon.vue'
+import CloseIcon from '../atoms/icons/CloseIcon.vue';
 
 export default {
   components: {
@@ -60,4 +62,3 @@ export default {
   }
 }
 </style>
-

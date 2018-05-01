@@ -24,6 +24,7 @@ export default {
     // Hent alle festivaler og artikler
     this.$store.dispatch('getAllFestivals');
     this.$store.dispatch('getAllArticles');
+    this.$store.dispatch('getAllArtists');
     // Prøv auto login når siden loader
     this.$store.dispatch('tryAutoLogin');
     // Det her er helt hen i vejret men vi bliver nødt til at vente på svar om brugeren er valid før vi kan vise navigation

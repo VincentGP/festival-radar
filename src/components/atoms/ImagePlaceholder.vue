@@ -1,6 +1,6 @@
 <template>
   <div class="image-placeholder">
-    <img v-if="src" :src="src" alt="">
+    <img v-if="src" :src="src">
     <user-icon v-if="type === 'user'"></user-icon>
     <image-icon></image-icon>
   </div>
@@ -17,7 +17,7 @@ export default {
   },
   props: [
     'src',
-    'type',
+    'type'
   ]
 };
 </script>
@@ -53,4 +53,3 @@ export default {
 }
 
 </style>
-

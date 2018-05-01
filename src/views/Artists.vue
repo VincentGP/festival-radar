@@ -1,13 +1,13 @@
 <template>
   <div>
-    <fr-header-section 
+    <fr-header-section
       :title="'Artists'"
       :bottom-text="'By following artists we are able to find the most fitting music festivals for your needs'">
     </fr-header-section>
      <div class="container">
       <div class="container__main">
         <div class="container__main__content">
-          <fr-artist-list :artists="''"></fr-artist-list>
+          <fr-artist-list :artists="artists"></fr-artist-list>
         </div>
         <div class="container__main__right">
           <div class="block">
@@ -36,6 +36,11 @@ export default {
     'fr-header-section': HeaderSection,
     'fr-right-box': RightBox,
     'fr-button': Button
+  },
+  data() {
+    return {
+      artists: this.$store.state.artist.artists
+    };
   }
 };
 </script>

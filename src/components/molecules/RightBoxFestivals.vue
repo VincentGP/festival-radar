@@ -2,21 +2,31 @@
   <div class="right-box">
     <h4>Followed festivals</h4>
     <hr>
-    <ul class="tag-list">
-      <li>
-        <fr-tag :text="'Glostrup Festival'" :removeable="'true'"></fr-tag>
-        <fr-tag :text="'Roskilde Festival'" :removeable="'true'"></fr-tag>
-      </li>
-    </ul>
-    <hr>
-    <div class="text">
-      <p class="small">Change notification settings for festivals in profile <a class="link">dashboard</a></p>
-    </div>
+    <p class="small" v-if="!isAuthenticated">
+      Please <router-link class="link" to="/login">login</router-link> or <router-link class="link" to="/signup">signup</router-link> to view your followed festivals
+    </p>
+    <template v-else>
+      <ul class="tag-list">
+        <li>
+          <fr-tag v-for="festival in followedFestivals"
+            :key="festival._id"
+            :text="festival.name"
+            :action-link="festival.slug">
+          </fr-tag>
+        </li>
+      </ul>
+      <hr>
+      <div class="text">
+        <p class="small">Change notification settings for festivals in profile <router-link class="link" to="/dashboard">dashboard</router-link></p>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
-import Tag from '../atoms/Tag.vue'
+// Helper som vi kan importere fra Vuex
+import { mapGetters } from 'vuex';
+import Tag from '../atoms/Tag.vue';
 
 export default {
   components: {
@@ -27,7 +37,14 @@ export default {
     'tags',
     'title',
     'btn-text'
-  ]
+  ],
+  computed: {
+    // Vi kan mappe de getters fra vores store som vi har brug for
+    ...mapGetters([
+      'isAuthenticated',
+      'followedFestivals'
+    ])
+  }
 };
 </script>
 
@@ -50,4 +67,3 @@ export default {
     }
   }
 </style>
-

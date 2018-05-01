@@ -7,6 +7,8 @@ import axios from 'axios';
 import router from '../router';
 import article from './modules/article';
 import festival from './modules/festival';
+import user from './modules/user';
+import artist from './modules/artist';
 
 // Fortæl Vue at vi bruger Vuex til state management
 Vue.use(Vuex);
@@ -340,6 +342,8 @@ export const store = new Vuex.Store({
   },
   modules: {
     article,
-    festival
+    festival,
+    user,
+    artist
   }
 });

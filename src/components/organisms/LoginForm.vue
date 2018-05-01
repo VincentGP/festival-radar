@@ -33,16 +33,14 @@ export default {
     login() {
       // What up validering
       if (this.email === '' && this.password === '') {
-        return alert('Hov. Du skal skrive noget i felterne');
+        return alert('The fields cannot be empty');
       }
       this.$store.dispatch('login', { email: this.email, password: this.password })
-        .then((res) => {
-          console.log('Så er du sgu logget ind');
-        })
         .catch((err) => {
-          console.log(err + 'Det gik ikke så godt med at logge ind');
+          console.log(err);
+          alert('Something went wrong. Please try again.');
         });
     }
   }
-}
+};
 </script>

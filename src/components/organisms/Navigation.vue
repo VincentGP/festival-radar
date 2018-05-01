@@ -43,7 +43,7 @@ export default {
       return this.$store.getters.isAuthenticated;
     },
     user() {
-      return this.$store.state.user; 
+      return this.$store.state.user;
     },
     profileImagePath() {
       return `${apiBaseUrl}/uploads/${this.user.imagePath}`;
@@ -60,7 +60,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 70px;
-    
+
     &__right {
       display: flex;
       margin-top: 5px;

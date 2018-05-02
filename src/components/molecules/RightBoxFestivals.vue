@@ -11,7 +11,7 @@
           <fr-tag v-for="festival in followedFestivals"
             :key="festival._id"
             :text="festival.name"
-            :action-link="festival.slug">
+            :action-link="'/festivals/' + festival.slug">
           </fr-tag>
         </li>
       </ul>

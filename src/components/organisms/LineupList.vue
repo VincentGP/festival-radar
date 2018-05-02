@@ -6,22 +6,7 @@
     </div>
     <ul>
       <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
-      </li>
-      <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
-      </li>
-      <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
-      </li>
-      <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
-      </li>
-      <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
-      </li>
-      <li>
-        <fr-artist-card-small :artist="''"></fr-artist-card-small>
+        <fr-artist-card-small v-for="artist in artists" :key="artist._id" :artist="artist"></fr-artist-card-small>
       </li>
     </ul>
   </div>
@@ -36,8 +21,13 @@ export default {
   ],
   components: {
     'fr-artist-card-small': ArtistCardSmall
+  },
+  computed: {
+    artists() {
+      return this.$store.state.artist.artists.filter((artist) => this.festival.artists.includes(artist._id));
+    }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -48,4 +38,3 @@ export default {
   margin-bottom: 20px;
 }
 </style>
-

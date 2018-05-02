@@ -5,7 +5,7 @@
       :title="currentArtist.name"
       :imgSrc="imagePath"
       :description="currentArtist.description"
-      :bottom-text="currentArtist.popularity + ' fans tracking alerts for this festival.'"
+      :bottom-text="currentArtist.popularity + ' fans tracking alerts for this artist.'"
       :action-type="'toggle'"
       :action-text="isFollowed ? 'Unfollow' : 'Follow'"
       :action-id="currentArtist._id"
@@ -14,8 +14,8 @@
      <div class="container">
       <div class="container__main">
         <div class="container__main__content">
-          <p>Upcomming festivals where <span>20SYL</span> is playing <span>(2)</span></p>
-          <fr-festival-list></fr-festival-list>
+          <p>Upcomming festivals where {{ currentArtist.name }} is playing <span>({{ festivals.length }})</span></p>
+          <fr-festival-list :festivals="festivals"></fr-festival-list>
         </div>
       </div>
     </div>
@@ -27,7 +27,6 @@ import { apiBaseUrl } from '../config/config';
 import HeaderSection from '../components/organisms/HeaderSection';
 import Button from '../components/atoms/Button.vue';
 import FestivalList from '../components/organisms/FestivalList.vue';
-import LogoVue from '../components/atoms/Logo.vue';
 
 export default {
   components: {
@@ -46,6 +45,17 @@ export default {
     },
     imagePath() {
       return `${apiBaseUrl}/uploads/artists/${this.currentArtist.image}`;
+    },
+    festivals() {
+      let festivals = [];
+      this.$store.state.festival.festivals.forEach(festival => {
+        festival.artists.forEach(artistId => {
+          if (this.currentArtist._id === artistId) {
+            festivals.push(festival);
+          }
+        });
+      });
+      return festivals;
     }
   }
 };

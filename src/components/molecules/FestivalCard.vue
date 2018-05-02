@@ -34,7 +34,7 @@
         </div>
         <div class="festival-card__actions__info__item">
           <fr-fire-icon></fr-fire-icon>
-          <span>27 Matches</span>
+          <span>{{ matches }} Matches</span>
         </div>
       </div>
       <div class="festival-card__actions__buttons">
@@ -88,6 +88,9 @@ export default {
         });
       });
       return artists;
+    },
+    matches() {
+      return this.$store.state.user.followedArtists.filter((artist) => this.festival.artists.includes(artist)).length;
     }
   }
 };

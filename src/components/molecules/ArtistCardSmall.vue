@@ -2,7 +2,7 @@
   <div class="artist-card">
     <fr-imageplaceholder :type="'user'"></fr-imageplaceholder>
     <div class="artist-card__info">
-      <p>Bruno Mars</p>
+      <p>{{ artist.name }}</p>
       <div class="artist-card__info">
         <div class="artist-card__info__item">
           <fr-fire-icon></fr-fire-icon>

@@ -62,7 +62,7 @@ export default {
   },
   computed: {
     isFollowed() {
-      return this.$store.getters.isFollowed(this.actionId, 'festival');
+      return this.$store.getters.isFollowed(this.actionId, this.type);
     }
   }
 }

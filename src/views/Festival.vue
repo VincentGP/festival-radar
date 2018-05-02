@@ -5,7 +5,7 @@
       :title="currentFestival.name"
       :imgSrc="imagePath"
       :description="currentFestival.description"
-      :bottom-text="'24,868 fans tracking alerts for this festival.'"
+      :bottom-text="currentFestival.popularity + ' fans tracking alerts for this festival.'"
       :action-type="'toggle'"
       :action-text="isFollowed ? 'Unfollow' : 'Follow'"
       :action-id="currentFestival._id"

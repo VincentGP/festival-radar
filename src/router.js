@@ -40,7 +40,7 @@ export default new Router({
       component: Festivals
     },
     {
-      path: '/artists/:id',
+      path: '/artists/:slug',
       name: 'artist',
       component: Artist
     },

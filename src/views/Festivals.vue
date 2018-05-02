@@ -7,7 +7,11 @@
     <div class="container">
       <div class="container__main">
         <div class="container__main__content">
-          <fr-festival-list :festivals="festivals"></fr-festival-list>
+          <fr-festival-list 
+            :festivals="festivals"
+            :topTitle="'There are ' + festivalMatches + ' festivals where your favorite artists are playing'"
+            :search="true">
+          </fr-festival-list>
         </div>
         <div class="container__main__right">
           <div class="block block--sticky">
@@ -22,6 +26,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import FestivalList from '../components/organisms/FestivalList';
 import RightBox from '../components/molecules/RightBoxFestivals';
 import HeaderSection from '../components/organisms/HeaderSection';
@@ -36,6 +41,23 @@ export default {
     return {
       festivals: this.$store.state.festival.festivals
     };
+  },
+  computed: {
+    ...mapGetters([
+      'isAuthenticated'
+    ]),
+    festivalMatches() {
+      let festivals = this.$store.state.festival.festivals;
+      let userArtists = this.$store.state.user.followedArtists;
+      let festivalCounter = 0;
+
+      festivals.forEach(festival => {
+        if (festival.artists.filter((artist) => userArtists.includes(artist)).length > 0) {
+          festivalCounter++;
+        }
+      });
+      return festivalCounter;
+    }
   }
 };
 </script>

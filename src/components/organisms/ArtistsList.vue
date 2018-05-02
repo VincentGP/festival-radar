@@ -20,7 +20,8 @@ export default {
     'fr-artist-card': ArtistCard
   },
   props: [
-    'artists'
+    'artists',
+    'topTitle'
   ],
   data() {
     return {

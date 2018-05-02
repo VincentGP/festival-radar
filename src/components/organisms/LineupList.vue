@@ -2,11 +2,11 @@
   <div>
     <div class="lineup-top">
       <h4>Lineup</h4>
-      <input class="inp inp__search" type="text" placeholder="Search for artist">
+      <input v-model="search" class="inp inp__search" type="text" placeholder="Search for artist">
     </div>
     <ul>
-      <li>
-        <fr-artist-card-small v-for="artist in artists" :key="artist._id" :artist="artist"></fr-artist-card-small>
+      <li v-for="artist in filteredArtists" :key="artist._id">
+        <fr-artist-card-small :artist="artist"></fr-artist-card-small>
       </li>
     </ul>
   </div>
@@ -19,13 +19,23 @@ export default {
   props: [
     'festival'
   ],
+  data() {
+    return {
+      search: ''
+    };
+  },
   components: {
     'fr-artist-card-small': ArtistCardSmall
   },
   computed: {
     artists() {
       return this.$store.state.artist.artists.filter((artist) => this.festival.artists.includes(artist._id));
-    }
+    },
+    filteredArtists() {
+      return this.artists.filter(artist => {
+        return artist.name.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
   }
 };
 </script>

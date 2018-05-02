@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="festivals-top">
-      <p v-if="isAuthenticated">There are <span class="bold">{{ festivalMatches }}</span> festivals where your favorite artists are playing</p>
-      <input v-model="search" class="inp inp__search" type="text" placeholder="Search for festival">
+      <p>{{topTitle}}</p>
+      <template v-if="searchInput">
+        <input  v-model="search" class="inp inp__search" type="text" placeholder="Search for festival">
+      </template>
     </div>
     <ul>
       <li v-for="festival in filteredFestivals" :key="festival._id">
@@ -20,7 +22,11 @@ export default {
   components: {
     'fr-festival-card': FestivalCard
   },
-  props: ['festivals'],
+  props: [
+    'festivals',
+    'topTitle',
+    'searchInput'
+  ],
   data() {
     return {
       search: ''
@@ -32,21 +38,6 @@ export default {
         return festival.name.toLowerCase().includes(this.search.toLowerCase());
       });
     },
-    ...mapGetters([
-      'isAuthenticated'
-    ]),
-    festivalMatches() {
-      let festivals = this.$store.state.festival.festivals;
-      let userArtists = this.$store.state.user.followedArtists;
-      let festivalCounter = 0;
-
-      festivals.forEach(festival => {
-        if (festival.artists.filter((artist) => userArtists.includes(artist)).length > 0) {
-          festivalCounter++;
-        }
-      });
-      return festivalCounter;
-    }
   }
 };
 </script>

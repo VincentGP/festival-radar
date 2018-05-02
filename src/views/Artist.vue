@@ -14,8 +14,11 @@
      <div class="container">
       <div class="container__main">
         <div class="container__main__content">
-          <p>Upcomming festivals where {{ currentArtist.name }} is playing <span>({{ festivals.length }})</span></p>
-          <fr-festival-list :festivals="festivals"></fr-festival-list>
+          <fr-festival-list 
+            :topTitle="'Upcomming festivals where ' + currentArtist.name +' is playing (' + festivals.length + ')'" 
+            :festivals="festivals"
+            :search="false">
+            </fr-festival-list>
         </div>
       </div>
     </div>
@@ -56,7 +59,7 @@ export default {
         });
       });
       return festivals;
-    }
+    },
   }
 };
 

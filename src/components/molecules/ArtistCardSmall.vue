@@ -6,13 +6,13 @@
       <div class="artist-card__info">
         <div class="artist-card__info__item">
           <fr-fire-icon></fr-fire-icon>
-          <span>343 Followers</span>
+          <span>{{ artist.popularity }} Followers</span>
         </div>
       </div>
     </div>
     <div class="artist-card__right">
-      <fr-toggle :active="'active'" :text="'Unfollow'"></fr-toggle>
-      <router-link :to="'#'">
+      <fr-toggle :text="isFollowed ? 'Unfollow' : 'Follow'" :active="isFollowed" @click.native="toggle()"></fr-toggle>
+      <router-link :to="'/artists/' + artist.slug">
         <fr-button class="btn--small">Go to artist</fr-button>
       </router-link>
     </div>
@@ -34,7 +34,20 @@ export default {
   },
   props: [
     'artist'
-  ]
+  ],
+  computed: {
+    imagePath() {
+      return `${apiBaseUrl}/uploads/artists/${this.artist.image}`;
+    },
+    isFollowed() {
+      return this.$store.getters.isFollowed(this.artist._id, 'artist');
+    }
+  },
+  methods: {
+    toggle() {
+      this.$store.dispatch('toggleFavorite', {id: this.artist._id, type: 'artist'});
+    }
+  }
 }
 </script>
 

@@ -52,6 +52,11 @@ body {
 .block {
   margin-bottom: 50px;
 
+  &--sticky {
+    position: sticky;
+    top: 30px;
+  }
+
   &:last-child {
     margin-bottom: 0;
   }

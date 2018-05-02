@@ -10,7 +10,7 @@
           <fr-artist-list :artists="artists"></fr-artist-list>
         </div>
         <div class="container__main__right">
-          <div class="block">
+          <div class="block block--sticky">
             <div class="block__row">
               <fr-right-box></fr-right-box>
             </div>

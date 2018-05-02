@@ -6,6 +6,7 @@
           <div class="info">
             <div class="label label--uppercase">{{ type }}
               <div class="info__image">
+                <img :src="imgSrc" alt="">
               </div>
             </div>
             <h1 class="info__title">{{ title }}</h1>
@@ -43,6 +44,7 @@ export default {
   props: [
     'type',
     'title',
+    'imgSrc',
     'description',
     'bottom-text',
     'action-type',
@@ -111,9 +113,13 @@ export default {
           &__image {
             margin: 0 0 30px 30px;
             float: right;
-            min-width: 200px;
+            width: 200px;
             height: 200px;
-            background: green;
+
+            img {
+              width: 100%;
+              height: 100%;
+            }
           }
         }
       } 

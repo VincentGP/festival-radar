@@ -3,6 +3,7 @@
     <fr-header-section
       :type="'festival'"
       :title="currentFestival.name"
+      :imgSrc="imagePath"
       :description="currentFestival.description"
       :bottom-text="'24,868 fans tracking alerts for this festival.'"
       :action-type="'toggle'"
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import { apiBaseUrl } from '../config/config';
 import HeaderSection from '../components/organisms/HeaderSection';
 import LineupList from '../components/organisms/LineupList';
 
@@ -37,6 +39,9 @@ export default {
     },
     isFollowed() {
       return this.$store.getters.isFollowed(this.currentFestival._id, 'festival');
+    },
+    imagePath() {
+      return `${apiBaseUrl}/uploads/festivals/${this.currentFestival.poster}`;
     }
   }
 };

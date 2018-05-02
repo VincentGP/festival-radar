@@ -9,8 +9,7 @@
         <div class="container__main__content">
           <fr-festival-list 
             :festivals="festivals"
-            :topTitle="'There are ' + festivalMatches + ' festivals where your favorite artists are playing'"
-            :search="true">
+            :topTitle=" isAuthenticated ? 'There are ' + festivalMatches + ' festivals where your favorite artists are playing' : ''">
           </fr-festival-list>
         </div>
         <div class="container__main__right">
@@ -47,6 +46,7 @@ export default {
       'isAuthenticated'
     ]),
     festivalMatches() {
+
       let festivals = this.$store.state.festival.festivals;
       let userArtists = this.$store.state.user.followedArtists;
       let festivalCounter = 0;
@@ -56,6 +56,7 @@ export default {
           festivalCounter++;
         }
       });
+      
       return festivalCounter;
     }
   }

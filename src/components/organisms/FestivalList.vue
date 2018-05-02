@@ -2,9 +2,7 @@
   <div>
     <div class="festivals-top">
       <p>{{topTitle}}</p>
-      <template v-if="searchInput">
-        <input  v-model="search" class="inp inp__search" type="text" placeholder="Search for festival">
-      </template>
+      <input v-model="search" class="inp inp__search" type="text" placeholder="Search for festival">
     </div>
     <ul>
       <li v-for="festival in filteredFestivals" :key="festival._id">
@@ -24,8 +22,7 @@ export default {
   },
   props: [
     'festivals',
-    'topTitle',
-    'searchInput'
+    'topTitle'
   ],
   data() {
     return {

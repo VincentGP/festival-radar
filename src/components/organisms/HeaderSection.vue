@@ -50,7 +50,8 @@ export default {
     'action-type',
     'action-text',
     'actionId',
-    'action-link'
+    'action-link',
+    'actionName'
   ],
   methods: {
     navigate() {

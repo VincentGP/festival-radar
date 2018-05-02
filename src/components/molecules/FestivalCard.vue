@@ -32,7 +32,7 @@
           <fr-follow-icon></fr-follow-icon>
           <span>{{ festival.popularity }} Followers</span>
         </div>
-        <div class="festival-card__actions__info__item">
+        <div class="festival-card__actions__info__item" v-if="isAuthenticated">
           <fr-fire-icon></fr-fire-icon>
           <span>{{ matches }} Matches</span>
         </div>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import ImagePlaceholder from '../atoms/ImagePlaceholder.vue';
 import Toggle from '../atoms/Toggle.vue';
 import FollowIcon from '../atoms/icons/FollowIcon.vue';
@@ -73,6 +74,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'isAuthenticated'
+    ]),
     isFollowed() {
       return this.$store.getters.isFollowed(this.festival._id, 'festival');
     },

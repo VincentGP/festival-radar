@@ -46,6 +46,7 @@ export default {
   &--small {
     height: 30px;
     width: 30px;
+    min-width: 30px;
 
     svg {
       margin-top: 6px;

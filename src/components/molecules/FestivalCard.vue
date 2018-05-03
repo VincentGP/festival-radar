@@ -1,7 +1,7 @@
 <template>
   <div class="festival-card">
     <div class="festival-card__header">
-      <fr-imageplaceholder></fr-imageplaceholder>
+      <fr-imageplaceholder :src="imagePath"></fr-imageplaceholder>
       <div class="festival-card__header__info">
         <div class="festival-card__header__info__top">
           <div class="festival-card__header__info__date">
@@ -49,6 +49,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { apiBaseUrl } from '../../config/config';
 import ImagePlaceholder from '../atoms/ImagePlaceholder.vue';
 import Toggle from '../atoms/Toggle.vue';
 import FollowIcon from '../atoms/icons/FollowIcon.vue';
@@ -95,6 +96,9 @@ export default {
     },
     matches() {
       return this.$store.state.user.followedArtists.filter((artist) => this.festival.artists.includes(artist)).length;
+    },
+    imagePath() {
+      return `${apiBaseUrl}/uploads/festivals/${this.festival.poster}`;
     }
   }
 };

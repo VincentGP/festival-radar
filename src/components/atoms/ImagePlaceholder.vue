@@ -28,6 +28,7 @@ export default {
 .image-placeholder {
   height: 50px;
   width: 50px;
+  min-width: 50px;
   border-radius: 50%;
   background: $color-lighter-grey;
   overflow: hidden;

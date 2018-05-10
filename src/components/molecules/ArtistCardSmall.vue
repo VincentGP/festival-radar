@@ -20,10 +20,10 @@
 </template>
 
 <script>
-import ImagePlaceholder from '../atoms/ImagePlaceholder.vue'
-import FireIcon from '../atoms/icons/FireIcon.vue'
-import Button from '../atoms/Button.vue'
-import Toggle from '../atoms/Toggle.vue'
+import ImagePlaceholder from '../atoms/ImagePlaceholder.vue';
+import FireIcon from '../atoms/icons/FireIcon.vue';
+import Button from '../atoms/Button.vue';
+import Toggle from '../atoms/Toggle.vue';
 
 export default {
   components: {
@@ -36,9 +36,6 @@ export default {
     'artist'
   ],
   computed: {
-    imagePath() {
-      return `${apiBaseUrl}/uploads/artists/${this.artist.image}`;
-    },
     isFollowed() {
       return this.$store.getters.isFollowed(this.artist._id, 'artist');
     }
@@ -48,7 +45,7 @@ export default {
       this.$store.dispatch('toggleFavorite', {id: this.artist._id, type: 'artist'});
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

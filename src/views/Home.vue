@@ -14,7 +14,7 @@
         </div>
       </div>
       <div>
-
+        <festival-finder></festival-finder>
       </div>
     </div>
   </div>
@@ -23,15 +23,16 @@
 <script>
 import HeroYellowIcon from '../components/atoms/icons/HeroYellowIcon';
 import HeroBlueIcon from '../components/atoms/icons/HeroBlueIcon';
+import FestivalFinder from '../components/organisms/FestivalFinder';
 
 export default {
   components: {
     'fr-hero-yellow-icon': HeroYellowIcon,
-    'fr-hero-blue-icon': HeroBlueIcon
+    'fr-hero-blue-icon': HeroBlueIcon,
+    FestivalFinder
   }
-}
+};
 </script>
-
 
 <style lang="scss" scoped>
   @import '../assets/styles/_import.scss';
@@ -49,7 +50,7 @@ export default {
     margin-top: 70px;
 
     .blue {
-      font-family: $font-bauhaus;  
+      font-family: $font-bauhaus;
       font-size: 60px;
       margin-bottom: 30px;
       color: $color-blue;

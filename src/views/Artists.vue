@@ -32,8 +32,8 @@ import Button from '../components/atoms/Button.vue';
 
 export default {
   components: {
-    'fr-artist-list': ArtistList,
     'fr-header-section': HeaderSection,
+    'fr-artist-list': ArtistList,
     'fr-right-box': RightBox,
     'fr-button': Button
   },

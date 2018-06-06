@@ -1,20 +1,39 @@
 <template>
-  <div class="background">
-    <div class="container">
-      <div class="hero-section">
-        <h1>Festival<span class="blue">Radar</span> Button is a feature in communication software</h1>
-        <div class="image-boxes">
-          <div class="image-boxes__image">
-            <img src="../assets/a.jpg" alt="">
+  <div>
+    <div class="background">
+      <div class="container">
+        <div class="hero-section">
+          <h1>Festival<span class="blue">Radar</span> Button is a feature in communication software</h1>
+          <div class="image-boxes">
+            <div class="image-boxes__image">
+              <img src="../assets/a.jpg" alt="">
+            </div>
+            <div class="image-boxes__blue"></div>
+            <div class="image-boxes__yellow"></div>
+            <fr-hero-yellow-icon class="icon-yellow"></fr-hero-yellow-icon>
+            <fr-hero-blue-icon class="icon-blue"></fr-hero-blue-icon>
           </div>
-          <div class="image-boxes__blue"></div>
-          <div class="image-boxes__yellow"></div>
-          <fr-hero-yellow-icon class="icon-yellow"></fr-hero-yellow-icon>
-          <fr-hero-blue-icon class="icon-blue"></fr-hero-blue-icon>
         </div>
+        <fr-info-columns></fr-info-columns>
       </div>
-      <div>
-        <festival-finder></festival-finder>
+    </div>
+    <div class="background--white">
+      <div class="container">
+        <div class="container__main">
+          <div class="container__main__content">
+            <fr-artist-list :artists="artists"></fr-artist-list>
+          </div>
+          <div class="container__main__right">
+            <div class="block block--sticky">
+              <div class="block__row">
+                <fr-right-box></fr-right-box>
+              </div>
+              <div class="block__row block__row--right">
+                <fr-button :icon="'chevron-right'">Go to festivals</fr-button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -23,13 +42,24 @@
 <script>
 import HeroYellowIcon from '../components/atoms/icons/HeroYellowIcon';
 import HeroBlueIcon from '../components/atoms/icons/HeroBlueIcon';
-import FestivalFinder from '../components/organisms/FestivalFinder';
+import InfoColumns from '../components/organisms/InfoColumns';
+import ArtistList from '../components/organisms/ArtistsList.vue';
+import RightBox from '../components/molecules/RightBoxArtists.vue';
+import Button from '../components/atoms/Button.vue';
 
 export default {
   components: {
     'fr-hero-yellow-icon': HeroYellowIcon,
     'fr-hero-blue-icon': HeroBlueIcon,
-    FestivalFinder
+    'fr-info-columns' : InfoColumns,
+    'fr-artist-list': ArtistList,
+    'fr-right-box': RightBox,
+    'fr-button': Button 
+  },
+  data() {
+    return {
+      artists: this.$store.state.artist.artists
+    };
   }
 };
 </script>
@@ -39,8 +69,13 @@ export default {
 
   .background {
     margin: -70px 0 0 0;
+    min-height: calc(100vh - 70px);
     padding-top: 70px;
     background-image: radial-gradient(69% 244%, #EDE7D1 25%, #93B6B7 100%);
+
+    &--white {
+      color: $color-white;
+    }
   }
 
   .hero-section {
@@ -48,6 +83,7 @@ export default {
     height: 420px;
     position: relative;
     margin-top: 70px;
+    margin-bottom: 50px;
 
     .blue {
       font-family: $font-bauhaus;

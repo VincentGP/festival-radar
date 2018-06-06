@@ -26,14 +26,32 @@ export default {
   ],
   data() {
     return {
-      search: ''
+      search: '',
+      userArtist: this.$store.state.user.followedArtists
     };
   },
   computed: {
+    ...mapGetters([
+      'isAuthenticated'
+    ]),
     filteredFestivals() {
-      return this.festivals.filter(festival => {
+      const filteredFestvials = this.festivals.filter(festival => {
         return festival.name.toLowerCase().includes(this.search.toLowerCase());
       });
+
+      if (this.isAuthenticated) {
+        filteredFestvials.forEach(festival => {
+          const matches = this.$store.state.user.followedArtists.filter((artist) => {
+            return festival.artists.includes(artist);
+          });
+
+          festival.matches = matches.length;
+        });
+
+        return filteredFestvials.sort((a, b) => {
+          return b.matches - a.matches;
+        });
+      }
     },
   }
 };

@@ -48,10 +48,12 @@ export default {
           festival.matches = matches.length;
         });
 
-        return filteredFestvials.sort((a, b) => {
+        filteredFestvials.sort((a, b) => {
           return b.matches - a.matches;
         });
       }
+
+      return filteredFestvials;
     },
   }
 };

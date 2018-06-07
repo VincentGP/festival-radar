@@ -107,6 +107,10 @@ export default {
       text-align: center;
       width: 487px;
 
+      @include media($bp-tablet) {
+        display: none;
+      }
+
       &__blue {
         position: absolute;
         margin-left: auto;

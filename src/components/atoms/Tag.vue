@@ -47,6 +47,9 @@ export default {
     font-size: 10px;
     letter-spacing: 2.4px;
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &--removeable {

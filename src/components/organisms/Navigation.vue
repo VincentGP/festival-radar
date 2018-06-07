@@ -119,7 +119,7 @@ export default {
         position: relative;
 
         &--user {
-          max-width: 100px;
+          max-width: 140px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;

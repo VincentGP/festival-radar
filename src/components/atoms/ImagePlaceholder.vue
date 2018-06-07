@@ -1,6 +1,6 @@
 <template>
   <div class="image-placeholder">
-    <img v-if="src" :src="src" alt="">
+    <img v-if="src" :src="src">
     <user-icon v-if="type === 'user'"></user-icon>
     <image-icon></image-icon>
   </div>
@@ -17,7 +17,7 @@ export default {
   },
   props: [
     'src',
-    'type',
+    'type'
   ]
 };
 </script>
@@ -28,6 +28,7 @@ export default {
 .image-placeholder {
   height: 50px;
   width: 50px;
+  min-width: 50px;
   border-radius: 50%;
   background: $color-lighter-grey;
   overflow: hidden;
@@ -45,6 +46,7 @@ export default {
   &--small {
     height: 30px;
     width: 30px;
+    min-width: 30px;
 
     svg {
       margin-top: 6px;
@@ -53,4 +55,3 @@ export default {
 }
 
 </style>
-

@@ -1,18 +1,27 @@
 <template>
   <div class="festival-card">
     <div class="festival-card__header">
-      <fr-imageplaceholder></fr-imageplaceholder>
+      <fr-imageplaceholder :src="imagePath"></fr-imageplaceholder>
       <div class="festival-card__header__info">
-        <div class="festival-card__header__info__date">1 JUNE 2018 - 8 JUNE 2018</div>
-        <h4>{{ festival.name }}</h4>      
+        <div class="festival-card__header__info__top">
+          <div class="festival-card__header__info__date">
+            {{ festival.startDate | niceDate }} - {{ festival.endDate | niceDate }}
+          </div>
+          <div class="festival-card__header__info__location">
+            {{ festival.zip }} {{ festival.city }}, {{ festival.country }}
+          </div>
+        </div>
+        <h4>{{ festival.name }}</h4>
       </div>
     </div>
     <div class="festival-card__content">
       <ul>
         <li>
-          <fr-tag :text="'Cardi-b'"></fr-tag>
-          <fr-tag :text="'Cardi-b'"></fr-tag>
-          <fr-tag :text="'Cardi-b'"></fr-tag>
+          <fr-tag v-for="artist in artistNames"
+            :key="artist._id"
+            :text="artist.name"
+            :action-link="'/artists/' + artist.slug">
+          </fr-tag>
         </li>
       </ul>
     </div>
@@ -21,11 +30,11 @@
       <div class="festival-card__actions__info">
         <div class="festival-card__actions__info__item">
           <fr-follow-icon></fr-follow-icon>
-          <span>343 Followers</span>
+          <span>{{ festival.popularity }} Followers</span>
         </div>
-        <div class="festival-card__actions__info__item">
+        <div class="festival-card__actions__info__item" v-if="isAuthenticated">
           <fr-fire-icon></fr-fire-icon>
-          <span>27 Matches</span>
+          <span>{{ matches }} Matches</span>
         </div>
       </div>
       <div class="festival-card__actions__buttons">
@@ -39,12 +48,14 @@
 </template>
 
 <script>
-import ImagePlaceholder from '../atoms/ImagePlaceholder.vue'
-import Toggle from '../atoms/Toggle.vue'
-import FollowIcon from '../atoms/icons/FollowIcon.vue'
-import FireIcon from '../atoms/icons/FireIcon.vue'
-import Button from '../atoms/Button.vue'
-import Tag from '../atoms/Tag.vue'
+import { mapGetters } from 'vuex';
+import { apiBaseUrl } from '../../config/config';
+import ImagePlaceholder from '../atoms/ImagePlaceholder.vue';
+import Toggle from '../atoms/Toggle.vue';
+import FollowIcon from '../atoms/icons/FollowIcon.vue';
+import FireIcon from '../atoms/icons/FireIcon.vue';
+import Button from '../atoms/Button.vue';
+import Tag from '../atoms/Tag.vue';
 
 export default {
   components: {
@@ -64,8 +75,30 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'isAuthenticated'
+    ]),
     isFollowed() {
-      return this.$store.getters.isFollowed(this.festival._id);
+      return this.$store.getters.isFollowed(this.festival._id, 'festival');
+    },
+    artistNames() {
+      let artists = [];
+      // Loop igennem alle artister
+      this.$store.state.artist.artists.forEach(artist => {
+        // Loop igennem festivalens kunstnere og sammenlign
+        this.festival.artists.forEach(id => {
+          if (artist._id === id) {
+            artists.push(artist);
+          }
+        });
+      });
+      return artists;
+    },
+    matches() {
+      return this.$store.state.user.followedArtists.filter((artist) => this.festival.artists.includes(artist)).length;
+    },
+    imagePath() {
+      return `${apiBaseUrl}/uploads/festivals/${this.festival.poster}`;
     }
   }
 };
@@ -86,11 +119,22 @@ export default {
 
       &__info {
         margin-left: 10px;
+        width: 100%;
+
+        &__top {
+          display: flex;
+        }
 
         &__date {
           text-transform: uppercase;
           font-size: 10px;
           margin-bottom: 3px;
+        }
+
+        &__location {
+          text-transform: uppercase;
+          font-size: 10px;
+          margin-left: auto;
         }
       }
     }
@@ -125,6 +169,7 @@ export default {
           font-size: 10px;
           text-transform: uppercase;
           align-items: center;
+          white-space: nowrap;
         }
       }
 
@@ -142,4 +187,3 @@ export default {
     }
   }
 </style>
-

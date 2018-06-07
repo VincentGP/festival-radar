@@ -1,4 +1,6 @@
+// Eksterne imports
 import Vue from 'vue';
+import { store } from '../store/store';
 
 // Vis flot dato
 Vue.filter('niceDate', (date) => {

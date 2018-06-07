@@ -8,9 +8,9 @@
       </div>
       <hr>
     </div>
-    <div class="comments__main" v-if="comments.length !== 0">
-      <div class="container container--narrow">
-        <div class="comment" v-for="comment in comments" :key="comment._id">
+    <div class="comments__main">
+      <div class="container container--narrow" v-if="comments.length !== 0">
+        <div class="comment" v-for="comment in completeComments" :key="comment._id">
           <div class="comment__image">
             <fr-image-placeholder :type="'user'" :src="comment.image"></fr-image-placeholder>
           </div>
@@ -28,7 +28,7 @@
       <div class="container container--narrow">
         <div class="field">
           <div class="field__image">
-            <fr-image-placeholder :type="'user'" :src="profileImagePath"></fr-image-placeholder>        
+            <fr-image-placeholder :type="'user'" :src="profileImagePath"></fr-image-placeholder>
           </div>
           <div class="field__content">
             <p class="small">{{ user.firstName }}</p>
@@ -64,12 +64,17 @@ export default {
   },
   methods: {
     createComment() {
+      // Opret kommentar
       this.$store.dispatch('createComment', {
         comment: this.comment,
         slug: this.slug
       });
       // Tøm comment
       this.comment = '';
+      // Reload siden hvis bruger er første person der laver kommentar (fiks hvis vi har tid til det) 💣
+      if (this.comments.length === 0) {
+        location.reload();
+      }
     }
   },
   computed: {
@@ -84,9 +89,27 @@ export default {
     },
     profileImagePath() {
       return `${apiBaseUrl}/uploads/${this.user.imagePath}`;
+    },
+    commenters() {
+      return this.$store.state.article.commenters;
+    },
+    completeComments() {
+      let completeComments = [];
+      // Loop igennem kommentarer og sammenlign med brugere
+      this.comments.forEach(comment => {
+        this.commenters.forEach(user => {
+          if (user._id === comment.creatorId) {
+            comment.firstName = user.firstName;
+            comment.image = `${apiBaseUrl}/uploads/${user.imagePath}`;
+            completeComments.push(comment);
+          }
+        });
+      });
+      return completeComments;
     }
   }
-}
+};
+
 </script>
 
 <style lang="scss" scoped>

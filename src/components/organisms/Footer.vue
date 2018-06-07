@@ -1,14 +1,16 @@
 <template>
   <footer class="footer">
-    <p class="small">Subscribe and get the latest news</p>
-    <fr-logo></fr-logo>
-    <fr-newsletter-signup></fr-newsletter-signup>
+    <div class="footer__content">    
+      <p class="small">Subscribe and get the latest news</p>
+      <fr-logo></fr-logo>
+      <fr-newsletter-signup></fr-newsletter-signup>
+    </div>
   </footer>
 </template>
 
 <script>
 import Logo from '../atoms/Logo';
-import NewsletterSignup from '../organisms/NewsletterSignup';
+import NewsletterSignup from '../molecules/NewsletterSignup';
 export default {
   components: {
     'fr-logo': Logo,
@@ -21,12 +23,19 @@ export default {
 @import '../../assets/styles/_import.scss';
 
 .footer {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  min-height: 100px;
   background-color: $color-sand;
+  width: 100%;
+  max-height: 100px;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0px auto;
+    width: calc(100% - 100px);
+  }
+
   p {
     font-size: 10px;
     text-transform: uppercase;

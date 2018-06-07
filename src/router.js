@@ -40,7 +40,7 @@ export default new Router({
       component: Festivals
     },
     {
-      path: '/artists/:id',
+      path: '/artists/:slug',
       name: 'artist',
       component: Artist
     },
@@ -88,5 +88,12 @@ export default new Router({
       path: '*',
       redirect: '/404'
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+    }
+  }
 });

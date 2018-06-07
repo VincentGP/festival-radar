@@ -7,6 +7,8 @@ import axios from 'axios';
 import router from '../router';
 import article from './modules/article';
 import festival from './modules/festival';
+import user from './modules/user';
+import artist from './modules/artist';
 
 // Fortæl Vue at vi bruger Vuex til state management
 Vue.use(Vuex);
@@ -23,17 +25,28 @@ export const store = new Vuex.Store({
     isAuthenticated(state) {
       return state.authToken !== null;
     },
-    isFollowed: (state, getters) => (id) => {
+    isFollowed: (state, getters) => (id, type) => {
       if (getters.isAuthenticated) {
-        const followedFestivals = state.user.followedFestivals;
-        const festivalId = id;
-        let isFollowed = false;
-        followedFestivals.forEach(id => {
-          if (id === festivalId) {
-            isFollowed = true;
-          }
-        });
-        return isFollowed;
+        switch (type) {
+        case 'festival':
+          let festivalId = id;
+          let isFestivalFollowed = false;
+          state.user.followedFestivals.forEach(id => {
+            if (id === festivalId) {
+              isFestivalFollowed = true;
+            }
+          });
+          return isFestivalFollowed;
+        case 'artist':
+          let artistId = id;
+          let isArtistFollowed = false;
+          state.user.followedArtists.forEach(id => {
+            if (id === artistId) {
+              isArtistFollowed = true;
+            }
+          });
+          return isArtistFollowed;
+        }
       } else {
         return false;
       }
@@ -72,14 +85,50 @@ export const store = new Vuex.Store({
     },
     // Tilføjer element til brugerens favoritter
     addToFavorites(state, elementData) {
-      if (elementData.type === 'festival') {
-        state.user.followedFestivals.push(elementData.id);
+      switch (elementData.type) {
+      case 'festival':
+        // Incrementer popularitet
+        state.festival.festivals.forEach(festival => {
+          if (festival._id === elementData.id) {
+            festival.popularity++;
+          }
+        });
+        // Tilføj til brugerens fulgte festivaler
+        return state.user.followedFestivals.push(elementData.id);
+      case 'artist':
+        // Incrementer popularitet
+        state.artist.artists.forEach(artist => {
+          if (artist._id === elementData.id) {
+            artist.popularity++;
+          }
+        });
+        // Tilføj til brugerens fulgte kunstnere
+        console.log(elementData.id);
+        return state.user.followedArtists.push(elementData.id);
       }
     },
     removeFromFavorites(state, elementData) {
-      if (elementData.type === 'festival') {
-        let index = state.user.followedFestivals.indexOf(elementData.id);
-        state.user.followedFestivals.splice(index, 1);
+      switch (elementData.type) {
+      case 'festival':
+        // Decrementer popularitet
+        state.festival.festivals.forEach(festival => {
+          if (festival._id === elementData.id) {
+            festival.popularity--;
+          }
+        });
+        // Fjern fra brugerens state
+        let festivalIndex = state.user.followedFestivals.indexOf(elementData.id);
+        return state.user.followedFestivals.splice(festivalIndex, 1);
+      case 'artist':
+        // Incrementer popularitet
+        state.artist.artists.forEach(artist => {
+          if (artist._id === elementData.id) {
+            artist.popularity--;
+          }
+        });
+        // Fjern fra brugerens state
+        let artistIndex = state.user.followedArtists.indexOf(elementData.id);
+        return state.user.followedArtists.splice(artistIndex, 1);
       }
     }
   },
@@ -251,21 +300,23 @@ export const store = new Vuex.Store({
     },
     // Tilføjer en festival til forestrukne
     toggleFavorite({ commit, state, getters }, element) {
-      // Brugeren skal da være logget ind
-      if (!getters.isAuthenticated) {
-        return alert('Hov du skal være logget ind kammerat (send til login/signup)');
-      }
       // Id og type er sendt med fra component
       const id = element.id;
       const type = element.type;
       const user = state.user;
+      // Brugeren skal da være logget ind
+      if (!getters.isAuthenticated) {
+        // Her skal der sendes en kunstner til en midlertidig user state
+        // commit('addToFavorites', { type, id });
+        return alert('Hov du skal være logget ind kammerat (send til login/signup)');
+      }
       // Så checker vi hvilken type elementet er
       switch (type) {
       case 'festival':
         // Så checker vi om id'et allerede er til stede hos brugeren
-        let result = user.followedFestivals.find(festivalId => festivalId === id);
+        let festival = user.followedFestivals.find(festivalId => festivalId === id);
         // Hvis der bliver fundet et id
-        if (result) {
+        if (festival) {
           axios.delete(`/users/festivals/${id}`, {
             headers: {
               'x-auth': state.authToken
@@ -290,14 +341,40 @@ export const store = new Vuex.Store({
         break;
       case 'artist':
         // Så checker vi om id'et allerede er til stede hos brugeren
+        let artist = user.followedArtists.find(artistId => artistId === id);
+        // Hvis der bliver fundet et id
+        if (artist) {
+          axios.delete(`/users/artists/${id}`, {
+            headers: {
+              'x-auth': state.authToken
+            }
+          }).then((res) => {
+            // Hvis alt er ok fra serveren fjern fra brugerens state
+            commit('removeFromFavorites', { type, id });
+          }).catch((err) => {
+            console.error(err);
+          });
+        } else {
+          axios.post(`/users/artists/${id}`, {}, {
+            headers: {
+              'x-auth': state.authToken
+            }
+          }).then((res) => {
+            commit('addToFavorites', { type, id });
+          }).catch((err) => {
+            console.error(err);
+          });
+        }
         break;
       default:
-        alert('We do not recognize the type 🤝');
+        alert('We do not recognize the type ️⛔🤝');
       }
     }
   },
   modules: {
     article,
-    festival
+    festival,
+    user,
+    artist
   }
 });

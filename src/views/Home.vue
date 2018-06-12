@@ -23,16 +23,34 @@
           <div class="container__main__content">
             <fr-artist-list :artists="artists"></fr-artist-list>
           </div>
-          <div class="container__main__right">
-            <div class="block block--sticky">
-              <div class="block__row">
-                <fr-right-box></fr-right-box>
-              </div>
-              <div class="block__row block__row--right">
-                <fr-button :icon="'chevron-right'">Go to festivals</fr-button>
+          <template v-if="isAuthenticated">
+            <div class="container__main__right">
+              <div class="block block--sticky">
+                <div class="block__row">
+                  <fr-right-box></fr-right-box>
+                </div>
+                <div class="block__row block__row--right">
+                  <router-link to="/festivals">
+                    <fr-button :icon="'chevron-right'">Go to festivals</fr-button>
+                  </router-link>
+                </div>
               </div>
             </div>
-          </div>
+          </template>
+          <template v-else>
+            <div class="container__main__right">
+              <div class="block block--sticky">
+                <div class="block__row">
+                  <p><strong>Festivals where your chosen artists are playing:</strong></p>
+                  <ul v-for="festival in visitorMatchingFestivals" :key="festival._id">
+                    <router-link :to="'festivals/' + festival.slug">
+                      <li>{{ festival.name }}</li>
+                    </router-link>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -51,15 +69,39 @@ export default {
   components: {
     'fr-hero-yellow-icon': HeroYellowIcon,
     'fr-hero-blue-icon': HeroBlueIcon,
-    'fr-info-columns' : InfoColumns,
+    'fr-info-columns': InfoColumns,
     'fr-artist-list': ArtistList,
     'fr-right-box': RightBox,
-    'fr-button': Button 
+    'fr-button': Button
   },
-  data() {
-    return {
-      artists: this.$store.state.artist.artists
-    };
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    },
+    artists() {
+      return this.$store.state.artist.artists;
+    },
+    visitorMatchingFestivals() {
+      let matchingFestivals = [];
+      // Alle festivaler
+      const festivals = this.$store.state.festival.festivals;
+      // Loop igennem alle festivaler
+      festivals.forEach(festival => {
+        // Loop herefter igennem kunstnere
+        festival.artists.forEach(artist => {
+          // Loop så igennem visitors valgte kunstnere
+          this.$store.state.visitor.followedArtists.forEach(id => {
+            if (artist === id) {
+              // Hvis festivalen ikke allerede er i matchende festivaler
+              if (!matchingFestivals.includes(festival)) {
+                matchingFestivals.push(festival);
+              }
+            }
+          });
+        });
+      });
+      return matchingFestivals;
+    }
   }
 };
 </script>

@@ -9,6 +9,7 @@ import article from './modules/article';
 import festival from './modules/festival';
 import user from './modules/user';
 import artist from './modules/artist';
+import visitor from './modules/visitor';
 
 // Fortæl Vue at vi bruger Vuex til state management
 Vue.use(Vuex);
@@ -48,7 +49,14 @@ export const store = new Vuex.Store({
           return isArtistFollowed;
         }
       } else {
-        return false;
+        let artistId = id;
+        let isArtistFollowed = false;
+        state.visitor.followedArtists.forEach(id => {
+          if (id === artistId) {
+            isArtistFollowed = true;
+          }
+        });
+        return isArtistFollowed;
       }
     }
   },
@@ -92,7 +100,7 @@ export const store = new Vuex.Store({
             festival.popularity++;
           }
         });
-        // Add to  Tilføj til brugerens fulgte festivaler
+        // Tilføj til brugerens fulgte festivaler
         return state.user.followedFestivals.push(elementData.id);
       case 'artist':
         // Increment popularity
@@ -102,7 +110,6 @@ export const store = new Vuex.Store({
           }
         });
         // Tilføj til brugerens fulgte kunstnere
-        console.log(elementData.id);
         return state.user.followedArtists.push(elementData.id);
       }
     },
@@ -369,6 +376,7 @@ export const store = new Vuex.Store({
     article,
     festival,
     user,
-    artist
+    artist,
+    visitor
   }
 });

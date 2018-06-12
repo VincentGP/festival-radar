@@ -14,7 +14,7 @@ const actions = {
   getAllFestivals({ commit }) {
     axios.get('/festivals')
       .then((res) => {
-        // Aktivér vores mutation og send data med
+        // Activate mutation
         commit('saveFestivals', res.data);
       })
       .catch((err) => {

@@ -21,7 +21,7 @@ export const store = new Vuex.Store({
     user: null
   },
   getters: {
-    // Check om brugeren er valid (return true hvis token ikke er null)
+    // Check if user is valid (return true if token is not null)
     isAuthenticated(state) {
       return state.authToken !== null;
     },
@@ -54,7 +54,6 @@ export const store = new Vuex.Store({
   },
   // Mutations kan ikke køre asykron kode
   mutations: {
-    // Sætter egentlig bare variabler
     authUser(state, userData) {
       state.authToken = userData.authToken;
       state.userId = userData.userId;
@@ -71,13 +70,13 @@ export const store = new Vuex.Store({
     },
     // Blocker klienten
     blockClient() {
-      // Sæt blocked til at være true når brugeren skal blokeres
+      // Blocked should be true if the user gets blocked
       localStorage.setItem('blocked', true);
       let tenMinutesFromNow = new Date();
       tenMinutesFromNow.setMinutes(tenMinutesFromNow.getMinutes() + 10);
       localStorage.setItem('blockedExpiresIn', tenMinutesFromNow);
     },
-    // Unblock klienten
+    // Unblock client
     unblockClient() {
       localStorage.removeItem('attempts');
       localStorage.removeItem('blocked');
@@ -87,16 +86,16 @@ export const store = new Vuex.Store({
     addToFavorites(state, elementData) {
       switch (elementData.type) {
       case 'festival':
-        // Incrementer popularitet
+        // Increment popularity
         state.festival.festivals.forEach(festival => {
           if (festival._id === elementData.id) {
             festival.popularity++;
           }
         });
-        // Tilføj til brugerens fulgte festivaler
+        // Add to  Tilføj til brugerens fulgte festivaler
         return state.user.followedFestivals.push(elementData.id);
       case 'artist':
-        // Incrementer popularitet
+        // Increment popularity
         state.artist.artists.forEach(artist => {
           if (artist._id === elementData.id) {
             artist.popularity++;
@@ -135,22 +134,22 @@ export const store = new Vuex.Store({
   actions: {
     signup({ dispatch }, userData) {
       return new Promise((resolve, reject) => {
-        // Lav form object baseret på data fra signup form
+        // Make form object based on data from signup form
         const formData = new FormData();
         formData.append('firstName', userData.firstName);
         formData.append('lastName', userData.lastName);
         formData.append('email', userData.email);
         formData.append('password', userData.password);
         formData.append('location', userData.location);
-        // Billede filen
+        // Image file
         formData.append('avatar', userData.avatar, userData.avatar.name);
-        // Lav request til serveren
         axios.post('/users', formData)
           .then((res) => {
+            resolve(res);
             router.push({ path: '/login' });
           })
           .catch((err) => {
-            console.error(err);
+            reject(err);
           });
       });
     },
@@ -208,19 +207,18 @@ export const store = new Vuex.Store({
           })
           // Hvis der gik noget galt med svaret fra serveren
           .catch(() => {
-            // Hent nuværende forsøg (hvis der er nogle)
+            // Retrieve current attempts (if any)
             let attempts = localStorage.getItem('attempts');
-            // Hvis der ikke er nogle forsøg endnu
+            // If there is no attempts
             if (!attempts) {
               localStorage.setItem('attempts', 1);
             }
-            // Inkrementer hvis der allerede er forsøg
+            // Increment attempts
             if (attempts <= 2) {
-              // Lav om til tal og inkrementer
               let amount = Number(attempts) + 1;
               localStorage.setItem('attempts', amount);
             } else {
-              // Så bliver brugeren blokeret
+              // Block the client
               commit('blockClient');
             }
             reject(new Error());
@@ -229,22 +227,20 @@ export const store = new Vuex.Store({
     },
     // Action til at logge bruger ud
     logout({ commit }) {
-      // Tag token fra localStorage da den nødvendigvis ikke er på state når der er gået en time
+      // Get token from localStorage since it might not be in state after an hour
       let authToken = localStorage.getItem('authToken');
-      // Kald herefter vores log ud route på APIen og send token med
       axios.delete('/users', {
         headers: {
           'x-auth': authToken
         }
       })
-        .then((res) => {
-          // Fjern data fra vores state og fra localStorage
+        .then(() => {
+          // Call mutation
           commit('clearAuthData');
-          // Navigér til login siden
           router.replace('/login');
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     },
     // Action til at sætte log ud timeren
@@ -337,16 +333,14 @@ export const store = new Vuex.Store({
         }
         break;
       case 'artist':
-        // Så checker vi om id'et allerede er til stede hos brugeren
+        // Check if user already follows artist
         let artist = user.followedArtists.find(artistId => artistId === id);
-        // Hvis der bliver fundet et id
         if (artist) {
           axios.delete(`/users/artists/${id}`, {
             headers: {
               'x-auth': state.authToken
             }
-          }).then((res) => {
-            // Hvis alt er ok fra serveren fjern fra brugerens state
+          }).then(() => {
             commit('removeFromFavorites', { type, id });
           }).catch((err) => {
             console.error(err);
@@ -356,7 +350,7 @@ export const store = new Vuex.Store({
             headers: {
               'x-auth': state.authToken
             }
-          }).then((res) => {
+          }).then(() => {
             commit('addToFavorites', { type, id });
           }).catch((err) => {
             console.error(err);

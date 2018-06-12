@@ -14,11 +14,11 @@
      <div class="container">
       <div class="container__main">
         <div class="container__main__content">
-          <fr-festival-list 
-            :topTitle="'Upcomming festivals where ' + currentArtist.name +' is playing (' + festivals.length + ')'" 
+          <fr-festival-list
+            :topTitle="'Upcoming festivals where ' + currentArtist.name +' is playing (' + festivals.length + ')'"
             :festivals="festivals"
             :search="false">
-            </fr-festival-list>
+          </fr-festival-list>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@ export default {
         });
       });
       return festivals;
-    },
+    }
   }
 };
 

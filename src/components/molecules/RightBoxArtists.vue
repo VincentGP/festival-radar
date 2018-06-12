@@ -7,13 +7,11 @@
     </p>
     <template v-else>
       <ul class="tag-list">
-        <li>
-          <fr-tag v-for="artist in followedArtists"
-            :key="artist._id"
-            :text="artist.name"
-            :action-link="artist.slug">
-          </fr-tag>
-        </li>
+        <fr-tag v-for="artist in followedArtists"
+          :key="artist._id"
+          :text="artist.name"
+          :action-link="'/artists/' + artist.slug">
+        </fr-tag>
       </ul>
       <hr>
       <div class="text">
@@ -63,6 +61,7 @@ export default {
     .tag-list {
       display: flex;
       margin-top: 10px;
+      flex-wrap: wrap;
     }
   }
 </style>

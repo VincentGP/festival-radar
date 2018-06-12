@@ -102,6 +102,7 @@ export const store = new Vuex.Store({
           }
         });
         // Tilføj til brugerens fulgte kunstnere
+        console.log(elementData.id);
         return state.user.followedArtists.push(elementData.id);
       }
     },
@@ -295,14 +296,16 @@ export const store = new Vuex.Store({
     },
     // Tilføjer en festival til forestrukne
     toggleFavorite({ commit, state, getters }, element) {
-      // Brugeren skal da være logget ind
-      if (!getters.isAuthenticated) {
-        return alert('Hov du skal være logget ind kammerat (send til login/signup)');
-      }
       // Id og type er sendt med fra component
       const id = element.id;
       const type = element.type;
       const user = state.user;
+      // Brugeren skal da være logget ind
+      if (!getters.isAuthenticated) {
+        // Her skal der sendes en kunstner til en midlertidig user state
+        // commit('addToFavorites', { type, id });
+        return alert('Hov du skal være logget ind kammerat (send til login/signup)');
+      }
       // Så checker vi hvilken type elementet er
       switch (type) {
       case 'festival':

@@ -12,7 +12,8 @@
         <span>{{ artist.popularity }} Followers</span>
       </div>
       <div class="artist-card__info__right">
-        <fr-toggle :text="isFollowed ? 'Unfollow' : 'Follow'" :active="isFollowed" @click.native="toggle()"></fr-toggle>
+        <fr-toggle v-if="isAuthenticated" :text="isFollowed ? 'Unfollow' : 'Follow'" :active="isFollowed" @click.native="toggle()"></fr-toggle>
+        <fr-toggle v-else :text="isFollowed ? 'unchosen' : 'choose'" :active="isFollowed" @click.native="toggle()"></fr-toggle>
         <router-link :to="'artists/' + artist.slug">
           <fr-button class="btn--small">Go to artist</fr-button>
         </router-link>
@@ -44,7 +45,10 @@ export default {
     },
     isFollowed() {
       return this.$store.getters.isFollowed(this.artist._id, 'artist');
-    }
+    },
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    },
   },
   methods: {
     toggle() {

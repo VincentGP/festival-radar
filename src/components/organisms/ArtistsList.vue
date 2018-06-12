@@ -1,14 +1,27 @@
 <template>
   <div>
-    <div class="lineup-top">
-      <p v-if="isAuthenticated">You are currently following <span class="bold">{{ followedArtists.length }}</span> {{ followedArtists.length === 1 ? 'artist' : 'artists' }}</p>
-      <input v-model="search" class="inp inp__search" type="text" placeholder="Search for artist">
-    </div>
-    <ul>
-      <li v-for="artist in filteredArtists" :key="artist._id">
-        <fr-artist-card :artist="artist"></fr-artist-card>
-      </li>
-    </ul>
+    <template v-if="isAuthenticated">
+      <div class="lineup-top">
+        <p>You are currently following <span class="bold">{{ followedArtists.length }}</span> {{ followedArtists.length === 1 ? 'artist' : 'artists' }}</p>
+        <input v-model="search" class="inp inp__search" type="text" placeholder="Search for artist">
+      </div>
+      <ul>
+        <li v-for="artist in filteredArtists" :key="artist._id">
+          <fr-artist-card :artist="artist"></fr-artist-card>
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <div class="lineup-top">
+        <div></div>
+        <input v-model="search" class="inp inp__search" type="text" placeholder="Search for artist">
+      </div>
+      <ul>
+        <li v-for="artist in filteredArtists" :key="artist._id">
+          <fr-artist-card :artist="artist"></fr-artist-card>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
 <script>

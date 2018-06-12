@@ -3,7 +3,7 @@
     <div class="tag">
       <label class="tag__text">{{ text }}</label>
       <template v-if="removeable === 'true'">
-        <span class="tag__removeable">
+        <span class="tag--removeable">
           <fr-close-icon></fr-close-icon>
         </span>
       </template>
@@ -40,7 +40,19 @@ export default {
   text-align: center;
   cursor: pointer;
 
-  &__removeable {
+  &__text {
+    text-transform: uppercase;
+    color: $color-white;
+    line-height: 24px;
+    font-size: 10px;
+    letter-spacing: 2.4px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &--removeable {
     margin: 3px -10px 0 10px;
     cursor: pointer;
     height: 24px;
@@ -50,15 +62,6 @@ export default {
       width: 10px;
       fill: $color-white;
     }
-  }
-
-  &__text {
-    text-transform: uppercase;
-    color: $color-white;
-    line-height: 24px;
-    font-size: 10px;
-    letter-spacing: 2.4px;
-    cursor: pointer;
   }
 }
 </style>

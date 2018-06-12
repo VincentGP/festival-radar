@@ -119,6 +119,8 @@
     </div>
     <div class="box">
       <h3>Tags</h3>
+      <fr-tag :removeable="'true'" :text="'tag example'"></fr-tag>
+      <fr-tag :text="'tag example'"></fr-tag>
     </div>
     <div class="box box__white">
       <h3>placeholders</h3>
@@ -159,9 +161,10 @@
 // Atoms
 import Button from '../../components/atoms/Button.vue';
 import ImagePlaceholder from '../../components/atoms/ImagePlaceholder.vue';
-import Navigation from '../../components/organisms/Navigation.vue';
+import Tag from '../../components/atoms/Tag.vue';
 
 // Organisms
+import Navigation from '../../components/organisms/Navigation.vue';
 import LoginForm from '../../components/organisms/LoginForm.vue';
 import HeaderSection from '../../components/organisms/HeaderSection.vue';
 
@@ -171,7 +174,8 @@ export default {
     'fr-image-placeholder': ImagePlaceholder,
     'fr-navigation': Navigation,
     'fr-login-form': LoginForm,
-    'fr-header-section': HeaderSection
+    'fr-header-section': HeaderSection,
+    'fr-tag': Tag,
   },
   computed: {
     profileImagePath() {

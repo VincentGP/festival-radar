@@ -7,7 +7,6 @@
           <router-link class="menu-item" to="/festivals">Festivaler</router-link>
           <router-link class="menu-item" to="/artists">Artists</router-link>
           <router-link class="menu-item" to="/articles">News</router-link>
-          <router-link class="menu-item" to="/about-us">About us</router-link>
         </div>
         <div class="navigation__right__user">
           <template v-if="isAuthenticated">
@@ -22,6 +21,9 @@
             <router-link to="/login" class="menu-item">Login</router-link >
             <router-link to="/signup" class="menu-item">Signup</router-link >
           </template>
+        </div>
+        <div class="navigation__right__menu-trigger">
+          <button>Menu trigger</button>
         </div>
       </div>
     </div>
@@ -53,7 +55,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../../assets/styles/colors.scss';
+  @import '../../assets/styles/_import.scss';
 
   .navigation {
     display: flex;
@@ -64,6 +66,14 @@ export default {
     &__right {
       display: flex;
       margin-top: 5px;
+
+      &__menu-trigger {
+        display: none;
+
+        @include media($bp-tablet) {
+          display: block;
+        }
+      }
 
       &__links {
         position: relative;
@@ -76,6 +86,10 @@ export default {
           height: 30px;
           border-right: 1px solid $color-light-grey;
         }
+
+        @include media($bp-tablet) {
+          display: none;
+        }
       }
 
       &__user {
@@ -87,6 +101,10 @@ export default {
           }
           display: flex;
           margin-top: -5px;
+        }
+
+        @include media($bp-tablet) {
+          display: none;
         }
       }
 
@@ -101,7 +119,7 @@ export default {
         position: relative;
 
         &--user {
-          max-width: 100px;
+          max-width: 140px;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;

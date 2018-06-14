@@ -36,15 +36,13 @@ export default {
     'fr-header-section': HeaderSection,
     'fr-right-box': RightBox
   },
-  data() {
-    return {
-      festivals: this.$store.state.festival.festivals
-    };
-  },
   computed: {
     ...mapGetters([
       'isAuthenticated'
     ]),
+    festivals() {
+      return this.$store.state.festival.festivals;
+    },
     festivalMatches() {
       let festivals = this.$store.state.festival.festivals;
       let userArtists = this.$store.state.user.followedArtists;

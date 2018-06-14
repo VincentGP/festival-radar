@@ -26,12 +26,12 @@ export default {
     this.$store.dispatch('getAllArticles');
     this.$store.dispatch('getAllArtists');
     // Prøv auto login når siden loader
-    this.$store.dispatch('tryAutoLogin');
+    this.$store.dispatch('tryAutoLogin')
+      .then(() => {
+        this.isLoading = false;
+      })
     // Det her er helt hen i vejret men vi bliver nødt til at vente på svar om brugeren er valid før vi kan vise navigation
     // Kan måske erstattes af en lækker load animation eller noget 🤙
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 200);
   }
 };
 </script>

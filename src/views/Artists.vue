@@ -37,10 +37,10 @@ export default {
     'fr-right-box': RightBox,
     'fr-button': Button
   },
-  data() {
-    return {
-      artists: this.$store.state.artist.artists
-    };
+  computed: {
+    artists() {
+      return this.$store.state.artist.artists
+    }
   }
 };
 </script>

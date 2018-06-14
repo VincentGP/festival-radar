@@ -259,47 +259,51 @@ export const store = new Vuex.Store({
       }, expirationTime * 1000);
     },
     tryAutoLogin({ commit, dispatch }) {
-      // Hent token og userId fra localStorage
-      let authToken = localStorage.getItem('authToken');
-      let userId = localStorage.getItem('userId');
-      // Stop funktion hvis der ikke er nogen token
-      if (!authToken) {
-        return;
-      }
-      // Valider token på serveren
-      axios.get('/users/validate', {
-        headers: {
-          'x-auth': authToken
+      return new Promise((resolve, reject) => {
+        // Hent token og userId fra localStorage
+        let authToken = localStorage.getItem('authToken');
+        let userId = localStorage.getItem('userId');
+        // Stop funktion hvis der ikke er nogen token
+        if (!authToken) {
+          return resolve();
         }
-      })
-        .then((res) => {
-          // Hent udløbsdato (lav om til Date objekt) og sammenlign med nuværende tidspunkt
-          let expirationDate = localStorage.getItem('expirationDate');
-          expirationDate = Date.parse(expirationDate);
-          let now = new Date();
-          if (now >= expirationDate) {
-            dispatch('logout');
-            return;
+        // Valider token på serveren
+        axios.get('/users/validate', {
+          headers: {
+            'x-auth': authToken
           }
-          commit('authUser', {
-            authToken,
-            userId,
-            user: {
-              firstName: res.data.firstName,
-              lastName: res.data.lastName,
-              email: res.data.email,
-              imagePath: res.data.imagePath,
-              followedArtists: res.data.followedArtists,
-              followedFestivals: res.data.followedFestivals,
-              followedGenres: res.data.followedGenres
-            }
-          });
         })
-        .catch(() => {
-          // Hvis token ikke er valid
-          commit('clearAuthData');
-          router.push({ path: '/login' });
-        });
+          .then((res) => {
+            // Hent udløbsdato (lav om til Date objekt) og sammenlign med nuværende tidspunkt
+            let expirationDate = localStorage.getItem('expirationDate');
+            expirationDate = Date.parse(expirationDate);
+            let now = new Date();
+            if (now >= expirationDate) {
+              dispatch('logout');
+              return;
+            }
+            commit('authUser', {
+              authToken,
+              userId,
+              user: {
+                firstName: res.data.firstName,
+                lastName: res.data.lastName,
+                email: res.data.email,
+                imagePath: res.data.imagePath,
+                followedArtists: res.data.followedArtists,
+                followedFestivals: res.data.followedFestivals,
+                followedGenres: res.data.followedGenres
+              }
+            });
+            resolve();
+          })
+          .catch((err) => {
+            // Hvis token ikke er valid
+            commit('clearAuthData');
+            reject(err);
+            router.push({ path: '/login' });
+          });
+      });
     },
     // Tilføjer en festival til forestrukne
     toggleFavorite({ commit, state, getters }, element) {
